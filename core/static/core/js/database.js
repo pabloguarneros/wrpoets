@@ -146,6 +146,7 @@ $(document).ready(function(){
         }
 
         function renderPhone() {
+
             var cameraPosition = new THREE.Vector3();
             var cameraDirection = new THREE.Vector3();
             
@@ -153,8 +154,7 @@ $(document).ready(function(){
             camera.getWorldDirection(cameraDirection);
 
             raycaster.set(cameraPosition,cameraDirection );
-            arrow.setDirection(raycaster.ray.direction);
-                
+            arrow.setDirection(cameraDirection);
                 
             var intersects = raycaster.intersectObjects(scene.children);
             

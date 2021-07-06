@@ -118,6 +118,10 @@ $(document).ready(function(){
         arrow = new THREE.ArrowHelper( raycaster.ray.direction, raycaster.ray.origin, 100, 0x47297B , 0,0);
         scene.add( arrow );
 
+        controller = renderer.xr.getController(0);
+        scene.add(controller);
+        controller.addEventListener('select', readPoem);
+
         function readPoem() {
 
             var intersects = raycaster.intersectObjects(scene.children);
@@ -125,6 +129,8 @@ $(document).ready(function(){
                 for (var i = 0; i < intersects.length; i++)
                     if(intersects[i].object.userData.markerID){
                         var markerID = intersects[i].object.userData.markerID;
+                        
+                        // Title Render
                         const titleGeometry = new THREE.TextGeometry(
                             markerData[markerID].headline,
                             {
@@ -147,6 +153,7 @@ $(document).ready(function(){
                         title.quaternion.setFromRotationMatrix( controller.matrixWorld );
                         scene.add(title);
     
+                        // Poem Render
                         const poemGeometry = new THREE.TextGeometry(
                             markerData[markerID].description,
                             {
@@ -168,21 +175,19 @@ $(document).ready(function(){
                         poem.position.set( 0, 0, - 0.3 ).applyMatrix4( controller.matrixWorld );
                         poem.quaternion.setFromRotationMatrix( controller.matrixWorld );
                         scene.add(poem);
+                        
                         return;
                     }
 
-            } // end if intersects
-        } // end readPoem
-
-        controller = renderer.xr.getController(0);
-        controller.addEventListener('select', readPoem);
-        scene.add(controller);
+            } // endif
+        } // end readPoem()
 
         window.addEventListener( 'resize', onWindowResize, false );
         
         function onWindowResize() {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
+
             renderer.setSize( window.innerWidth, window.innerHeight );
         }
         
@@ -193,6 +198,7 @@ $(document).ready(function(){
         }
 
         function renderPhone() {
+
             var cameraPosition = new THREE.Vector3();
             var cameraDirection = new THREE.Vector3();
             
@@ -200,8 +206,7 @@ $(document).ready(function(){
             camera.getWorldDirection(cameraDirection);
 
             raycaster.set(cameraPosition,cameraDirection );
-            arrow.setDirection(raycaster.ray.direction);
-                
+            arrow.setDirection(cameraDirection);
                 
             var intersects = raycaster.intersectObjects(scene.children);
             
@@ -216,9 +221,10 @@ $(document).ready(function(){
                 scene.fog = new THREE.FogExp2( 0x47297B, .4 );
                 }
             renderer.render(scene, camera);
-        }
 
-    }  // end phoneScene
+        } // end renderPhone()
+
+    }  // end phoneScene()
 
     function desktopScene(){
         camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.01, 40);
@@ -239,9 +245,10 @@ $(document).ready(function(){
             const delta = clock.getDelta();
             controls.update( delta );
             renderer.render(scene, camera);
-        } // end renderDesktop
+        } // end renderDesktop()
         
         // WINDOW EVENTS
+
         function desktopListeners(){
         
             window.addEventListener( 'resize', onWindowResize, false );
@@ -258,11 +265,9 @@ $(document).ready(function(){
             function onMouseMove( event ){
                 mouse.x = (event.clientX / window.innerWidth ) * 2 -1;
                 mouse.y = -(event.clientY / window.innerHeight ) * 2 +1;
-                }
+            }
             
-            window.addEventListener('keydown', function(){
-                $("#course_content").addClass("close").removeClass("open");
-            });
+            window.addEventListener('keydown', () => { $("#course_content").addClass("close").removeClass("open") });
         
             $("#three_canvas").on('click', function(e){
                 raycaster.setFromCamera(mouse,camera);
@@ -284,7 +289,9 @@ $(document).ready(function(){
                     }
         
             });
-        } // END Desktop Listeners
-    } // end desktopScene
 
-})// end onDocumentLoad
+        } // end Desktop Listeners
+
+    } // end desktopScene()
+
+}) // end onDocumentLoad()
