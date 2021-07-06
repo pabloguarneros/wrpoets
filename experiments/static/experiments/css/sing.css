@@ -97,13 +97,14 @@ body{
     padding:12px;
     position:fixed;
     width:30vw;
-    top:66vh;
+    top:64vh;
     height:30vh;
     border-radius:14px;
-    background: #FFE863;
+    border:2px solid #47297B;
+    color: #47297B;
     transition:right 1s ease;
-    color:#47297B;
-
+    background: #FFE863;
+    overflow-y: scroll;
 }
 
 #course_text{
@@ -117,8 +118,7 @@ flex-wrap:wrap;
 
 #course_content .body{
     margin-left:10px;
-    height:70%;
-    overflow-y:scroll;
+    height:100%;
     white-space: pre-wrap;
 }
 
@@ -128,16 +128,4 @@ flex-wrap:wrap;
 
 #course_content.close{
     right:-35vw;
-}
-
-.label{
-    background-color:red;
-    size:40px;
-    color:black;
-}
-
-.labelRender{
-    z-index:0;
-    position:absolute;
-    top:0px;
 }
