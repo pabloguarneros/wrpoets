@@ -1,0 +1,83 @@
+{% extends 'core/starter.html' %}
+{% load compress %}
+{% load static %}
+
+{% block head %}
+
+    <link type="text/css" rel="stylesheet" href="{% static "core/css/home.css"%}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.js" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block body %}
+    <div id="home_wrapper">
+        <div id="top_block" class="page_start">
+            <div id="browse_heading" class="fr ac">
+                <small></small>
+                <object class="open_link off" type="image/svg+xml" data="{% static 'icons/open_box.svg' %}">open collection</object>
+                <a></a>
+                <object class="open_link off" type="image/svg+xml" data="{% static 'icons/open_box.svg' %}">open collection</object>
+            </div>
+            <div id="center_scene">
+            <div id="ar_button"></div>
+            </div>
+            <button class="go_back off">
+                <object type="image/svg+xml" data="{% static 'icons/back-arrow.svg' %}">open collection</object>
+            </button>
+            <div id="site_heading" class="fc ac">
+                <h1>WR POETS</h1>
+                <button id="verse">i'm versin', you?</button>
+            </div>
+        </div>
+        <div id="left_block" class="trigger_hovering page_start blocks">
+            <div class="text_start block_content">
+                <p>We R:
+                <br><br>
+                a 3D world | for poets
+                <br><br>
+                & novelists<br>
+                & musicians<br>
+                & any voice <br>
+                <br><br>
+                to SHARE<br>
+                beyond the 2D
+                </p> 
+            </div>
+        </div>
+        <div id="right_block" class="trigger_hovering page_start blocks">
+            <div class="text_start block_content">
+                <p>We R:
+                <br><br>
+                hiring | for
+                <br><br>
+                business,<br>
+                cybersecurity,<br>
+                & design roles <br>
+                <br><br>
+                to SHARE<br>
+                beyond the 2D
+                </p> 
+            </div>
+        </div>
+        <div id="middle_circle" class="trigger_hovering page_start login-box auth0-box before">
+            {% if user.is_authenticated %}
+            <button onclick="window.location.href='{% url 'people:me' %}'"></button>
+            <a href="{% url 'people:me' %}">
+                Get Writing
+            </a>
+            {% else %}
+            <button onclick="window.location.href='/login/auth0'"></button>
+            <a class="btn btn-primary btn-lg btn-login btn-block tt_cent" href="/login/auth0">
+                Login
+            </a>
+            {% endif %}
+        </div>
+    </div> <!-- end home_wrapper -->
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'core/js/home.js'%}"></script>
+    <script src="{% static "js/three/FirstPersonControls.js"%}"></script>
+    <script type="module" src="{% static "core/js/database.js" %}"></script>
+
+{% endblock %}

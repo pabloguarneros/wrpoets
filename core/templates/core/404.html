@@ -1,0 +1,25 @@
+{% extends 'core/starter.html' %}
+{% load compress %}
+{% load static %}
+
+{% block head %}
+    <link type="text/css" rel="stylesheet" href="{% static "core/css/404.css"%}">
+    <title>{{error}}</title>
+{% endblock %}
+
+{% block body %}
+
+<div id="error_wrap" class="fc ac">
+    <div id="error_message" class="fc">
+    {{error_message|safe}}
+    <h1>-- {{error}} --</h1>
+    </div>
+    <button onclick="window.location.href='{%url 'home'%}'">
+        Return home.
+    </button>
+</div>
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}

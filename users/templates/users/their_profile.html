@@ -1,0 +1,56 @@
+{% extends 'core/starter.html' %}
+{% load compress %}
+{% load static %}
+
+{% block head %}
+    <link type="text/css" rel="stylesheet" href="{% static "users/css/users.css"%}">
+{% endblock %}
+
+{% block body %}
+<div id="profile_wrapper" class="fr">
+    <div id="prof_cc" class="fc">
+        <h1> {{ user.username | title }}'s Writing &#128035 &#128302 </h1>
+        <p> {{ user.blurb }} </p>
+
+        <div id="user_socials" class="fc">
+            {% if user.portfolio %}
+            <a href="" > 3D Profile </a>
+             {% endif %}
+             {% if user.patreon %}
+            <a href="{{user.patreon }}" target="__blank"> Patreon </a>
+            {% endif %}
+        </div>
+    </div>
+    <div id="lessons_cc" class="fc">
+    {% for lesson in user.lessons.all %}
+        {% if lesson.public %}
+        <button name="{{lesson.pk}}" class="lesson_item">
+            <p class="lesson_title">{{lesson.title}}</p>
+            <p class="lesson_description">{{lesson.description}}</p>
+        </button>
+        {% endif %}
+    {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript">
+        // opens on new tab in computer vs. in same window on phone
+        $("document").ready(function(){
+        if (/Mobi|Android/i.test(navigator.userAgent)) {
+            $("#lessons_cc").on('click','button',function(e){
+                var pk = e.currentTarget.name;
+                window.location.href=`/experiments/t/${pk}`;
+            })
+        }else{
+            $("#lessons_cc").on('click','button',function(e){
+                var pk = e.currentTarget.name;
+                window.open(`/experiments/t/${pk}`);
+            })
+        }})
+
+    </script>
+
+{% endblock %}

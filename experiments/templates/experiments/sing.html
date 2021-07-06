@@ -1,0 +1,60 @@
+{% extends 'core/starter.html' %}
+{% load compress %}
+{% load static %}
+
+{% block head %}
+    <link type="text/css" rel="stylesheet" href="{% static "experiments/css/sing.css"%}">
+    <meta description="Pablo Guarneros is a student from Minerva Schools at KGI">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script>
+{% endblock %}
+
+{% block body %}
+<div id="body_wrapper">
+    <div id="main_instructions">
+        press &#8592 &#8593 &#8594
+    </div>
+    <div id="home_loader" class="fc ac">
+        <div class="v_cent h_cent">
+        <h1 class="tt_cent">{{lesson.title}}</h1>
+        <div id="loading_line"></div>
+        <p class="tt_cent" style="font-weight:normal;">
+            {{lesson.description}}
+        </p>
+        </div>
+    </div>
+    <div id="three_canvas" class="gold_cc v_cent h_cent"></div>
+    <div id="course_content" class="gold_cc close">
+        <div id="course_text" class="fc">
+        <h2 class="head"></h2>
+        <p class="body"></p>
+        </div>
+    </div>
+    <div id="interaction_alerts">
+        <p id="alert"></p>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+       
+        <script src="{% static "js/three/FirstPersonControls.js"%}"></script>
+
+        <!-- 
+                    <script src="{% static "js/three/CSS2DRenderer.js"%}"></script>
+
+        <script src="{% static "js/three/three.min.js"%}"></script>
+ <script src="{% static "js/three/dat.gui.min.js"%}"></script>
+        <script src="{% static "js/three/stats.min.js"%}"></script>
+        <script src="{% static "js/three/GLTFLoader.js"%}"></script>
+
+        -->
+
+        <script type="module" src="{% static "experiments/js/initialWorld.js" %}"></script>
+
+
+
+
+{% endblock %}

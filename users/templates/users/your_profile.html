@@ -1,0 +1,23 @@
+{% extends 'core/starter.html' %}
+{% load compress %}
+{% load static %}
+
+{% block head %}
+    <link type="text/css" rel="stylesheet" href="{% static "users/css/manage_profile.css"%}">
+{% endblock %}
+
+{% block body %}
+<div id="manager_profile" class="fr ac">
+    <div id="edit_profile">
+    </div>
+    <div id="edit_courses">
+    </div>
+    <div class="courses_curtain"></div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+    <script type="text/babel" src="{% static "users/js/edit_profile.js" %}"></script>
+    <script type="text/babel" src="{% static "users/js/edit_courses.js" %}"></script>
+{% endblock %}

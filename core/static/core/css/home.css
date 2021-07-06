@@ -1,0 +1,369 @@
+body {
+    background: linear-gradient(180deg, #FFE863 0%, #F8D63E 59.37%, #F3CA26 100%);
+    overscroll-behavior: none;
+}
+#home_wrapper{
+    grid-area:1/1/2/2;
+    display:grid;
+    position:relative;
+    height:100vh;
+    width:100vw;
+    overflow:hidden;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    background: linear-gradient(180deg, #FFE863 0%, #F8D63E 59.37%, #F3CA26 100%);
+}
+
+#top_block,#left_block,#right_block,#middle_circle{
+    transition: left .6s linear, top .6s linear, right .6s linear, opacity .1s linear .1s, width .4s linear;
+}
+
+
+#top_block{
+    z-index:10;
+    grid-area: auto/3/3/7;
+    align-self:flex-end;
+    justify-self: unsafe center;
+    border-radius:20px;
+    padding:20px;
+    width:56vw;
+    height:90vh;
+    position:absolute;
+    background: linear-gradient(180deg, #722E9A 95%, #47297B 10%);
+    
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+
+#center_scene{
+    opacity:0;
+    grid-area:1/1/1/1;
+    transition:opacity .7s ease-in-out 0s;
+    border-radius:20px;
+    width:inherit;
+    height:inherit;
+    border:4px solid #F3CA26;
+    margin:auto;
+    overflow: hidden;
+}
+
+#browse_heading{
+    width:100%;
+    justify-content: center;
+    z-index:12;
+    position:absolute;
+    margin-top:25px;
+    height:50px;
+    color:#F8D63E;
+}
+
+#browse_heading small{
+    font-size:18px;
+}
+
+#browse_heading a{
+    text-align: center;
+    font-size:24px;
+    color:#F8D63E;
+}
+
+#browse_heading a:hover{
+    color:#F8D63E;
+    text-decoration: underline;
+}
+
+
+/* ICONS */
+
+.open_link.off,.go_back.off{
+    opacity:0;
+    width:0px;
+}
+
+.open_link{
+    margin:0px 10px;
+    align-self:center;
+    width:30px;
+    height:30px;
+}
+
+.go_back{
+    z-index:12;
+    position:absolute;
+    left:30px;
+    bottom:25px;
+    border-radius:14px;
+    border:2px solid #F3CA26;
+    padding:7px 34px;
+    background:none;
+}
+
+.go_back:hover{
+    background-color:#47297B;
+}
+
+.go_back object{
+    width:22px;
+    height:22px;
+    margin:center;
+
+}
+
+.go_back.phone_version{
+    display:none;
+}
+
+
+#site_heading{
+    height:inherit;
+    grid-area:1/1/1/1;
+    z-index:11;
+    width:inherit;
+    text-align:center;
+    justify-content:flex-end;
+    align-self:center;
+}
+
+#top_block.page_start{
+    top:-75vh;
+}
+
+#top_block.page_hovering{
+    top:-87vh;
+}
+#top_block.page_active{
+    width:93vw;
+    top:2vh;
+}
+
+
+#site_heading h1{
+    color:#F3CA26;
+    letter-spacing:7px;
+    font-size:42px;
+    margin-bottom:17px;
+}
+
+#site_heading button{
+    padding:7px 23px;
+    border-radius:28px;
+    margin:0px;
+}
+
+#site_heading button:hover{
+    color:#F3CA26;
+    background-color:#47297B;
+}
+
+
+#left_block,#right_block{
+    padding:20px;
+    width:60vw;
+    height:60vh;
+    border-radius:20px;
+    position:absolute;
+    background: linear-gradient(180deg, #722E9A 0%, #47297B 100%);
+}
+
+#left_block:hover,#right_block:hover{
+    background: #47297B;
+    cursor:pointer;
+
+}
+
+#left_block{
+    z-index: 5;
+    justify-self: unsafe right;
+    grid-area:6/auto/auto/2;
+    top:0vh;
+    padding:20px;
+}
+
+#left_block.page_start{
+    left:-50vw;
+}
+
+#left_block.page_hovering{
+    left:-40vw;
+}
+
+#left_block.page_active{
+    z-index:10;
+    left:-10vw;
+    top:-20vh;
+}
+
+#right_block{
+    z-index: 4;
+    justify-self: unsafe left;
+    grid-area:4/8/auto/auto;
+    top:0vh;
+}
+
+#right_block.page_start{
+    right:-50vw;
+}
+
+#right_block.page_hovering{
+    right:-40vw;
+}
+#right_block.page_active{
+    z-index:9;
+    right:-10vw;
+    top:-20vh;
+}
+
+.block_content{
+    height:90%;
+    width:85%;
+    padding:20px;
+    transition:opacity 1s linear 0.1s;
+    background-color:#F8D63E;
+    border-radius:20px;
+}
+
+#left_block .block_content{
+    text-align:right;
+    margin-left:auto;
+}
+
+.block_content p{
+    font-weight: bolder;
+    font-size: 18px;
+    color:#47297B;
+}
+
+.block_content.text_start{
+   opacity:0;
+}
+
+.block_content.text_appear{
+    opacity:1;
+ }
+
+ .disappear{
+    opacity:0;
+ }
+
+
+#middle_circle{
+    z-index:5;
+    justify-self: unsafe center;
+    position:absolute;
+    width: 280px;
+    height: 280px;
+    border-radius:150px;
+    grid-area:4/4/6/6;
+    background: linear-gradient(180deg, #722E9A 0%, #47297B 100%);
+    transition:opacity 1s ease-in-out 0.5s, top 1s ease-out;
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+
+
+#middle_circle.page_start{
+    top:0vh;
+}
+
+#middle_circle.page_hovering{
+    top:-10vh;
+}
+
+#middle_circle.page_active{
+    top:-10vh;
+    background: #47297B;
+    cursor:pointer;
+
+}
+
+#middle_circle.block_active{
+    top:0vh;
+    opacity:.2;
+}
+
+#middle_circle button{
+    grid-area:1/1/1/1;
+    margin:auto;
+    z-index:8;
+    opacity:0;
+    width:100%;
+    height:100%;
+    border-radius:inherit;
+}
+
+#middle_circle a{
+    grid-area:1/1/1/1;
+    margin:auto;
+    opacity:0;
+    transition:opacity .1s ease-in-out;
+    width:100%;
+    color:#FFE863;
+    font-size:29px;
+    text-align:center;
+    letter-spacing:5px;
+    background:none;
+}
+
+#middle_circle:hover a{
+    opacity:1;
+}
+
+#ar_button{
+    position:absolute;
+    left:50%;
+    background-color:red;
+    top:140px;
+    margin-bottom:auto;
+}
+
+#top_block.phone_versiom{
+    margin:auto;
+}
+
+#middle_circle.phone_version{
+    grid-area: 8/2/9/8;
+    justify-self: center;
+
+    width:90%;
+    height:70%;
+    border-radius:20px;
+}
+
+#middle_circle.phone_version a{
+    opacity:1;
+}
+
+#left_block.phone_version{
+    grid-area: 3/2/6/8;
+    justify-self: center;
+
+    padding:0px;
+    width:90%;
+    height:95%;
+}
+
+#right_block.phone_version{
+    grid-area: 6/2/8/8;
+    justify-self: center;
+    padding:0px;
+    width:90%;
+    height:90%;
+}
+
+.block_content.phone_version{
+    opacity:1;
+    background:none;
+    padding:10px;
+    margin:auto;
+    overflow-y:scroll;
+}
+
+.block_content.phone_version p{
+    opacity:1;
+    font-weight:normal;
+    text-align:center;
+    background:none;
+    color:#F3CA26;
+}
