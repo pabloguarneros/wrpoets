@@ -8,8 +8,8 @@ $(document).ready(function(){
     async function fetchNodes(){
         const api = `/nubes/nodes/${window.location.href.substring(window.location.href.lastIndexOf('/') + 1)}`;
         fetch(api)
-            .then(response => response.json())
-            .then((data)=>{ three_init(data); });
+            .then( response => response.json() )
+            .then( (data) => { three_init(data) });
         };
 
     function three_init(nodeArray) {
@@ -35,10 +35,8 @@ $(document).ready(function(){
             })        
 
             function reveal() {
-                $('#home_loader').css("animation","curtain_off 1s ease 1s 1 forwards")
-                $('#home_loader').on("animationend",function(e) {
-                    $('#home_loader').css("display","none");
-                })
+                $('#home_loader').css("animation","curtain_off 1s ease 1s 1 forwards");
+                $('#home_loader').on("animationend", () => { $('#home_loader').css("display","none") });
             }
 
             const ar_display = new THREE.PlaneBufferGeometry(.3,.3);
@@ -62,11 +60,13 @@ $(document).ready(function(){
                 })
         
                 if (images.length>0){
+
                     for (var i in images){
                         const writing_texture = new THREE.TextureLoader(loadingManager).load(images[i]["image"]);
                         const writing_pattern = new THREE.MeshBasicMaterial( {
                             map: writing_texture,
-                            transparent: true } );
+                            transparent: true 
+                        } );
                         const writingMesh = new THREE.Mesh(ar_display,writing_pattern);
                         writingMesh.userData.markerID=int;
                         
@@ -75,16 +75,16 @@ $(document).ready(function(){
 
                         scene.add(writingMesh);
                     }
-                } else{
+
+                } else {
                     const defaultMesh = new THREE.Mesh(defaultGeometry, defaultMaterial);
                     defaultMesh.userData.markerID=int;
                     
                     defaultMesh.position.set(x_origin,y_origin,z_origin);
                     
                     scene.add(defaultMesh);
-                }
-    
-            }
+                } // endif
+            } // endfor  
     
         } // end loadOrbs
 
@@ -98,7 +98,7 @@ $(document).ready(function(){
 
     function phoneScene(){
 
-        let controller, arrow, font;
+        let controller, arrow, font, intersects;
 
         const fontLoader = new THREE.FontLoader()
         fontLoader.load(
@@ -112,7 +112,7 @@ $(document).ready(function(){
         renderer.xr.enabled = true;
         $("#three_canvas").append( renderer.domElement );
 
-        $("#main_instructions").html("click to read");
+        $("#main_instructions").html("");
         document.body.appendChild(ARButton.createButton(renderer));
 
         arrow = new THREE.ArrowHelper( raycaster.ray.direction, raycaster.ray.origin, 100, 0x47297B , 0,0);
@@ -124,7 +124,6 @@ $(document).ready(function(){
 
         function readPoem() {
 
-            var intersects = raycaster.intersectObjects(scene.children);
             if(intersects.length){
                 for (var i = 0; i < intersects.length; i++)
                     if(intersects[i].object.userData.markerID){
@@ -208,18 +207,26 @@ $(document).ready(function(){
             raycaster.set(cameraPosition,cameraDirection );
             arrow.setDirection(cameraDirection);
                 
-            var intersects = raycaster.intersectObjects(scene.children);
+            intersects = raycaster.intersectObjects(scene.children);
             
-            if(intersects.length){
+            if (intersects.length) {
                 for (var i = 0; i < intersects.length; i++){
                     if(intersects[i].object.userData.markerID|intersects[i].object.userData.getPoem){
-                        arrow.setColor(0xF3CA26)
-                        scene.fog = new THREE.FogExp2( 0xF3CA26, .4 );
-                    }}
-            } else{
+                        poemFound()
+                    } // endif
+                };
+            } else{ poemNotFound() }
+            
+            function poemFound(){
+                arrow.setColor(0xF3CA26)
+                scene.fog = new THREE.FogExp2( 0xF3CA26, .4 );
+            }
+
+            function poemNotFound(){
                 arrow.setColor(0x47297B)
                 scene.fog = new THREE.FogExp2( 0x47297B, .4 );
-                }
+            }
+
             renderer.render(scene, camera);
 
         } // end renderPhone()
@@ -227,70 +234,92 @@ $(document).ready(function(){
     }  // end phoneScene()
 
     function desktopScene(){
-        camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.01, 40);
 
         var mouse = new THREE.Vector2();
+        camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.01, 40);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)) 
 
-        // CONTROLS
         const controls = new FirstPersonControls( camera, $("#home_wrapper")[0] );
         controls.movementSpeed = 1;
         controls.lookSpeed = .03;
 
         $("#three_canvas").append( renderer.domElement );
-        renderer.setAnimationLoop(renderDesktop);
+        
         desktopListeners();
+        
+        function desktopListeners(){
+        
+            window.addEventListener(
+                'resize',
+                () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize( window.innerWidth, window.innerHeight );
+                    controls.handleResize();
+                },
+                false
+            );
+    
+            window.addEventListener(
+                'mousemove',
+                (event) => {
+                    mouse.x = (event.clientX / window.innerWidth ) * 2 -1;
+                    mouse.y = -(event.clientY / window.innerHeight ) * 2 +1
+                },
+                false
+            );
+            
+            window.addEventListener(
+                'keydown',
+                () => {
+                    $("#course_content").addClass("close").removeClass("open")
+                },
+                false
+            );
+        
+            $("#three_canvas").on(
+                'click',
+                (e) => {
+
+                    raycaster.setFromCamera(mouse,camera);
+                    var intersects = raycaster.intersectObjects(scene.children);
+
+                    if(intersects.length){
+
+                        $("#interaction_alerts #alert").html("");
+
+                        for (var i = 0; i < intersects.length; i++)
+
+                            if(intersects[i].object.userData.markerID){
+
+                                var markerID = intersects[i].object.userData.markerID;
+                                $("#course_content").addClass("open").removeClass("close");
+                                $("#course_content .head").html(markerData[markerID].headline)
+                                $("#course_content .body").html(markerData[markerID].description);
+                                return;
+
+                            }
+
+                            $("#course_content").addClass("close").removeClass("open");
+
+                    } else {
+                        $("#interaction_alerts #alert").html("get closer");
+                        $("#course_content").addClass("close").removeClass("open");
+                    }
+                }
+            );
+
+        } // end Desktop Listeners
+
+        renderer.setAnimationLoop(renderDesktop);
 
         function renderDesktop(timestamp,frame){
+
             const delta = clock.getDelta();
             controls.update( delta );
             renderer.render(scene, camera);
+
         } // end renderDesktop()
-        
-        // WINDOW EVENTS
-
-        function desktopListeners(){
-        
-            window.addEventListener( 'resize', onWindowResize, false );
-        
-            function onWindowResize() {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize( window.innerWidth, window.innerHeight );
-                controls.handleResize();
-            }
-            
-            window.addEventListener('mousemove', onMouseMove, false);
-            
-            function onMouseMove( event ){
-                mouse.x = (event.clientX / window.innerWidth ) * 2 -1;
-                mouse.y = -(event.clientY / window.innerHeight ) * 2 +1;
-            }
-            
-            window.addEventListener('keydown', () => { $("#course_content").addClass("close").removeClass("open") });
-        
-            $("#three_canvas").on('click', function(e){
-                raycaster.setFromCamera(mouse,camera);
-                var intersects = raycaster.intersectObjects(scene.children);
-                if(intersects.length){
-                    $("#interaction_alerts #alert").html("");
-                    for (var i = 0; i < intersects.length; i++)
-                        if(intersects[i].object.userData.markerID){
-                            var markerID = intersects[i].object.userData.markerID;
-                            $("#course_content").addClass("open").removeClass("close");
-                            $("#course_content .head").html(markerData[markerID].headline)
-                            $("#course_content .body").html(markerData[markerID].description);
-                            return;
-                        }
-                        $("#course_content").addClass("close").removeClass("open");
-                } else {
-                    $("#interaction_alerts #alert").html("get closer");
-                    $("#course_content").addClass("close").removeClass("open");
-                    }
-        
-            });
-
-        } // end Desktop Listeners
 
     } // end desktopScene()
 
