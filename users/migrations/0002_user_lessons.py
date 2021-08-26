@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('experiments', '0008_alter_sectionnode_z_position'),
+        ('rooms', '0008_alter_sectionnode_z_position'),
         ('users', '0001_initial'),
     ]
 
@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user',
             name='lessons',
-            field=models.ManyToManyField(to='experiments.Lesson'),
+            field=models.ManyToManyField(to='rooms.Lesson'),
         ),
     ]

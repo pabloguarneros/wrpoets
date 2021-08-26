@@ -36,21 +36,31 @@
 {% endblock %}
 
 {% block script %}
+
+    {% if is_mobile %}
+
     <script type="text/javascript">
         // opens on new tab in computer vs. in same window on phone
         $("document").ready(function(){
-        if (/Mobi|Android/i.test(navigator.userAgent)) {
             $("#lessons_cc").on('click','button',function(e){
                 var pk = e.currentTarget.name;
-                window.location.href=`/experiments/t/${pk}`;
+                window.location.href=`/room/${pk}`;
             })
-        }else{
-            $("#lessons_cc").on('click','button',function(e){
-                var pk = e.currentTarget.name;
-                window.open(`/experiments/t/${pk}`);
-            })
-        }})
+        })
 
     </script>
+
+    {% else %}
+
+    <script type="text/javascript">
+        $("document").ready(function(){
+            $("#lessons_cc").on('click','button',function(e){
+                var pk = e.currentTarget.name;
+                window.open(`/room/${pk}`);
+            })
+        })
+    </script>
+
+    {% endif %}
 
 {% endblock %}

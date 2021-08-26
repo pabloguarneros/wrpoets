@@ -4,6 +4,7 @@
 
 {% block head %}
     <link type="text/css" rel="stylesheet" href="{% static "users/css/manage_profile.css"%}">
+    <link type="text/css" rel="stylesheet" href="{% static "users/css/manage_profile_mobile.css"%}">
 {% endblock %}
 
 {% block body %}
@@ -18,6 +19,11 @@
 {% endblock %}
 
 {% block script %}
+
+    <script type="text/babel" src="{% static "core/js/fetchingDefaults.js" %}"></script>
     <script type="text/babel" src="{% static "users/js/edit_profile.js" %}"></script>
-    <script type="text/babel" src="{% static "users/js/edit_courses.js" %}"></script>
+    
+     <script type="text/babel" src="{% static "users/js/edit_courses/poem_class.js" %}"></script>
+    <script type="text/babel" src="{% static "users/js/edit_courses/collection_class.js" %}"></script>
+    <script type="text/babel" src="{% static "users/js/edit_courses/render.js" %}"></script>
 {% endblock %}

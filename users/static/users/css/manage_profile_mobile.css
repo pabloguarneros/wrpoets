@@ -1,0 +1,112 @@
+@media (max-width: 500px){
+    body{
+        overflow-x:none;
+    }
+    #manager_profile{
+        flex-direction:column;
+        overflow:hidden;
+        height:100vh;
+        padding:0px;
+        padding-left:17px;
+        padding-right:17px;
+    }
+    #edit_profile{
+        display:none;
+    }
+    #edit_courses{
+        width:100%;
+    }
+    #node_content, #collection_detail_body{
+        flex-direction: column;
+        justify-content:space-around;
+    }
+    #render_lesson #nodes_gallery {
+        justify-content:center;
+        width:100%;
+    }
+    #node_meta{
+        width:90%;
+        margin-bottom:auto;
+    }
+    #node_meta .node_heading{
+        margin-bottom:6px;
+    }
+    #render_lesson #lesson_meta, #render_lesson #nodes_gallery{
+        height:45vh;
+    }
+    #render_lesson #lesson_meta{
+        padding:8px;
+        width:fit-content;
+    }
+    textarea{
+        width:80%;
+        margin-right:40px;
+
+        border-radius: 0px;
+
+    }
+    #node_position{
+        display:none;
+    }
+    #maps_container{
+        height:fit-content;
+        overflow: hidden;
+    }
+    #upload_map, #image_map{
+        height:96%;
+    }
+    #image_map{
+        margin:auto;
+    }
+    #upload_map{
+        width:fit-content;
+        height:100px;
+    }
+    #node_meta, #collection_detail_body, #node_visual_edit {
+        height:40%;
+    }
+    .expandPoem #node_content{
+        justify-content: space-between;
+        align-items: center;
+    }
+    #node_visual_edit{
+        width:fit-content;
+        height:fit-content;
+        align-items: center;
+        margin:30px 0px;
+    }
+    #node_content{
+        height: inherit;
+    }
+    #render_node {
+    padding: 8px;
+    height:84vh;
+    justify-content:space-around;
+    }
+    #render_lesson{
+    padding: 8px;
+    justify-content:space-around;
+    height:inherit;
+    } 
+    #collection_detail_body{
+        height: 75vh;
+        margin-top:0px;
+    }
+    .helper_course_name, .helper_node_name {
+        font-size: 17px;
+    }
+    .bottom_nav{
+        margin-top:0px;
+    }
+    .bottom_nav button{
+        font-size:12px;
+        padding:2px 5px;
+    }
+    #node_position textarea, #node_position small{
+        font-size:12px;
+    }
+    #poem_content {
+        height: 30%;
+    }
+
+}

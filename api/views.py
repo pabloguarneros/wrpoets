@@ -1,27 +1,18 @@
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status
-
-from django.core.files.base import ContentFile
-from django.core.files import File as DjangoFile
-from rest_framework.permissions import SAFE_METHODS, IsAuthenticated, IsAdminUser, BasePermission
-from experiments.models import Lesson, SectionNode, NodeImages, ImageTag
-from users.models import User
+from rest_framework.permissions import SAFE_METHODS, IsAuthenticated, BasePermission
+from rooms.models import Lesson, SectionNode, NodeImages, ImageTag
 from . import serializers
 
-class ExploreCourses(generics.ListAPIView):
+class ExploreRooms(generics.ListAPIView):
     serializer_class = serializers.CourseSerializer
 
     def get_queryset(self):
         return Lesson.objects.filter(explorable=True,public=True)
 
-class Courses(generics.ListCreateAPIView):
-
-    '''
-    Returns the lessons given the requested user
-    Creates given the request user
-    '''
+class Rooms(generics.ListCreateAPIView):
 
     serializer_class = serializers.CourseSerializer
     permission_classes = [IsAuthenticated]
@@ -40,13 +31,9 @@ class Courses(generics.ListCreateAPIView):
     def get_queryset(self):
         return self.request.user.lessons
 
-class CourseDetail(generics.RetrieveUpdateDestroyAPIView):
+class RoomDetail(generics.RetrieveUpdateDestroyAPIView):
     
-    #Returns the specific course given the endpoint's <int:pk> argument
-
     class LessonUserWritePermission(BasePermission):
-
-        #Only allows the owner to update or destroy the specific course
 
         message = "Editing is restricted to author only"
 
@@ -61,14 +48,9 @@ class CourseDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class Nodes(generics.ListCreateAPIView):
 
-    '''
-    Returns the node given the requested lesson
-    '''
     serializer_class = serializers.NodeSerializer
 
     class LessonUserWritePermission(BasePermission):
-
-        #Only allows the owner to update or destroy the specific course
 
         message = "Adding to the lesson is restricted to authors only"
         
@@ -125,30 +107,11 @@ class NodeDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = serializers.NodeSerializer
     queryset = SectionNode.objects.all()
 
-
-class Images(generics.ListCreateAPIView):
-
-    serializer_class = serializers.ImageSerializer
-
-    def get_queryset(self):
-        tag_pk = self.request.query_params.get('tag', None)
-        if tag_pk == None:
-            return NodeImages.objects.all()[0:50]
-        else:
-            tag = ImageTag.objects.get(pk=tag_pk)
-            return tag.image_tag.all()
-
-
 class NodeImage(generics.ListCreateAPIView):
 
-    '''
-    Returns the image given the requested node
-    '''
     serializer_class = serializers.ImageSerializer
 
     class NodeUserWritePermission(BasePermission):
-
-        #Only allows the owner to update or destroy the specific course
 
         message = "Adding images to the node is restricted to authors only"
         
@@ -169,3 +132,16 @@ class NodeImage(generics.ListCreateAPIView):
     def get_queryset(self):
         node = SectionNode.objects.get(pk=self.kwargs['node_pk'])
         return node.images.all()
+
+class Images(generics.ListCreateAPIView):
+
+    serializer_class = serializers.ImageSerializer
+
+    def get_queryset(self):
+        tag_pk = self.request.query_params.get('tag', None)
+        if tag_pk == None:
+            return NodeImages.objects.all()[0:50]
+        else:
+            tag = ImageTag.objects.get(pk=tag_pk)
+            return tag.image_tag.all()
+

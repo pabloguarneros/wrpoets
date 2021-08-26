@@ -1,9 +1,8 @@
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase, APIClient
-from experiments.models import Lesson
+from rooms.models import Lesson
 from users.models import User
-
 
 class LessonsTests(APITestCase):
 
@@ -30,12 +29,6 @@ class LessonsTests(APITestCase):
 
     
     def test_update_lesson(self):
-
-        '''
-        I learned: the test post that gets created becomes pk:1
-        The user has to be created through create_user if not it counts as Anonymous User
-        printing helps you figure out the problem (E.g. print(response.data))
-        '''
 
         client = APIClient()
         url = reverse(('api:course_details'),kwargs={'pk': 2})

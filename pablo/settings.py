@@ -26,11 +26,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'users',
     'core',
-    'experiments',
-    'nlp',
+    'rooms',
     'api'
 ]
-
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
@@ -147,7 +145,7 @@ AUTHENTICATION_BACKENDS = {
 LOGIN_URL = '/login/auth0'
 LOGIN_REDIRECT_URL = '/people/me'
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 COMPRESS_ROOT = 'static'
 
@@ -159,9 +157,9 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+#STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, 'static'),
+#]
 
 COMPRESS_CSS_FILTERS = [
     'compressor.filters.css_default.CssAbsoluteFilter',

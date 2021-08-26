@@ -1,7 +1,16 @@
 from django.shortcuts import render
 
+def get_mobile(request):
+    user_agent = request.META['HTTP_USER_AGENT']
+    if 'Mobile' in user_agent:
+        return True
+    else:
+        return False
+
 def home(request):
-    return render(request,'core/home.html')
+    is_mobile = get_mobile(request)
+    if is_mobile: return render(request,'core/home_mobile.html')
+    else: return render(request,'core/home_desktop.html')
 
 def error_404(request,exception=False):
     context = {

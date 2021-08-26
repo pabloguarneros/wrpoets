@@ -1,0 +1,35 @@
+#save_edit{
+    font-size:22px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:auto;
+    z-index:10001;
+    pointer-events:all;
+    margin-bottom:15px;
+}
+
+#save_edit.isSaved{
+    animation: saved 1s linear;
+}
+
+#save_edit.isSaved::after{
+    content:"d"
+}
+
+@keyframes saved{
+    0%{
+        font-size:22px;
+    }
+    50%{
+        font-size:24px;
+    }
+    90%{
+        font-size:22px;
+    }
+}
+
+#camera_content{
+    width:100vw;
+    height:100vh;
+    position:absolute;
+}

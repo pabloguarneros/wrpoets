@@ -1,0 +1,49 @@
+{% extends 'core/starter.html' %}
+{% load compress %}
+{% load static %}
+
+{% block head %}
+    <link type="text/css" rel="stylesheet" href="{% static "rooms/css/sing.css"%}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.js" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block body %}
+    <div id="gold_light"></div>
+<div id="body_wrapper">
+    <div id="main_instructions">
+        press &#8592 &#8593 &#8594
+    </div>
+    <div id="home_loader" class="fc ac">
+        <div class="v_cent h_cent">
+        <h1 class="tt_cent">{{lesson.title}}</h1>
+        <div id="loading_line"></div>
+        <p class="tt_cent" style="font-weight:normal;">
+            {{lesson.description}}
+        </p>
+        </div>
+    </div>
+    <div id="three_canvas" class="gold_cc v_cent h_cent"></div>
+    <div id="course_content" class="gold_cc close">
+        <div id="course_text" class="fc">
+        <h2 class="head"></h2>
+        <p class="body"></p>
+        </div>
+    </div>
+    <div id="interaction_alerts">
+        <p id="alert"></p>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+       
+        <script src="{% static "js/three/FirstPersonControls.js"%}"></script>
+        <script type="module" src="{% static "rooms/js/initialWorld.js" %}"></script>
+        <script type="module" src="{% static "rooms/js/display_room/getUserLocation.js" %}"></script>
+
+
+
+
+{% endblock %}

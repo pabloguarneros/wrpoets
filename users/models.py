@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from PIL import Image
 from django.db.models.deletion import SET_NULL
-from experiments.models import Lesson
+from rooms.models import Lesson
 
 def profile_pic_directory_path(instance, filename): 
     return 'users/{0}/profile_pic/{1}'.format(instance.username, f"{filename}")  

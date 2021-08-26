@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-import json
 from rest_framework import generics
 from django.contrib.auth import logout as log_out
 from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponse
 from urllib.parse import urlencode
+from core.views import get_mobile
 from .models import User
 from . import serializers
+
 
 def join(request):
     return render(request,'users/discover.html')
@@ -16,30 +16,37 @@ def yours(request):
     user = request.user
     if user.is_authenticated:
         context = { "user":user}
-        return redirect("people:profile",user.username)
+        return redirect("profile",user.username)
     else:
         return render(request,'users/discover.html')
 
-def teacherProfile(request,username):
-    visiting_user = request.user
-    visited_user = User.objects.get(username=username)
-    if visiting_user.is_authenticated and visiting_user == visited_user:
-        context = { "user": visiting_user}
-        return render(request,'users/your_profile.html',context)
-    else:
-        context = {
-            "user": visited_user,
+def userProfile(request,username):
+
+    is_mobile = get_mobile(request)
+    profile_owner = User.objects.get(username=username)
+
+    context = {
+            "user": profile_owner,
+            "is_mobile": is_mobile,
         }
+
+    if request.user.is_authenticated and request.user == profile_owner:
+        return render(request,'users/your_profile.html',context)
+
+    else:
         return render(request, 'users/their_profile.html',context)
 
-def portfolioProfile(request,username):
-    user = User.objects.get(username=username)
+def userPreviewProfile(request,username):
+    is_mobile = get_mobile(request)
+
     context = {
-        "user": user,
-    }
+            "user": request.user,
+            "is_mobile": is_mobile,
+        }
     return render(request, 'users/their_profile.html',context)
 
 def logout(request):
+
     log_out(request)
     return_to = urlencode({'returnTo': request.build_absolute_uri('/')})
     logout_url = 'https://%s/v2/logout?client_id=%s&%s' % \
@@ -48,6 +55,7 @@ def logout(request):
 
 def saveUser(request):
     user = request.user
+
     if request.POST:
         user.username = request.POST.get('username')
         user.blurb = request.POST.get('blurb')
@@ -56,7 +64,6 @@ def saveUser(request):
         return HttpResponse("succesful")
     else:
         return HttpResponse("unsuccesful")
-
 
 class userData(generics.ListAPIView):
 

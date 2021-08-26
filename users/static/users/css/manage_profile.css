@@ -71,11 +71,9 @@ textarea{
 }
 
 
-#upload_map{
-    height:100%;
-    width:70%;
-    margin-left:auto;
 
+#upload_map{
+    padding:20px;
     border:1px solid rgba(255, 255, 255, 0.33);
     display:flex;
     flex-direction:column;
@@ -94,7 +92,6 @@ textarea{
     border-radius:20px;
     border:1px solid rgba(255, 255, 255, 0.33);;
     width:70%;
-    margin-left:auto;
     height:90%;
     overflow: hidden;
     display:grid;
@@ -109,17 +106,12 @@ textarea{
 
 #node_meta{
     width:40%;
-    height:100%;
+    height:90%;
 }
 
-#node_content_wrap{
-    height:85%;
-    padding:10px;
-    justify-content: space-between;
-}
-
-#node_content{ /* without footer*/
+#node_content, #collection_detail_body{ /* without footer*/
     height:80%;
+    margin-top:auto;
 }
 
 #poem_content{
@@ -130,22 +122,20 @@ textarea{
 }
 
 #node_visual_edit{
-    width:70%;
     height:90%;
-    align-items:flex-end;
+    width: 20vw;
 }
 
 #node_position{
     margin-top:7px;
     display:flex;
     flex-direction: column;
-    align-items:flex-end;
-    text-align:right;
     border-top:1px solid rgba(255, 255, 255, 0.33);
 }
 #node_position textarea{
     border:none;
-    border-bottom:1px solid rgba(255, 255, 255, 0.33);    width:60px;
+    border-bottom:1px solid rgba(255, 255, 255, 0.33);
+    width:60px;
     margin:0px;
     margin-left:10px;
     padding:0px;
@@ -153,13 +143,99 @@ textarea{
 }
 
 
-#edit_course_react{
+#edit_collection_react,#edit_poem_react,#list_collections_react{
     width:100%;
     height:100%;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
 }
+
+.revealCollectionList #course_list div{
+    overflow:hidden;
+    animation: revealList 1s linear;
+}
+
+@keyframes revealList{
+    0%{
+        opacity:0%;
+        max-height:30px;
+    }
+    100%{
+        opacity:100%;
+        max-height:100%;
+
+    }
+}
+
+.revealCollectionDetail #collection_detail_body{
+    margin-left:auto;
+    overflow:hidden;
+    animation: revealDetail 1.2s ease-out;
+}
+
+.revealCollectionDetail button{
+    margin-left:auto;
+    overflow:hidden;
+    animation: revealDetail 1.2s ease-out;
+}
+
+.revealCollectionDetail #lesson_meta{
+    overflow:hidden;
+    animation: revealList .6s ease-in;
+}
+
+.revealCollectionDetail #nodes_gallery button{
+    overflow:hidden;
+    margin:auto;
+    animation: revealNode .6s ease-in;
+}
+
+@keyframes revealNode{
+    0%{
+        max-width:80%;
+        max-height:80%;
+        opacity:0%;
+        margin:3px;
+    }
+    70%{
+        max-width:100%;
+        max-height:100%;
+        margin:5px;
+    }
+    100%{
+        opacity:100%;
+    }
+}
+
+@keyframes revealDetail{
+    0%{
+        opacity:0%;
+    }
+
+    100%{
+        opacity:100%;
+    }
+}
+
+.expandPoem #node_content{
+    margin-left:auto;
+    overflow:hidden;
+    justify-content: space-around;
+    animation: expandPoem 1.2s ease;
+}
+
+@keyframes expandPoem{
+    0%{
+        opacity:0%;
+    }
+
+    100%{
+        opacity:100%;
+
+    }
+}
+
 
 #course_list{
     width:90%;
@@ -233,18 +309,9 @@ textarea{
     font-size: 20px;
 }
 
-
-#render_lesson .page_div, #render_node .page_div{
-    height:100%;
-    background: rgba(255, 255, 255, 0.33);
-    border-radius:20px;
-    width:3px;
-}
-
 #render_lesson, #render_node {
-    justify-content: space-between;
     padding:20px;
-    height:90vh;
+    height:80vh;
 }
 
 #render_lesson #lesson_meta{
@@ -267,17 +334,19 @@ textarea{
 
 #render_lesson #nodes_gallery{
     width:50%;
-    height:100%;
-
+    height:70vh;
+    flex-shrink:0;
+    flex-grow:0;
     display:flex;
     flex-wrap:wrap;
     align-content:flex-start;
     overflow-y:scroll;
+    overflow-x:hidden;
 }
 
 #render_lesson #nodes_gallery .node_item{
-    width:80px;
-    height:80px;
+    width:70px;
+    height:70px;
     padding:6px;
     margin:5px;
     border-radius:22px;
@@ -315,5 +384,5 @@ textarea{
     padding-bottom:3px;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    flex-wrap:wrap;
 }
-

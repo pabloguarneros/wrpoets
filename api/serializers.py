@@ -1,7 +1,5 @@
 from rest_framework import serializers
-from django.contrib.humanize.templatetags.humanize import naturaltime
-from experiments.models import NodeImages, SectionNode, Lesson
-
+from rooms.models import NodeImages, SectionNode, Lesson
 
 class CourseSerializer(serializers.ModelSerializer):
 
@@ -21,4 +19,7 @@ class NodeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SectionNode
-        fields = ('pk','title','squishy','description','x_position','y_position','z_position','images')
+        fields = ('pk','title',
+                'x_position','y_position','z_position',
+                'quat_x', 'quat_y', 'quat_z', 'quat_w',
+                'scale','images')
