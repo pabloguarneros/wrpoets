@@ -98,5 +98,5 @@ class NodeImages(models.Model):
         if image.width > 512 or image.height > 512:
             new_img = (512, 512)
             image.thumbnail(new_img)
-            image = image.convert() #convert transparency to new image!
-            image.save(self.image.path,"PNG")  # saving image at the same path
+            image = image.convert() 
+            image.save(self.image.path,"PNG")

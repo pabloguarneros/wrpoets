@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 def get_mobile(request):
     user_agent = request.META['HTTP_USER_AGENT']
@@ -9,8 +9,12 @@ def get_mobile(request):
 
 def home(request):
     is_mobile = get_mobile(request)
-    if is_mobile: return render(request,'core/home_mobile.html')
-    else: return render(request,'core/home_desktop.html')
+    if request.user.is_authenticated:
+        return redirect("profile", request.user.username)
+    elif is_mobile:
+        return render(request,'core/home_mobile.html')
+    else:
+        return render(request,'core/home_desktop.html')
 
 def error_404(request,exception=False):
     context = {

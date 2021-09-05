@@ -19,11 +19,11 @@
 {% endblock %}
 
 {% block script %}
-
-    <script type="text/babel" src="{% static "core/js/fetchingDefaults.js" %}"></script>
-    <script type="text/babel" src="{% static "users/js/edit_profile.js" %}"></script>
     
-     <script type="text/babel" src="{% static "users/js/edit_courses/poem_class.js" %}"></script>
-    <script type="text/babel" src="{% static "users/js/edit_courses/collection_class.js" %}"></script>
-    <script type="text/babel" src="{% static "users/js/edit_courses/render.js" %}"></script>
+    {% compress js %}
+        <script type="module" src="{% static "three_xr/on_load/fetch_logic.js" %}"></script>
+        <script type="module" src="{% static "users/js/edit_profile.js" %}"></script>
+        <script type="module" src="{% static "users/js/edit_courses/render.js" %}"></script>
+    {% endcompress %}
+    
 {% endblock %}

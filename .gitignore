@@ -5,24 +5,16 @@
 *.swp
 *.swn
 *.env
-
-# Environments #
-##################
-.env
-env/
-pablo/.env
-pablo/env
+*.png
+*.mp4
 
 # Directories #
-###############
-node_modules
-
-# Specific files #
-##################
-#superman/settings.py
+node_modules/
+pablo/
+media/
+CACHE/
 
 # OS generated files #
-######################
 .DS_Store
 ehthumbs.db
 Icon

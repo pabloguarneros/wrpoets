@@ -1,3 +1,8 @@
+import React from "react";
+import $ from "jquery";
+import ReactDOM from "react-dom";
+import Collection from './collection_class.js';
+
 let component;
 
 $(document).ready(function(){
@@ -83,7 +88,7 @@ class EditCourses extends React.Component {
         return(<div id="list_collections_react" className="revealCollectionList">
                 <div id="course_list" className="h_cent">
                     {this.state.collections.map((collection, index) => {
-                        return <div>
+                        return <div key={collection.pk.toString()}>
                             <button className="course_item" name={index} onClick={this.handleToggleCollection}>{collection.title}</button>
                         </div>
                     })}
@@ -130,11 +135,11 @@ class EditCourses extends React.Component {
                         <div id="collection_detail_body" className="fr">
                         <div id="lesson_meta">
                             <label>
-                                <small class="helper_course_name"> Room Name </small> 
+                                <small className="helper_course_name"> Room Name </small> 
                                 <textarea value={collection.title} name="title" onChange={collection.handleChange} />
                             </label>
                             <label>
-                                <small class="helper_course_description"> Room Description </small> 
+                                <small className="helper_course_description"> Room Description </small> 
                                 <textarea value={collection.description} name="description" onChange={collection.handleChange} />
                             </label>
                         </div>
@@ -143,7 +148,7 @@ class EditCourses extends React.Component {
                                 <button className="node_add" name={collection.pk} onClick={collection.createPoem}>add item</button>
                             </div>
                             {collection.poems.map((poem,index) => {
-                                return <div>
+                                return <div key={poem.pk.toString()} >
                                     <button className="node_item" name={index} onClick={this.handleTogglePoem}>{poem.title}</button>
                                 </div>
                                 })}
@@ -178,7 +183,7 @@ class EditCourses extends React.Component {
                                     {poem.images.length > 0
                                         ?
                                         <div id="image_map">
-                                            {poem.images.map((x) => <img src={x["image"]}/> )}
+                                            {poem.images.map((x,i) => <img key={i} src={x["image"]}/> )}
                                         </div>
                                         :
                                         <div id="upload_map">
@@ -193,10 +198,6 @@ class EditCourses extends React.Component {
 
                             <div id="node_position">
                                 <p>Align Poem</p>
-                                <label className="fr">
-                                    <small> Layer gap: </small> 
-                                    <textarea value={poem.gap} name="gap" onChange={poem.handleChange} />
-                                </label>
                                 <label className="fr">
                                     <small> X: </small> 
                                     <textarea value={poem.position.x} name="x" onChange={poem.handleChange} />
@@ -214,12 +215,8 @@ class EditCourses extends React.Component {
 
                             <div id="node_meta">
                                 <label className="node_heading">
-                                    <small class="helper_node_name"> Heading </small> 
+                                    <small className="helper_node_name"> Heading </small> 
                                     <textarea value={poem.title} name="title" onChange={poem.handleChange} />
-                                </label>
-                                <label>
-                                    <small class="helper_node_description"> Text </small> 
-                                    <textarea id="poem_content" value={poem.description} name="description" onChange={poem.handleChange} />
                                 </label>
                             </div>
                             

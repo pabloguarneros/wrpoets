@@ -1,10 +1,12 @@
-import { ARButton } from 'https://unpkg.com/three@0.126.0/examples/jsm/webxr/ARButton.js';
+import $ from "jquery";
+import {ARButton} from "../../../../../static/three_xr/ARButton.js";
 
 $(document).ready(function(){
     
     let scene, clock, camera, renderer, raycaster, markerData;
-    fetchNodes();
+    const loadingManager = new THREE.LoadingManager();
 
+    fetchNodes();
     async function fetchNodes(){
         const api = `/nubes/nodes/${window.location.href.substring(window.location.href.lastIndexOf('/') + 1)}`;
         fetch(api)
@@ -29,16 +31,9 @@ $(document).ready(function(){
     
         function loadOrbs(){
 
-            const loadingManager = new THREE.LoadingManager( () => {
-                window.setTimeout(() => { reveal() } )
-            })        
-
-            function reveal() {
-                $('#home_loader').css("animation","curtain_off 1s ease 1s 1 forwards");
-                $('#home_loader').on("animationend", () => { $('#home_loader').css("display","none") });
-            }
 
             const ar_display = new THREE.PlaneBufferGeometry(.45,.45);
+            
             const defaultGeometry = new THREE.SphereBufferGeometry(.14,40,40);
             const defaultMaterial = new THREE.MeshPhongMaterial( { color : new THREE.Color(0xF5BD1F) });
 
@@ -55,7 +50,6 @@ $(document).ready(function(){
                 markerData.push({
                     position : [ x_origin , y_origin + .5 , z_origin + .1 ],
                     headline : node['title'],
-                    description : node['description'],
                 })
         
                 if (images.length>0){
@@ -69,8 +63,7 @@ $(document).ready(function(){
                         const writingMesh = new THREE.Mesh(ar_display,writing_pattern);
                         writingMesh.userData.markerID=int;
                         
-                        const z = z_origin - i * node['squishy']
-                        writingMesh.position.set(x_origin,y_origin,z);
+                        writingMesh.position.set(x_origin,y_origin,z_origin);
 
                         scene.add(writingMesh);
                     }
@@ -86,7 +79,6 @@ $(document).ready(function(){
                 } // endif
             } // endfor  
 
-            reveal();
     
         } // end loadOrbs
 
@@ -115,7 +107,7 @@ $(document).ready(function(){
         camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 40);
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.xr.enabled = true;
-        $("#three_canvas").append( renderer.domElement );
+        $("#augmented_canvas").append( renderer.domElement );
         $("#main_instructions").html("");
         document.body.appendChild(ARButton.createButton(renderer));
         $("#ARButton").on("click",()=>{
@@ -137,7 +129,7 @@ $(document).ready(function(){
     
                         // Poem Render
                         const poemGeometry = new THREE.TextGeometry(
-                            `${markerData[markerID].headline} \n \n ${markerData[markerID].description}`,
+                            `${markerData[markerID].headline}`,
                             {
                                 font: font,
                                 size: 0.02,
@@ -257,7 +249,7 @@ $(document).ready(function(){
         controls.movementSpeed = 1;
         controls.lookSpeed = .03;
 
-        $("#three_canvas").append( renderer.domElement );
+        $("#augmented_canvas").append( renderer.domElement );
         
         desktopListeners();
         
@@ -291,7 +283,7 @@ $(document).ready(function(){
                 false
             );
         
-            $("#three_canvas").on(
+            $("#augmented_canvas").on(
                 'click',
                 (e) => {
 
@@ -308,8 +300,7 @@ $(document).ready(function(){
 
                                 var markerID = intersects[i].object.userData.markerID;
                                 $("#course_content").addClass("open").removeClass("close");
-                                $("#course_content .head").html(markerData[markerID].headline)
-                                $("#course_content .body").html(markerData[markerID].description);
+                                $("#course_content .head").html(markerData[markerID].headline);
                                 return;
 
                             }

@@ -1,3 +1,5 @@
+import jQuery from "jquery";
+
 function getCookie(name) {
 
     let cookieValue = null;
@@ -19,3 +21,5 @@ const defaultHeaders = {
     'Content-type':'application/json',
     'X-CSRFToken':getCookie('csrftoken'),
 };
+
+export {defaultHeaders};

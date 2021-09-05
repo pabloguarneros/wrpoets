@@ -1,3 +1,5 @@
+import Poem from './poem_class.js';
+
 class Collection{
 
     constructor(pk, title, description, privacy) {
@@ -59,9 +61,9 @@ class Collection{
             .then((data) => { 
                 let poems = [];
                 for (let i in data) {
-                    const poem = new Poem(this, data[i]['pk'], data[i]['title'], data[i]['description'],
+                    const poem = new Poem(this, data[i]['pk'], data[i]['title'],
                                         {'x': data[i]['x_position'], 'y': data[i]['y_position'], 'z':data[i]['z_position']},
-                                        data[i]['squishy'], data[i]['images']);
+                                        data[i]['images']);
                     poems.push(poem);
                 };
                 this.poems = poems;
@@ -74,8 +76,6 @@ class Collection{
         fetch(url, { method:'POST', headers: defaultHeaders,
             body:JSON.stringify({
                 "title": "New Item",
-                "squishy":0.2,
-                "description":"...",
                 "x_position":0,
                 "y_position":0.5,
                 "z_position":-1
@@ -95,3 +95,5 @@ class Collection{
 
     
 }; // end Collection
+
+export default Collection;

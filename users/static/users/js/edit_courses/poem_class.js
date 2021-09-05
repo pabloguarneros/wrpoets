@@ -1,13 +1,11 @@
 class Poem {
 
-    constructor(collection, pk, title, description, position, gap, images) {
+    constructor(collection, pk, title, position, images) {
 
         this.collection = collection;
         this.pk = pk;
         this.title = title;
-        this.description = description;
         this.position = position;
-        this.gap = gap;
         this.images = images
 
         this.handleChange = this.handleChange.bind(this);
@@ -42,8 +40,6 @@ class Poem {
         fetch(url, { method:'PUT', headers: defaultHeaders,
             body:JSON.stringify({
                 "title": poem_obj.title,
-                "squishy": poem_obj.gap,
-                "description": poem_obj.description,
                 "x_position": poem_obj.position.x,
                 "y_position": poem_obj.position.y,
                 "z_position": poem_obj.position.z,
@@ -66,3 +62,5 @@ class Poem {
             })
     } // end handleDelete
 } // end Poem
+
+export default Poem;

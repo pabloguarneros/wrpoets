@@ -1,21 +1,14 @@
-function loadUserObjects(nodeArray){
+import * as THREE from 'three';
 
-    const loadingManager = new THREE.LoadingManager( () => {
-        window.setTimeout(() => { reveal() } )
-    })        
+function loadImages(augmented_environment){
 
-    function reveal() {
-        $('#home_loader').css("animation","curtain_off 1s ease 1s 1 forwards");
-        $('#home_loader').on("animationend", () => { $('#home_loader').css("display","none") });
-    }
+    const loadingManager = new THREE.LoadingManager();
 
     const defaultMaterial = new THREE.MeshPhongMaterial( { color : new THREE.Color(0xF5BD1F) });
 
-    markerData = [];
+    for (var int in augmented_environment.imageData){
 
-    for (var int in nodeArray){
-
-        const node = nodeArray[int]
+        const node = augmented_environment.imageData[int]
 
         const scale = node['scale']
 
@@ -27,10 +20,9 @@ function loadUserObjects(nodeArray){
 
         const images = node['images']
 
-        markerData.push({
+        augmented_environment.markerData.push({
             position : [ x_origin , y_origin + .5 , z_origin + .1 ],
             headline : node['title'],
-            description : node['description'],
         })
 
         if (images.length>0){
@@ -46,11 +38,10 @@ function loadUserObjects(nodeArray){
                 const writingMesh = new THREE.Mesh(ar_display,writing_pattern);
                 writingMesh.userData.markerID=int;
                 
-                const z = z_origin - i * node['squishy']
-                writingMesh.position.set(x_origin,y_origin,z);
+                writingMesh.position.set(x_origin, y_origin, z_origin);
                 writingMesh.quaternion.fromArray(quaternion_arr);
 
-                scene.add(writingMesh);
+                augmented_environment.scene.add(writingMesh);
             }
 
         } else {
@@ -63,11 +54,11 @@ function loadUserObjects(nodeArray){
             defaultMesh.position.set(x_origin,y_origin,z_origin);
             defaultMesh.quaternion.fromArray(quaternion_arr);
             
-            scene.add(defaultMesh);
+            augmented_environment.scene.add(defaultMesh);
 
-        } // endif
-    } // endfor  
+        }
+    }
 
-    reveal();
+}
 
-} // end loadUserObjects
+export default loadImages;

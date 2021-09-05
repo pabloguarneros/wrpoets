@@ -25,8 +25,6 @@ function takePicture (){
     fetch(url, { method:'POST', headers: defaultHeaders,
         body:JSON.stringify({
             "title": "New Item",
-            "squishy":0.2,
-            "description":"/",
             "x_position": parseFloat(obj_data["pos_x"]).toFixed(3),
             "y_position": parseFloat(obj_data["pos_y"]).toFixed(3),
             "z_position": parseFloat(obj_data["pos_z"]).toFixed(3),

@@ -1,3 +1,11 @@
+import $ from "jquery";
+import React from "react";
+import ReactDOM from "react-dom";
+
+$(document).ready(function(){
+    ReactDOM.render(<EditProfile />, document.querySelector("#edit_profile"));
+});
+
 class EditProfile extends React.Component {
 
     constructor(props) {
@@ -99,7 +107,7 @@ class EditProfile extends React.Component {
                     <small> Edit Patreon URL </small> 
                     <textarea value={this.state.patreon} name="patreon" onChange={this.handleChange} />
                 </label>
-                    <div className="user_save" class="fc">
+                    <div className="user_save fc">
                         <button className="save_buttons h_cent" onClick={this.handleSaveUser}>save</button>
                         <div id="user_save_message" style={{fontSize:"13px",margin:"10px"}}></div>
                     </div>
@@ -107,7 +115,3 @@ class EditProfile extends React.Component {
             </div>)
     };
 }
-
-$(document).ready(function(){
-    ReactDOM.render(<EditProfile />, document.querySelector("#edit_profile"));
-});

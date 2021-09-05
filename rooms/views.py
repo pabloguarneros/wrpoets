@@ -1,17 +1,17 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
+from core.views import get_mobile
 from .models import Lesson
-
-
-def launch_experiment(request):
-    return render(request,'rooms/experimental_features/hand_gestures.html')
 
 def view_room(request,lessonID):
     lesson = Lesson.objects.get(pk=lessonID)
     context={
         "lesson":lesson
     }
-    return render(request,'rooms/view_room.html',context)
-
+    is_mobile = get_mobile(request)
+    if is_mobile:
+        return render(request,'rooms/view_room.html',context)
+    else:
+        return render(request,'rooms/desktop/view_room.html',context)
 
 def edit_room(request,lessonID):
     lesson = Lesson.objects.get(pk=lessonID)

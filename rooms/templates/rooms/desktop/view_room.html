@@ -4,6 +4,7 @@
 
 {% block head %}
     <link type="text/css" rel="stylesheet" href="{% static "rooms/css/sing.css"%}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.js" crossorigin="anonymous"></script>
 {% endblock %}
 
 {% block body %}
@@ -26,8 +27,10 @@
 
 {% block script %}
 
+    <script src="{% static "js/three/FirstPersonControls.js"%}"></script>
+
     {% compress js %}
-        <script type="module" src="{% static "rooms/js/view_room/index.js" %}"></script>
+        <script type="module" src="{% static "rooms/js/desktop/view_room.js" %}"></script>
     {% endcompress %}
 
 {% endblock %}

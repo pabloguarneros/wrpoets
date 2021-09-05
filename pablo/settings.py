@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'corsheaders',
     'compressor',
+    'compressor_toolkit',
     'crispy_forms',
     'rest_framework',
     'users',
@@ -173,7 +174,8 @@ COMPRESS_PRECOMPILERS = (
     ('module', 'compressor_toolkit.precompilers.ES6Compiler'),
     ('css', 'compressor_toolkit.precompilers.SCSSCompiler'),
 )
-COMPRESS_ENABLED = True
+COMPRESS_ENABLED = False
+#COMPRESS_ENABLED = False
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

@@ -15,8 +15,7 @@ def join(request):
 def yours(request):
     user = request.user
     if user.is_authenticated:
-        context = { "user":user}
-        return redirect("profile",user.username)
+        return redirect("profile", user.username)
     else:
         return render(request,'users/discover.html')
 
@@ -36,7 +35,7 @@ def userProfile(request,username):
     else:
         return render(request, 'users/their_profile.html',context)
 
-def userPreviewProfile(request,username):
+def userPreviewProfile(request, username):
     is_mobile = get_mobile(request)
 
     context = {
@@ -51,9 +50,11 @@ def logout(request):
     return_to = urlencode({'returnTo': request.build_absolute_uri('/')})
     logout_url = 'https://%s/v2/logout?client_id=%s&%s' % \
                  (settings.SOCIAL_AUTH_AUTH0_DOMAIN, settings.SOCIAL_AUTH_AUTH0_KEY, return_to)
+
     return HttpResponseRedirect(logout_url)
 
 def saveUser(request):
+    
     user = request.user
 
     if request.POST:

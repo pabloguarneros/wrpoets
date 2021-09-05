@@ -379,7 +379,7 @@ body {
     color:#F3CA26;
 }
 
-#identify_hit{
+#object_found_indicator{
     z-index:10000;
     position:absolute;
     background:none;

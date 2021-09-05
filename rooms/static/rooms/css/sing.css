@@ -13,14 +13,12 @@ body{
 
 }
 
-#three_canvas{
+#augmented_canvas{
     grid-area: 1/1/2/2;
     background: linear-gradient(180.38deg, #722E9A 0.33%, #47297B 99.67%);
 }
 
-
-
-#identify_hit{
+#object_found_indicator{
     z-index:10000;
     position:absolute;
     background:none;
@@ -43,42 +41,10 @@ body{
     overflow:hidden;
 }
 
-#three_canvas .gold_cc{
+#augmented_canvas .gold_cc{
     width:90%;
     height:90%;
 }
-
-#home_loader{
-    grid-area: 1/1/2/2;
-    z-index:12;
-    width:100%;
-    height:100%;
-    grid-row:1/2;
-    grid-column:1/2;
-    background: linear-gradient(270.09deg, #FFE863 21.22%, #FBD748 50.22%, #F5BD1F 94.1%);
-    color:#47297B;
-}
-
-@keyframes curtain_off {
-    0%{
-        opacity:1;
-    }
-    100%{
-        opacity:0;
-    }
-}
-
-#main_instructions{
-    position:fixed;
-    width:100%;
-    z-index:3;
-    text-align:center;
-    font-size:28px;
-    color:#F5BD1F;
-    top:65px;
-
-}
-
 
 #interaction_alerts{
     position:fixed;
@@ -89,7 +55,6 @@ body{
     color:#F5BD1F;
     bottom:65px;
     font-weight:bold;
-
 }
 
 #loading_line{

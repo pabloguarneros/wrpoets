@@ -5,37 +5,16 @@
 {% block head %}
     <link type="text/css" rel="stylesheet" href="{% static "rooms/css/sing.css"%}">
     <link type="text/css" rel="stylesheet" href="{% static "rooms/css/edit.css"%}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.js" crossorigin="anonymous"></script>
-
-    <!-- 
-    <script src="https://unpkg.com/@tensorflow/tfjs-core@2.1.0/dist/tf-core.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-cpu@2.0.0-rc.4/dist/tf-backend-cpu.es2017.js"></script>
-    <script src="https://unpkg.com/@tensorflow/tfjs-converter@2.1.0/dist/tf-converter.js"></script>
-    <script src="https://unpkg.com/@tensorflow/tfjs-backend-webgl@2.1.0/dist/tf-backend-webgl.js"></script>
-    <script src="https://unpkg.com/@tensorflow-models/handpose@0.0.6/dist/handpose.js"></script>
-    --> 
-
 {% endblock %}
 
 {% block body %}
     <div id="gold_light"></div>
 <div id="body_wrapper">
 
-    <div id="home_loader" class="fc ac">
-        <div class="v_cent h_cent">
-            <h1 class="tt_cent"> Editing: {{lesson.title}}</h1>
-            <div id="loading_line"></div>
-        </div>
-    </div>
-    <div id="three_canvas" class="gold_cc v_cent h_cent"></div>
-    <div id="course_content" class="gold_cc close">
-        <div id="course_text" class="fc">
-        <h2 class="head"></h2>
-        <p class="body"></p>
-        </div>
-    </div>
+    <div id="augmented_canvas" class="gold_cc v_cent h_cent"></div>
+    <video id="webcam" playsinline muted autoplay></video>
     <div id="interaction_alerts">
-        <p id="alert"></p>
+        <p id="alert">fadsfds</p>
     </div>
     
 </div>
@@ -44,25 +23,8 @@
 
 {% block script %}
 
-    <script type="text/babel" src="{% static "core/js/fetchingDefaults.js" %}"></script>
-    <script type="text/babel" src="{% static "rooms/js/edit_room/saveRoom.js" %}"></script>
-    <script type="text/babel" src="{% static "rooms/js/edit_room/renderLoop.js" %}"></script>
-    <script type="text/babel" src="{% static "rooms/js/edit_room/dragObject.js" %}"></script>
-    <script type="text/babel" src="{% static "rooms/js/edit_room/clickObject.js" %}"></script>
-    <script type="text/babel" src="{% static "rooms/js/edit_room/loadUserObjects.js" %}"></script>
-    <script type="text/babel" src="{% static "rooms/js/edit_room/eventListeners.js" %}"></script>
-    <script type="text/babel" src="{% static "rooms/js/edit_room/initializeScene.js" %}"></script>
-    <script type="module" src="{% static "rooms/js/edit_room/stateManager.js" %}"></script>
-
-    <!-- 
-    <script src={% static 'rooms/js/edit_room/hand_gestures/takePicture.js' %}></script>
-    <script src={% static 'rooms/js/edit_room/hand_gestures/GestureDescription.js' %}></script>
-    <script src={% static 'rooms/js/edit_room/hand_gestures/GestureEstimator.js' %}></script>
-    <script src={% static 'rooms/js/edit_room/hand_gestures/FingerDescription.js' %}></script>
-    <script src={% static 'rooms/js/edit_room/hand_gestures/FingerPoseEstimator.js' %}></script>
-    <script src={% static 'rooms/js/edit_room/hand_gestures/gestures/LoadCamera.js' %}></script>
-    <script src={% static 'rooms/js/edit_room/hand_gestures/gestures/TakeImage.js' %}></script>
-    <script src={% static 'rooms/js/edit_room/hand_gestures/CaptureGesture.js' %}></script>
-    -->
+    {% compress js %}
+        <script type="module" src="{% static "rooms/js/edit_room/index.js" %}"></script>
+    {% endcompress %}
 
 {% endblock %}
