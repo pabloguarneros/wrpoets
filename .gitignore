@@ -7,13 +7,20 @@
 *.env
 *.png
 *.mp4
+*.sql
 
 # Directories #
 node_modules/
-pablo/
 media/
 CACHE/
 __pycache__/
+
+#environments
+.env
+env/
+venv/
+pablo/.env
+pablo/env
 
 # OS generated files #
 .DS_Store

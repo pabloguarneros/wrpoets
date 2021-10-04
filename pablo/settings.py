@@ -13,10 +13,8 @@ COMPRESS_ENABLED = False
 '''
 
 DEBUG = False
-ALLOWED_HOSTS = ["216.137.177.148","www.wrpoets.com"]
+ALLOWED_HOSTS = [config('IP_SERVER'),"www.wrpoets.com"]
 COMPRESS_ENABLED = True
-
-
 
 
 INSTALLED_APPS = [

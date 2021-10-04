@@ -4,10 +4,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from users.views import logout, userProfile, userPreviewProfile
 from core import views as core_views
+from decouple import config
+
 
 urlpatterns = [
     path('',core_views.home,name="home"),
-    path('karla/', admin.site.urls),
+    path(config('ADMIN_URL'), admin.site.urls),
     path('people/',include(('users.urls','users'),namespace='people')),
     path('user/<str:username>', userProfile,name="profile"),
     path('user/<str:username>/preview', userPreviewProfile,name="profile_preview"),
