@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+GNU nano 4.8                                                      package.json                                                                 
+>>>>>>> origin/main
 {
   "name": "pablo",
   "version": "1.0.0",
@@ -30,5 +34,9 @@
     "node-sass": "^6.0.0",
     "postcss-cli": "^8.3.1"
   },
+<<<<<<< HEAD
   "description": "Objectives for the week: - Monday is for clean code - Tuesday is for pricing -> With $9.99 a year , you can .. unlimited poetry collections, add audio to each poem, first dibs at new products - Wednesday is for sending it to users to test out? - thursday is for uploading content"
+=======
+  "description": "Objectives for the week: - Monday is for clean code - Tuesday is for pricing -> With $9.99 a year , you can .. unlimited poetr>
+>>>>>>> origin/main
 }
