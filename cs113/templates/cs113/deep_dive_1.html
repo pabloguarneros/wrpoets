@@ -1,0 +1,20 @@
+{% extends 'cs113/index.html' %}
+{% load compress %}
+{% load static %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+<div id="matrix_input"></div>
+
+{% endblock %}
+
+{% block script %}
+    
+    {% compress js %}
+        <script type="module" src="{% static "cs113/js/deep_dive_1.js" %}"></script>
+    {% endcompress %}
+    
+{% endblock %}

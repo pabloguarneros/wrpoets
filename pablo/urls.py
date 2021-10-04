@@ -20,7 +20,8 @@ urlpatterns = [
     path('', include('social_django.urls')),
     path('test404',core_views.error_404),
     path('elsewhere',include(('minervaremote.urls','minervaremote'),namespace="minervaremote")),
-    path('taiko/',include(('taiko.urls','taiko'),namespace="taiko"))
+    path('taiko/',include(('taiko.urls','taiko'),namespace="taiko")),
+    path('cs113/',include(('cs113.urls','cs113'),namespace="cs113"))
 ] 
 
 if settings.DEBUG: 
