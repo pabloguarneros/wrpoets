@@ -9,20 +9,34 @@
 *.mp4
 *.sql
 
-# Directories #
-node_modules/
-media/
-CACHE/
-__pycache__/
-
-#environments
+# Environments #
+##################
 .env
 env/
 venv/
 pablo/.env
 pablo/env
 
+# Directories #
+node_modules/
+media/
+CACHE/
+__pycache__/
+
+
+# Specific files #
+##################
+package-lock.json
+!static/landing_page/chrome_icon.png
+!static/landing_page/demo_1.mp4
+!static/landing_page/samsung_icon.png
+!static/landing_page/webxr_icon.png
+!static/patterns/pattern-ideas-resized.png
+!static/patterns/pattern-projects-resized.png
+!static/patterns/pattern-writing-resized.png
+
 # OS generated files #
+######################
 .DS_Store
 ehthumbs.db
 Icon
