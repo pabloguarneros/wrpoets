@@ -1,3 +1,4 @@
+GNU nano 4.8                                                      package.json                                                                 
 {
   "name": "pablo",
   "version": "1.0.0",
@@ -10,6 +11,7 @@
   "dependencies": {
     "autoprefixer": "^10.2.6",
     "babel-core": "^6.26.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "browserify": "^17.0.0",
@@ -29,5 +31,5 @@
     "node-sass": "^6.0.0",
     "postcss-cli": "^8.3.1"
   },
-  "description": "Objectives for the week: - Monday is for clean code - Tuesday is for pricing -> With $9.99 a year , you can .. unlimited poetry collections, add audio to each poem, first dibs at new products - Wednesday is for sending it to users to test out? - thursday is for uploading content"
+  "description": "Objectives for the week: - Monday is for clean code - Tuesday is for pricing -> With $9.99 a year , you can .. unlimited poetr>
 }
