@@ -5,6 +5,8 @@
 *.swp
 *.swn
 *.env
+*.png
+*.mp4
 *.sql
 
 # Environments #
