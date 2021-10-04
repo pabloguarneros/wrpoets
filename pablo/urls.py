@@ -7,7 +7,7 @@ from core import views as core_views
 
 urlpatterns = [
     path('',core_views.home,name="home"),
-    path('karla/', admin.site.urls),
+    path(config('ADMIN_URL'), admin.site.urls),
     path('people/',include(('users.urls','users'),namespace='people')),
     path('user/<str:username>', userProfile,name="profile"),
     path('user/<str:username>/preview', userPreviewProfile,name="profile_preview"),
