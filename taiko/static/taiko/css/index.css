@@ -1,0 +1,45 @@
+#body_wrapper {
+    width:100%;
+    height:100%;
+}
+
+body {
+    margin: 0px;
+    background: #ffffff;
+}
+
+body, textarea, button, form, input{
+    font-family: 'Ubuntu Mono';
+}
+
+textarea{
+    resize: none;
+}
+
+.h_cent{
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.v_cent{
+    margin-top:auto;
+    margin-bottom:auto;
+}
+
+.fc{
+    display:flex;
+    flex-direction: column;
+}
+
+.fr{
+    display:flex
+}
+
+.ac{
+    align-items:center
+}
+
+.tt_cent{
+    text-align: center;
+}
+

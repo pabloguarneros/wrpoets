@@ -1,0 +1,30 @@
+{% extends 'core/starter.html' %}
+{% load compress %}
+{% load static %}
+
+{% block head %}
+    <link type="text/css" rel="stylesheet" href="{% static "rooms/css/sing.css"%}">
+    <link type="text/css" rel="stylesheet" href="{% static "rooms/css/edit.css"%}">
+{% endblock %}
+
+{% block body %}
+    <div id="gold_light"></div>
+    <div id="body_wrapper">
+
+    <div id="augmented_canvas" class="gold_cc v_cent h_cent"></div>
+    <video id="webcam" playsinline muted autoplay></video>
+    <div id="interaction_alerts">
+    <p id="alert">fadsfds</p>
+    </div>
+    
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+    {% compress js %}
+        <script type="module" src="{% static "rooms/js/edit_room/index.js" %}"></script>
+    {% endcompress %}
+
+{% endblock %}

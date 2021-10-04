@@ -1,0 +1,34 @@
+{
+  "name": "pablo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.2.6",
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "browserify": "^17.0.0",
+    "jquery": "^3.6.0",
+    "node-sass": "^6.0.0",
+    "postcss-cli": "^8.3.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "three": "^0.128.0"
+  },
+  "devDependencies": {
+    "@types/three": "^0.129.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babelify": "^8.0.0",
+    "browserify": "^17.0.0",
+    "node-sass": "^6.0.0",
+    "postcss-cli": "^8.3.1"
+  },
+  "description": "Objectives for the week: - Monday is for clean code - Tuesday is for pricing -> With $9.99 a year , you can .. unlimited poetry collections, add audio to each poem, first dibs at new products - Wednesday is for sending it to users to test out? - thursday is for uploading content"
+}

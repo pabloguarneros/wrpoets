@@ -1,0 +1,89 @@
+body{
+    background-image:linear-gradient(#028090,#05668D);
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#journal_main_wrapper{
+    width:100vw;
+    justify-content: space-around;
+    align-items:center;
+}
+
+#journal_sub_wrapper{
+    height:90%;
+    width:98%;
+    border-radius:40px;
+    justify-content: space-around;
+    align-items:center;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+
+.journal_container{
+    height:95%;
+    width: 20%;
+    flex-grow:1;
+    max-width:100%;
+    min-width: 250px;
+    border-radius:10px;
+    padding:10px;
+    margin:20px;
+}
+
+.journal_list{
+    height:94%;
+    overflow-y: scroll;
+}
+
+.journal_single{
+    padding:5px;
+    border-radius:8px;
+    margin-bottom:20px;
+}
+.poem_txt_title{
+    margin:5;
+}
+
+.poem_tt,.entries_tt, .thoughts_tt, .thoughts_txt_title{
+    color:#243010;
+}
+
+.ideas_tt{
+    color:#cee5f2;
+}
+
+.ideas_container{
+    background-image:linear-gradient(#2a3c24,#243010);
+}
+
+.ideas_single:hover{
+    background-color:#2a3c24
+}
+
+
+.poems_container{
+    background-image:linear-gradient(#cee5f2,#accbe1);
+}
+.poems_single:hover{
+    background-color:#cee5f2;
+    cursor:pointer;
+}
+
+.thoughts_container{
+    background-image:linear-gradient(#bfd200,#80b918)
+}
+.thoughts_single:hover{
+    background-color:#bfd200;
+    cursor:pointer;
+}
+
+.entries_container{
+    background-image:linear-gradient(#ffd639,#fbaf00)
+}
+.entries_single:hover{
+    background-color:#ffd639;
+    cursor:pointer;
+}

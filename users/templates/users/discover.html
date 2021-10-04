@@ -1,0 +1,23 @@
+{% extends 'core/starter.html' %}
+{% load compress %}
+{% load static %}
+
+{% block head %}
+    <link type="text/css" rel="stylesheet" href="{% static "users/css/users.css"%}">
+    <link type="text/css" rel="stylesheet" href="{% static "users/css/join.css"%}">
+{% endblock %}
+
+{% block body %}
+<div id="body_wrapper" class="fc ac">
+    <div id="welcome_message" class="v_cent login-box auth0-box before fc ac">
+        <p class="tt_cent"> All great poetry starts with a word. <br><br> Or not, it's totally up to you. </p>
+        <a class="btn btn-primary btn-lg btn-login btn-block tt_cent" href="/login/auth0">Start Writing</a>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

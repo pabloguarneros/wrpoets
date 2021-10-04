@@ -1,0 +1,175 @@
+body{
+    background-color:black;
+}
+
+#phone_alert{
+    z-index:20;
+    border-radius:20px;
+    background-color:white;
+    color:black;
+    border:1px solid black;
+    display:none;
+    position:fixed;
+    text-align:center;
+    width:80vw;
+    top:50px;
+    right:20px;
+    bottom:50px;
+    left:20px;
+    height:40vh;
+    padding:20px;
+}
+
+#phone_alert a{
+    color:black;
+    font-weight:bolder;
+}
+
+#home_wrapper{
+    height:100vh;
+    width:100%;
+    display:grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+}
+
+#home_loader{
+    z-index:10;
+    width:100%;
+    height:100%;
+    grid-row:1/2;
+    grid-column:1/2;
+    background:white;
+    color:black;
+}
+
+@keyframes curtain_off {
+    0%{
+        opacity:1;
+    }
+    100%{
+        opacity:0;
+    }
+}
+
+#ik_ben{
+    font-weight:bold;
+    width:100%;
+    size:30px;
+}
+
+#three_canvas{
+    z-index:1;
+    grid-row:1/2;
+    grid-column:1/2;
+}
+
+#react_cont{
+    z-index:2;
+    grid-row:1/2;
+    grid-column:1/2;
+
+}
+
+#three_admin{
+    z-index:2;
+    grid-row:1/2;
+    grid-column:1/2;
+    justify-content:space-between;
+    width:100%;
+}
+
+#name_slider{
+    z-index:5;
+    position:fixed;
+    height:90%;
+    color:black;
+    width:260px;
+    border-radius:29px;
+    background-color:white;
+    padding:10px 20px;
+    top:20px;
+    bottom:20px;
+    transition:right 1s ease;
+    
+}
+
+.slider_on{
+    right:90px;
+    border:1px solid black;
+}
+
+.slider_off{
+    right:-332px;
+}
+
+#ich{
+    background-color:white;
+    border:1px solid black;
+    border-radius:20px;
+    width:250px;
+    padding:5px 21px;
+    position:relative;
+    transition:right 1s ease;
+}
+
+#ich h1{
+    text-align:left;
+    font-size:20px;
+}
+
+#ich:hover{
+    color:white;
+    background-color:black;
+    cursor:pointer;
+}
+
+.ich_on{
+    right:283px;
+}
+
+.ich_off{
+    border:none;
+    right:0px;
+    animation:border-dissapear 1s linear .5s 1 forwards;
+}
+
+@keyframes border-dissapear{
+    0%{
+        border-color:black;
+    }
+    100%{
+        border-color:white;
+    }
+}
+
+#qr_code{
+    margin-top:auto;
+    display:flex;
+    justify-content: space-between;
+}
+
+#footer{
+    z-index:3;
+    position:fixed;
+    bottom:0px;
+    color:black;
+    justify-content:space-between;
+    padding:2px 20px;
+    width:100%;
+}
+
+#footer a{
+    color:black;
+    text-decoration:underline;
+}
+
+
+#footer a:hover{
+    font-weight:bold;
+}
+
+#footer .web_link{
+    text-align:left;
+    width:140px;
+}

@@ -1,0 +1,89 @@
+{% extends 'core/starter.html' %}
+{% load compress %}
+{% load static %}
+
+{% block head %}
+
+    <link type="text/css" rel="stylesheet" href="{% static "core/css/home_desktop.css"%}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.js" crossorigin="anonymous"></script>
+
+
+{% endblock %}
+
+{% block body %}
+    <div id="home_wrapper" class="fr ac">
+        <div id="explanation" class="fc ac">
+            <p class="alert_head"> like Instagram, but in 3D space </p>
+            <p class="alert_subtitle"> Build galleries for your artwork. </p>
+            <p class="alert_subtitle"> Remember your favorite places. </p>
+            <p class="alert_subtitle"> Help others learn a new language. </p>
+        </div>
+        <div id="compatibility" class="fc ac">
+            <p class="alert_head"> Now On </p>
+            <div class="alert_subtitle"> iOS Compatible<br><br>
+                <a href="https://apps.apple.com/us/app/webxr-viewer/id1295998056" target="_blank">
+                <img src="{%static 'landing_page/webxr_icon.png'%}">
+                </a>
+            </div>
+            <div class="alert_subtitle"> Android Compatible<br><br>
+            <div class="fr" style="justify-content:space-around">
+                <a href="https://play.google.com/store/apps/details?id=com.android.chrome&hl=en&gl=US" target="_blank">
+                    <img src="{%static 'landing_page/chrome_icon.png'%}">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.sec.android.app.sbrowser&hl=en&gl=US" target="_blank">
+                    <img src="{%static 'landing_page/samsung_icon.png'%}">
+                </a>
+            </div> 
+             </div>
+            
+        </div>
+        <div id="central_video" class="fc ac">
+            <video autoplay muted type="video/mp4" src="{% static 'landing_page/demo_1.mp4' %}" loop>Not showing Augmented Reality Demo</video>
+            <div class="login-box auth0-box before">
+            {% if user.is_authenticated %}
+            <a class="login_btn" href="{% url 'people:me' %}">
+                start creating
+            </a>
+            {% else %}
+            <!-- <a class="login_btn btn btn-primary btn-lg btn-login btn-block tt_cent" href="/login/auth0">
+                join beta
+            </a> -->
+            <a class="login_btn tt_cent">
+                in beta
+            </a>
+            {% endif %}
+        </div>
+        </div>
+        <div id="left_column" class="fc ac">
+            <p>
+            {% for i in "[0,1,2]" %}
+                #augmented_reality#hovering_galleries#virtual_rooms
+                #interactive_content#floating_classrooms#spatial_learning
+                #3D_painting#travel_portation#TheFutureIsAugmented
+                #creative_energy#made_for_creatives#augmented_reality
+                #programmable_architecture#before_and_after#webXR
+            {% endfor %}
+            </p>
+        </div>
+    <div id="right_column" class="fc ac">
+           <p>
+            {% for i in "[0,1,2]" %}
+                #augmented_reality#hovering_galleries#virtual_rooms
+                #interactive_content#floating_classrooms#spatial_learning
+                #3D_painting#travel_portation#TheFutureIsAugmented
+                #creative_energy#made_for_creatives#augmented_reality
+                #programmable_architecture#before_and_after#webXR
+            {% endfor %}
+            </p>
+    </div>
+     
+
+    </div>
+
+{% endblock %}
+
+{% block script %}
+
+    <script src="{% static 'core/js/home.js'%}"></script>
+
+{% endblock %}

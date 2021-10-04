@@ -1,0 +1,33 @@
+{% extends 'core/starter.html' %}
+{% load compress %}
+{% load static %}
+
+{% block head %}
+    <link type="text/css" rel="stylesheet" href="{% static "rooms/css/sing.css"%}">
+{% endblock %}
+
+{% block body %}
+    <div id="gold_light"></div>
+<div id="body_wrapper">
+
+    <div id="augmented_canvas" class="gold_cc v_cent h_cent"></div>
+    <div id="course_content" class="gold_cc close">
+        <div id="course_text" class="fc">
+        <h2 class="head"></h2>
+        <p class="body"></p>
+        </div>
+    </div>
+    <div id="interaction_alerts">
+        <p id="alert"></p>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+    {% compress js %}
+        <script type="module" src="{% static "rooms/js/view_room/index.js" %}"></script>
+    {% endcompress %}
+
+{% endblock %}

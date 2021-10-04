@@ -1,0 +1,37 @@
+# File types #
+##############
+*.pyc
+*.swo
+*.swp
+*.swn
+*.env
+*.png
+*.mp4
+*.sql
+
+# Environments #
+##################
+.env
+env/
+venv/
+pablo/.env
+pablo/env
+
+# Directories #
+node_modules/
+media/
+CACHE/
+__pycache__/
+
+
+# Specific files #
+##################
+#superman/settings.py
+
+# OS generated files #
+######################
+.DS_Store
+ehthumbs.db
+Icon
+Thumbs.db
+*~

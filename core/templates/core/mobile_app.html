@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta name='viewport' content='initial-scale=1, width=device-width, viewport-fit=cover, user-scalable=0' />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
+
+
+        <link rel="stylesheet" href="{% static 'core/css/mobile_starter.css' %}">
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
+
+    {% block head %}
+    {% endblock %}
+
+    </head>
+
+    <body>
+
+    <div id="bottom_navigator_main">
+        <div class="gg">
+            <button class="gg_top" id="home_button"></button>
+            <object class="gg_bottom" type="image/svg+xml" data="{% static "icons/home.svg" %}">Profile</object>
+        </div>
+        <div class="gg">
+            <button class="gg_top" id="camera_button"></button>
+            <object class="gg_bottom" type="image/svg+xml" data="{% static "icons/camera.svg" %}">Add Gallery</object>
+        </div>
+    </div>
+
+    {% block body %}
+    {% endblock %}
+
+    {% block script %}
+    {% endblock %}
+
+    </body>
+
+</html>

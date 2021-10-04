@@ -1,0 +1,22 @@
+{% extends 'taiko/index.html' %}
+{% load compress %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'taiko/css/load_paper.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<div id="paper_upload_wrapper"></div>
+<div id="program_output_wrapper"></div>
+
+{% endblock %}
+
+{% block script %}
+    
+    {% compress js %}
+        <script type="module" src="{% static "taiko/js/load_paper.js" %}"></script>
+    {% endcompress %}
+    
+{% endblock %}
