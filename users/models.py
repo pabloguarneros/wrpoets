@@ -36,4 +36,4 @@ class User(AbstractUser):
                 new_img = (256, 256)
                 image.thumbnail(new_img)
                 image = image.convert()
-                image.save(self.profile_pic.path,"JPG")
+                image.save(self.profile_pic.path,"JPEG")

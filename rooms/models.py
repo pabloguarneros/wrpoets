@@ -2,6 +2,30 @@ from django.db import models
 from PIL import Image
 from django.db.models.fields import CharField
 
+'''
+Create three "nodes"
+
+Paint node
+- time created (to show animation of it)
+- xyz, quat xyzw
+- color
+
+Image node
+- Position
+- xyz, quat xyzw
+- scale
+
+Audio Node
+- Audio file
+
+To remove:
+- elements public and explorable from lesson
+- class node images
+
+
+
+'''
+
 class SectionNode(models.Model):
 
     def __str__(self):

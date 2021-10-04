@@ -30,10 +30,12 @@ def userProfile(request,username):
         }
 
     if request.user.is_authenticated and request.user == profile_owner:
-        return render(request,'users/your_profile.html',context)
-
+        if is_mobile:
+            return render(request,'users/your_mobile_profile.html',context)
+        else:
+            return render(request,'users/your_mobile_profile.html',context)
     else:
-        return render(request, 'users/their_profile.html',context)
+        return render(request,'users/your_mobile_profile.html',context)
 
 def userPreviewProfile(request, username):
     is_mobile = get_mobile(request)

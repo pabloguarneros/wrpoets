@@ -2,7 +2,7 @@
 ## an augmented reality platform to create and share content
 Live link: https://www.wrpoets.com/
 
-### Why WRPoets
+### Why WR Poets
 * I dream of a world where we abandon digital screens, a world where we go out to explore our surroundings, and a world where we live with the freedom to color used-to-be invisible space.
 
 ### Sprint Backlog

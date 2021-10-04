@@ -1,0 +1,51 @@
+{% extends 'core/mobile_app.html' %}
+{% load compress %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'users/css/manage_profile_mobile.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<div id="profile_page_wrapper" class="fc ac">
+    <div id="profile_card" class="fr">
+        <div id="profile_picture" class="gg">
+            {% if user.profile_pic %}
+            <img class="gg_top" src="{{ user.profile_pic.url }}" alt="{{user.username}}'s Profile Picture">
+            {% else%}
+            <img class="gg_top" src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" alt="{{user.username}}'s Profile Picture">
+            {% endif %}
+            <div class="profile_pic_container gg_bottom"></div>
+        </div>
+        <div id="user_info" class="fc">
+            <h1>{{ user.username }}</h1>
+            <div id="friend_tag">friends</div>
+            <p>{{ user.blurb }}</p>
+        </div>
+    </div>
+    <div id="room_gallery_wrapper" class="fr destroy">
+    </div>
+    <div id="room_ar_wrapper" class="fr">
+    </div>
+    <div id="ar_dom_overlay">
+        <div id="bottom_navigator_room" class="fc ac">
+            <button id="go_back_button">
+                <object type="image/svg+xml" data="{% static "icons/go_back.svg" %}">Go Back</object>
+            </button>
+        </div>
+        <div id="object_found_indicator">
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block script %}
+    
+    {% compress js %}
+        <script type="module" src="{% static "users/js/toggle_scenes.js" %}"></script>
+    {% endcompress %}
+    
+{% endblock %}

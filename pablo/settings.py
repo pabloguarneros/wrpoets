@@ -6,10 +6,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY')
 
+
 DEBUG = True
 ALLOWED_HOSTS = ["*"]
-#DEBUG = False
-#ALLOWED_HOSTS = ["216.137.177.148","www.wrpoets.com"]
+COMPRESS_ENABLED = False
+
+'''
+DEBUG = False
+ALLOWED_HOSTS = ["216.137.177.148","www.wrpoets.com"]
+COMPRESS_ENABLED = True
+'''
+
+
 
 INSTALLED_APPS = [
     'social_django',
@@ -28,7 +36,9 @@ INSTALLED_APPS = [
     'users',
     'core',
     'rooms',
-    'api'
+    'api',
+    'minervaremote',
+    'taiko'
 ]
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -148,7 +158,9 @@ LOGIN_REDIRECT_URL = '/people/me'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-COMPRESS_ROOT = 'static'
+
+COMPRESS_ROOT = os.path.join(BASE_DIR, 'static')
+COMPRESS_OFFLINE = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -157,10 +169,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',
 )
-
-#STATICFILES_DIRS = [
-#    os.path.join(BASE_DIR, 'static'),
-#]
 
 COMPRESS_CSS_FILTERS = [
     'compressor.filters.css_default.CssAbsoluteFilter',
@@ -174,8 +182,6 @@ COMPRESS_PRECOMPILERS = (
     ('module', 'compressor_toolkit.precompilers.ES6Compiler'),
     ('css', 'compressor_toolkit.precompilers.SCSSCompiler'),
 )
-COMPRESS_ENABLED = False
-#COMPRESS_ENABLED = False
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

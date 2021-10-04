@@ -1,0 +1,40 @@
+{% load static %}
+{% load compress %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta name='viewport' content='initial-scale=1, viewport-fit=cover' />
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fflate@0.7.1/umd/index.min.js" crossorigin="anonymous"></script>
+        <link tyoe="text/css" rel="stylesheet" href="{% static "minervaremote/css/welcome.css"%}">
+    </head>
+
+    <body>
+
+    <div id="remote_intro">
+        <p>
+            Nikita squeezes Gisele's hand. "There's an 8th rotation city!" </br>
+            But Gisele eyes Telegram, "No one's saying anything," she says. </br>
+            Nikita pulls up his phone. "They don't know." </br>
+            "Because..." </br>
+            "It's in the email: 'It's only available to us, the Remotes.'" </br>
+            Gisele yawns, "So what's the 8th rotation city?" </br>
+            Nikita's eyes light up, "Elsewhere." </br>
+        </p>
+        <button id="enter_elsewhere_btn"> enter </button>
+    </div>
+    <h1 id="elsewhere_title">elsewhere</h1>
+        <script src="{% static "js/three/OrbitControls.js"%}"></script>
+        <script src="{% static "js/three/dat.gui.min.js"%}"></script>
+   {% compress js %}
+        <script type="module" src="{% static "minervaremote/js/create_landscape.js" %}"></script>
+    {% endcompress %}
+    <script>
+
+    </body>
+
+</html>

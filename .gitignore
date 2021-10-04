@@ -13,6 +13,7 @@ node_modules/
 pablo/
 media/
 CACHE/
+__pycache__/
 
 # OS generated files #
 .DS_Store

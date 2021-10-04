@@ -9,9 +9,10 @@ import { display_text } from '../user_interaction/user_tap.js';
 
 class Augmented_Environment{
 
-    constructor(feature, scope){
+    constructor(feature, scope, pk){
         this.scene = new THREE.Scene();
         this.edit_class = new AR_Edit();
+        this.room_pk = pk;
         this.controller;
         this.renderer;
         this.font;
@@ -22,7 +23,7 @@ class Augmented_Environment{
         this.intersects = [];
     };
 
-    build(){
+    build(dom_target){
         
         const augmented_environment = this;
 
@@ -42,7 +43,7 @@ class Augmented_Environment{
         augmented_environment.controller = augmented_environment.renderer.xr.getController(0);
         augmented_environment.scene.add(augmented_environment.controller);
 
-        $("#augmented_canvas").append( augmented_environment.renderer.domElement );
+        $(dom_target).append( augmented_environment.renderer.domElement );
 
         const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
         light.position.set(0.5, 1, 0.25);
@@ -60,7 +61,7 @@ class Augmented_Environment{
 
             case "images":
                 async function get_images(){
-                    const api = `/nubes/nodes/${window.location.href.substring(window.location.href.lastIndexOf('/') + 1)}`;
+                    const api = `/nubes/nodes/${augmented_environment.room_pk}`;
                     fetch(api)
                     .then( response => response.json() )
                     .then( function(imageData){
@@ -72,7 +73,7 @@ class Augmented_Environment{
                 
         };
 
-        document.body.appendChild(ARButton.createButton(augmented_environment.renderer));
+        $("#bottom_navigator_room").append(ARButton.createButton(augmented_environment.renderer));
 
         animate();
 
@@ -80,15 +81,13 @@ class Augmented_Environment{
             switch (augmented_environment.feature + '|' 
                     + augmented_environment.scope){
                 case "images|edit":
-                    $("svg").replaceWith("<div id='object_found_indicator'><button id='save_edit'>save</button></div>");
                     $("#save_edit").on('click', ()=>{ save_edit(augmented_environment) })
                     addControllerDragEvents(augmented_environment);
                     break
                 case "images|explore":
-                    $("svg").replaceWith("<div id='object_found_indicator'></div>");
                     $("body").on("click",function(){
                         display_text(augmented_environment)
-                        });
+                    });
                     break
             }
         })
