@@ -1,0 +1,92 @@
+body {
+    background: linear-gradient(270.09deg, #FFE863 21.22%, #FBD748 50.22%, #F5BD1F 94.1%);
+
+    font-family: Trebuchet MS;
+    font-style: normal;
+    color:#47297B;
+}
+
+a{
+    color:#47297B;
+    margin-bottom:3px;
+
+}
+
+a:hover{
+    color:#47297B;
+    text-decoration: underline;
+}
+
+#profile_wrapper{
+    margin:auto;
+    height:90vh;
+    width:90vw;
+    align-items:center;
+    justify-content:space-around;
+    padding:20px;
+}
+
+#prof_cc{
+    padding:12px;
+    width:20%;
+    height:50%;
+    justify-content: space-between;
+    text-align:right;
+}
+
+#user_socials{
+    margin-top:auto;
+}
+
+#user_socials a{
+    font-size: 14px;
+}
+
+
+#lessons_cc{
+    height:90%;
+    width:60%;
+    align-content: stretch;
+    overflow-y:scroll;
+}
+
+.lesson_item{
+    color:#47297B;
+    text-align: left;
+    margin:10px;
+    padding:20px;
+    border:none;
+    border-radius:12px;
+    background:none;
+}
+
+.lesson_item:hover{
+    background: #FFFFFF26;
+
+}
+
+.lesson_title{
+    font-size:20px;
+    font-weight: bold;
+}
+
+@media (max-width: 700px){
+    #profile_wrapper{
+        flex-direction: column;
+        align-items: center;
+    }
+    #prof_cc,#lessons_cc{
+        width:100%
+    }
+    #prof_cc{
+        align-items:center;
+        height:fit-content;
+        text-align: center;
+    }
+    #user_socials{
+        display:none;
+    }
+    .lesson_item{
+        border:1px solid #47297B;
+    }
+}

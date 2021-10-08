@@ -6,7 +6,6 @@ from users.views import logout, userProfile, userPreviewProfile
 from core import views as core_views
 from decouple import config
 
-
 urlpatterns = [
     path('',core_views.home,name="home"),
     path(config('ADMIN_URL'), admin.site.urls),
@@ -31,4 +30,3 @@ handler404 = core_views.error_404
 handler500 = core_views.error_500
 handler403 = core_views.error_403
 handler400 = core_views.error_400
-    

@@ -1,0 +1,21 @@
+body {
+    background: linear-gradient(180deg, #FFE863 0%, #F8D63E 59.37%, #F3CA26 100%);
+}
+
+#error_wrap{
+    height:100vh;
+    width:100vw;
+    color:#47297B;
+    text-align:center;
+    justify-content:center;
+}
+
+#error_message{
+    padding:10px;
+    flex-wrap: wrap;
+}
+
+#error_message h1{
+    font-size:16px;
+    font-weight:normal;
+}

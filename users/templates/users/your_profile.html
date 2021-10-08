@@ -1,0 +1,29 @@
+{% extends 'core/starter.html' %}
+{% load compress %}
+{% load static %}
+
+{% block head %}
+    <link type="text/css" rel="stylesheet" href="{% static "users/css/manage_profile.css"%}">
+    <link type="text/css" rel="stylesheet" href="{% static "users/css/manage_profile_mobile.css"%}">
+{% endblock %}
+
+{% block body %}
+<div id="manager_profile" class="fr ac">
+    <div id="edit_profile">
+    </div>
+    <div id="edit_courses">
+    </div>
+    <div class="courses_curtain"></div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+    
+    {% compress js %}
+        <script type="module" src="{% static "three_xr/on_load/fetch_logic.js" %}"></script>
+        <script type="module" src="{% static "users/js/edit_profile.js" %}"></script>
+        <script type="module" src="{% static "users/js/edit_courses/render.js" %}"></script>
+    {% endcompress %}
+    
+{% endblock %}
