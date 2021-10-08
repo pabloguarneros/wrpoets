@@ -1,8 +1,12 @@
 import $ from 'jquery';
 import {BasicCharacterController} from "./protagonist.js";
-
+import {ModelLoad} from './model_class.js';
+import {ViewControl} from './view_control.js';
+import { create_lights } from './create_lights.js';
+import { create_ground } from './create_ground.js';
 
 class WelcomeDemo {
+
     constructor(){
         this._Initialize()
     }
@@ -23,61 +27,37 @@ class WelcomeDemo {
         this._scene = new THREE.Scene();
         this._camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 100 );
         this._camera.position.set( -8, 9.3, 12 );
-        this._clock = new THREE.Clock();
+        this._clock = new THREE.Clock();  
 
-        this._controls = new THREE.OrbitControls( this._camera, this._renderer.domElement );
-        this._controls.enablePan = false;
-        this._controls.enableZoom = false;
-        this._controls.target.set( 0, 1, 0 );
-        this._controls.update();
+        this._controls = new ViewControl( this._camera, this._renderer.domElement );
+        this._controls.set_settings();
 
-        this._scene.fog = new THREE.Fog( 0x9EE482, 10, 50 );
+        create_lights(this._scene);
 
-        const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444 );
-        hemiLight.position.set( 0, 20, 0 );
-        this._scene.add( hemiLight );
-
-        let light = new THREE.DirectionalLight(0xFFFFFF, 1.0);
-        light.position.set(4, 1, 8);
-        light.target.position.set(0, 0, 0);
-        light.castShadow = true;
-        light.shadow.bias = -0.001;
-        light.shadow.mapSize.width = 4096;
-        light.shadow.mapSize.height = 4096;
-        light.shadow.camera.near = 0.1;
-        light.shadow.camera.far = 500.0;
-        light.shadow.camera.near = 0.5;
-        light.shadow.camera.far = 500.0;
-        light.shadow.camera.left = 50;
-        light.shadow.camera.right = -50;
-        light.shadow.camera.top = 50;
-        light.shadow.camera.bottom = -50;
-        this._scene.add(light);
-
-        const groundGeometry = new THREE.PlaneGeometry( 20000, 20000, 128, 128);
-        groundGeometry.rotateX( - Math.PI / 2 );
-        const groundMaterial = new THREE.MeshPhongMaterial( { color: 0x87DF9E, depthWrite: false} );
-        const ground = new THREE.Mesh( groundGeometry, groundMaterial );
-        ground.receiveShadow = true;
-        this._scene.add( ground );
+        create_ground(this._scene);
 
         this._mixers = [];
         this._previousAnimation = null;
     
-        this._LoadAnimatedModel();
+        this._protagonist = new BasicCharacterController({
+                                camera: this._camera, scene: this._scene})
+        
         this._animate();
 
-    }
+        const greenhouse = new ModelLoad("static/models/greenhouse/scene.gltf");
+        greenhouse.add_to_scene(this._scene,
+                            {'gui':false,
+                            'r':{'x':0,'y':5,'z':0},
+                            'p':{'x':5,'y':0,'z':-31},
+                            's':{'x':4,'y':4,'z':4}}); 
 
-        _LoadAnimatedModel() {
-            const params = {
-            camera: this._camera,
-            scene: this._scene
-            //gltfloader: this._gltfloader
-        }
-
-            this._controls = new BasicCharacterController(params);
-        }
+        const map = new ModelLoad("static/models/map/scene.gltf");
+        map.add_to_scene(this._scene,
+                        {'gui':false,
+                        'r':{'x':0,'y':0,'z':0}, //rotation
+                        'p':{'x':16,'y':0,'z':0}, // position
+                        's':{'x':1.6,'y':1.6,'z':1.6}});  // scale
+                        }
 
         _onWindowResize() {
             this._camera.aspect = window.innerWidth / window.innerHeight;
@@ -104,8 +84,9 @@ class WelcomeDemo {
               this._mixers.map(m => m.update(timeElapsedS));
             }
         
-            if (this._controls) {
-              this._controls.Update(timeElapsedS);
+            if (this._protagonist._target) {
+              this._protagonist.Update(timeElapsedS);
+              this._controls.update(timeElapsedS, this._protagonist._target.position);
             }
           }
 }
