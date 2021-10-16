@@ -23,5 +23,32 @@ Live link: https://www.wrpoets.com/
 * Comment, create a new branch, flag any improvements!
 * Contributions much appreciated, holocracy motivated.
 
+### Media Used for wrpoets.com/elsewhere
+
+**Icons:**
+
+Backpack by Amethyst Studio from the Noun Project
+
+Earth by Batibull from the Noun Project
+
+Sourcing by David Christensen from the Noun Project
+
+**3D Models:**
+
+"Globe - Household Props Challenge - Day 17" (https://skfb.ly/6yrLM) by Pixel-bit is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+"Greenhouse" (https://skfb.ly/6VOyo) by julialalart is licensed under CC Attribution-NonCommercial-NoDerivs (http://creativecommons.org/licenses/by-nc-nd/4.0/).
+
+Lowpoly Tree 3 by FLAREMEDIA is licensed under Creative Commons Attribution.
+
+"Ferris Wheel" (https://skfb.ly/onrtD) by neutralize is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+Blue Heeler - Australian Cattle Dog by DavidA3D is licensed under Creative Commons Attribution.
+
+Low Poly Animals by EdwinRC is licensed under Creative Commons Attribution.
+
+
+
 ### Contact
 * Email: pablo@storyture.com
+
