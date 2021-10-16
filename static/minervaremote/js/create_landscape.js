@@ -93,7 +93,6 @@ class WelcomeDemo {
                     if (!this.is_touching_model){
                       this.currentWindow = model.div_ID;
                       this.is_touching_model = true;
-                      console.log(position,model);
                       $(this.currentWindow).css("display","flex");
                     };
                     break;

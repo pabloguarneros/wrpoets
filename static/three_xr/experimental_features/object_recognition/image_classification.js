@@ -6,7 +6,7 @@ async function app() {
 
   // Load the model.
   net = await mobilenet.load();
-  console.log('Successfully loaded model');
+  //console.log('Successfully loaded model');
 
   const webcam = await tf.data.webcam(webcamElement);
 

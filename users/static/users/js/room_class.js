@@ -16,7 +16,7 @@ class Room{
     openRoom(){
         const environment = new Augmented_Environment("images", "explore", this.pk);
         environment.build("#room_ar_wrapper");
-        console.log(environment);
+        //console.log(environment);
         $("#bottom_navigator_room").addClass("reveal");
         $("#profile_card").addClass("slide_up");
         $("#room_gallery_wrapper").addClass("destroy");

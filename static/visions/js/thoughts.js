@@ -8,7 +8,7 @@ function ui_init(){
     fetch('/journal/api/main')
         .then(response => response.json())
         .then(function(data){
-            console.log(data);
+            //console.log(data);
             ideas = data;
             three_init();
         });
