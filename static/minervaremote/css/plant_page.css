@@ -1,0 +1,90 @@
+
+#collection_cards{
+    padding:20px;
+    height:90%;
+    overflow-x:scroll;
+}
+
+.card_item{
+    height:300px;
+    background-color:rgba(255,255,255,0.2);
+    width:160px;
+    margin-right:50px;
+    border-radius:30px;
+    padding:0px;
+}
+
+.card_item button{
+    border-radius:30px;
+    z-index:10;
+    background:none;
+    border:none;
+    width:160px;
+    height:300px;
+    padding:25px;
+}
+
+.card_item object{
+    margin:auto;
+    width:50px;
+    height:50px;
+}
+
+.card_item button:hover{
+    background-color:#000000;
+    opacity:.2;
+    cursor: pointer;
+}
+
+
+#planting_memories{
+    display:none;
+    margin-top:40px;
+    width:80vw;
+    height:90vh;
+    overflow-y:scroll;
+    flex-wrap: wrap;
+}
+
+.memory_item{
+    width:128px;
+    height:128px;
+    border-radius:5px;
+    overflow:hidden;
+    border:none;
+    margin:4px;
+}
+
+.memory_item img{
+    width:128px;
+    height:auto;
+}
+
+.meta_data{
+    display:none;
+    width:100%;
+    height:100%;
+    border-radius:5px;
+    background-color:rgba(255,255,255,0.4);
+}
+
+.meta_data p{
+    margin:auto;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+.memory_item:hover .meta_data{
+    display:flex;
+}
+
+.memory_item:hover img{
+    display:none;
+}
+
+.memory_item a{
+    text-align: center;
+    text-decoration: none;
+    color:black;
+
+}

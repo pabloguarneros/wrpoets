@@ -168,8 +168,6 @@ function load_three(){
     const controls = new THREE.OrbitControls( camera, canvas);
     controls.enableDamping = true;
 
-    //const controls = new OrbitControls( camera, canvas);
-    //controls.enableDamping = true;
 
     const clock = new THREE.Clock()
 

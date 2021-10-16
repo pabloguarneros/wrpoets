@@ -6,6 +6,7 @@ class ViewControl{
 
     constructor (camera, domElement){
 
+        this.camera = camera;
         this.controls = new THREE.FirstPersonControls( camera, domElement);
         this.look_vector = new THREE.Vector3( 0, 0, 0 );
         this.set_settings = this.set_settings.bind(this);
@@ -17,6 +18,7 @@ class ViewControl{
         this.controls.activeLook = false;
         this.controls.autoForward = false;
         this.controls.lookVertical = false;
+        this.controls.constrainVertical = true;
 
     }
 
@@ -30,7 +32,14 @@ class ViewControl{
     }
 
     update(t, vector){
-        this.controls.lookAt(vector);
+        this.camera.position.x = vector.x+8;
+        this.camera.position.z = vector.z-16;
+        this.camera.position.y = 12
+        this.controls.lookAt(
+            vector.x,
+            vector.y+2,
+            vector.z,
+            );
         this.controls.update(t);
     }
 }

@@ -1,9 +1,9 @@
 import $ from 'jquery';
-import {BasicCharacterController} from "./protagonist.js";
-import {ModelLoad} from './model_class.js';
-import {ViewControl} from './view_control.js';
+import { BasicCharacterController } from "./protagonist.js";
+import { ViewControl } from './view_control.js';
 import { create_lights } from './create_lights.js';
 import { create_ground } from './create_ground.js';
+import { load_models } from './load_models.js';
 
 class WelcomeDemo {
 
@@ -19,18 +19,22 @@ class WelcomeDemo {
         this._renderer.setPixelRatio( window.devicePixelRatio );
         this._renderer.setSize( window.innerWidth, window.innerHeight );
 
-        $("body").append( this._renderer.domElement );
+        $("#3d_world").append( this._renderer.domElement );
         window.addEventListener('resize', () => {
             this._onWindowResize();
           }, false);
         
         this._scene = new THREE.Scene();
         this._camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 100 );
-        this._camera.position.set( -8, 9.3, 12 );
+        this._camera.position.set( -8, 9.3, 8 );
         this._clock = new THREE.Clock();  
 
         this._controls = new ViewControl( this._camera, this._renderer.domElement );
         this._controls.set_settings();
+
+        this.models_to_explore = [];
+        this.is_touching_model = false;
+        this.currentWindow = "";
 
         create_lights(this._scene);
 
@@ -44,20 +48,9 @@ class WelcomeDemo {
         
         this._animate();
 
-        const greenhouse = new ModelLoad("static/models/greenhouse/scene.gltf");
-        greenhouse.add_to_scene(this._scene,
-                            {'gui':false,
-                            'r':{'x':0,'y':5,'z':0},
-                            'p':{'x':5,'y':0,'z':-31},
-                            's':{'x':4,'y':4,'z':4}}); 
-
-        const map = new ModelLoad("static/models/map/scene.gltf");
-        map.add_to_scene(this._scene,
-                        {'gui':false,
-                        'r':{'x':0,'y':0,'z':0}, //rotation
-                        'p':{'x':16,'y':0,'z':0}, // position
-                        's':{'x':1.6,'y':1.6,'z':1.6}});  // scale
-                        }
+        load_models(this._scene, this.models_to_explore);
+        
+        }
 
         _onWindowResize() {
             this._camera.aspect = window.innerWidth / window.innerHeight;
@@ -86,7 +79,30 @@ class WelcomeDemo {
         
             if (this._protagonist._target) {
               this._protagonist.Update(timeElapsedS);
-              this._controls.update(timeElapsedS, this._protagonist._target.position);
+
+              const position = this._protagonist._target.position;
+              this._controls.update(timeElapsedS, position);
+
+              for (var i = 0; i < this.models_to_explore.length; i ++){
+                const model = this.models_to_explore[i];
+                if ( (model.x_range[0] < position.x) &&
+                      (model.x_range[1] > position.x) &&
+                      (model.y_range[0] < position.y) &&
+                      (model.y_range[1] > position.y)
+                  ){
+                    if (!this.is_touching_model){
+                      this.currentWindow = model.div_ID;
+                      this.is_touching_model = true;
+                      $(this.currentWindow).css("display","flex");
+                    };
+                    break;
+                  } else{
+                    if (this.is_touching_model & model.div_ID == this.currentWindow){
+                      $(this.currentWindow).css("display","none");
+                      this.is_touching_model = false;
+                    };
+                  }
+              }
             }
           }
 }

@@ -24,7 +24,6 @@ class BasicCharacterController{
         this._velocity = new THREE.Vector3(0, 0, 0);
         this._target = null;
 
-
         this._animations = {};
         this._input = new BasicCharacterControllerInput();
         this._stateMachine = new CharacterFSM(
@@ -36,6 +35,8 @@ class BasicCharacterController{
 
 
     _LoadModels(){
+
+
         const basic_controller = this;
         const loader = new THREE.FBXLoader();
 
@@ -88,6 +89,7 @@ class BasicCharacterController{
             velocity.y * this._decceleration.y,
             velocity.z * this._decceleration.z
         )
+
         frameDecceleration.multiplyScalar(timeInSeconds);
         frameDecceleration.z = Math.sign(frameDecceleration.z) * Math.min(
             Math.abs(frameDecceleration.z), Math.abs(velocity.z));
@@ -145,8 +147,6 @@ class BasicCharacterController{
       
           oldPosition.copy(controlObject.position);
 
-
-      
           if (this._mixer) {
             this._mixer.update(timeInSeconds);
           }
