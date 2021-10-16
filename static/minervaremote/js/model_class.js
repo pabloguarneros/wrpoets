@@ -42,8 +42,8 @@ class ModelLoad {
         const pos = this.model.position;
         const scale = this.model.scale;
         return(
-            {"x_range":[pos.x - scale.x/4, pos.x + scale.x/4],
-            "y_range":[pos.y - scale.y/4, pos.y + scale.y/4],
+            {"x_range":[pos.x - scale.x*2, pos.x + scale.x*2],
+            "z_range":[pos.z - scale.z*2, pos.z + scale.z*2],
             "div_ID":this.divID}
         )
     }

@@ -31,54 +31,30 @@
     <div id="3d_world">
     </div>
     <div id="interaction_overlay">
-        <div id="interaction_toggles" class="fc ac">
-            <div id="backpack_button" class="gg">
-                <button id="backpack_trigger" class="gg_top"></button>
-                <object class="gg_bottom" type="image/svg+xml" data="{% static "icons/elsewhere/backpack.svg" %}">Backpack</object>
-            </div>
-            <div id="attributions_button" class="gg">
-                <button class="gg_top"></button>
-                <object class="gg_bottom" type="image/svg+xml" data="{% static "icons/elsewhere/attribution.svg" %}">Attributions</object>
-            </div>
-        </div>
-        <div id="backpack_content" class="fc">
-            <h5> Backpack Items &#127890 </h5> 
-            <div id="collection_cards" class="fr">
-                <div class="card_item gg">
-                    <button id="trigger_garden" class="gg_top"></button>
-                    <object class="gg_bottom" type="image/svg+xml" data="{% static "icons/elsewhere/plant.svg" %}">Plant Memories</object>
-                </div>
-                <div class="card_item gg">
-                    <button id="trigger_map" class="gg_top"></button>
-                    <object class="gg_bottom" type="image/svg+xml" data="{% static "icons/elsewhere/earth.svg" %}">Earth Exploration</object>
-                </div>
-            </div>
+        <div id="garden_div" class="backpack_content fc">
+            <h5 class="tt_cent"> &#129716 Our Garden &#129716</h5>
             <div id="planting_memories" class="fr">
-            {% for memory in plant_memories %}
-            <div class="memory_item fc ac">
-                <img src="{{memory.photo.url}}" alt="Photo by {{memory.author}} taken in {{memory.location}}"></img>
-                <div class="meta_data">
-                    <a class="gg_bottom" href="{{memory.link}}" target="_blank">
-                            &#128123 </br> 
-                            {{memory.author }} </br> </br>
-                            &#128205 </br> 
-                            {{memory.location }}</a>
+                {% for memory in plant_memories %}
+                <div class="memory_item fc ac">
+                    <img src="{{memory.photo.url}}" alt="Photo by {{memory.author}} taken in {{memory.location}}"></img>
+                    <div class="meta_data fc">
+                        <a class="gg_bottom" href="{{memory.link}}" target="_blank">
+                                &#128123 </br> 
+                                {{memory.author }} </br> </br>
+                                &#128205 </br> 
+                                {{memory.location }}</a>
+                    </div>
                 </div>
-            </div>
-            {% endfor %}
-                </div>
-            <div id="go_back_button" class="gg">
-                <button id="trigger_exit" class="gg_top"></button>
-                <object class="gg_bottom" type="image/svg+xml" data="{% static "icons/elsewhere/exit.svg" %}">Exit Backpack</object>
+                {% endfor %}
             </div>
         </div>
+
     </div>
 
     <h1 id="elsewhere_title">elsewhere</h1>
         <script src="{% static "js/three/dat.gui.min.js"%}"></script>
    {% compress js %}
         <script type="module" src="{% static "minervaremote/js/create_landscape.js" %}"></script>
-        <script type="module" src="{% static "minervaremote/js/toggleBackpack.js" %}"></script>
     {% endcompress %}
 
     </body>

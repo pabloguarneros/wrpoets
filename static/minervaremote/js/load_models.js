@@ -2,7 +2,7 @@ import { ModelLoad } from './model_class.js';
 
 function load_models(scene,models_to_explore){
 
-    const greenhouse = new ModelLoad("static/models/greenhouse/scene.gltf", "Greenhouse Model", "#backpack_content");
+    const greenhouse = new ModelLoad("static/models/greenhouse/scene.gltf", "Greenhouse Model", "#garden_div");
     greenhouse.add_to_scene(scene,models_to_explore,
         {'gui':false,
         'r':{'x':0,'y':4,'z':0},
@@ -10,7 +10,7 @@ function load_models(scene,models_to_explore){
         's':{'x':6,'y':6,'z':6}}
     );
 
-    const map = new ModelLoad("static/models/map/scene.gltf", "Map Model", "#backpack_content");
+    const map = new ModelLoad("static/models/map/scene.gltf", "Map Model");
     map.add_to_scene(scene,models_to_explore,
         {'gui':false,
         'r':{'x':0,'y':3,'z':0}, //rotation
@@ -26,7 +26,7 @@ function load_models(scene,models_to_explore){
         's':{'x':10,'y':10,'z':10}}
     ); 
 
-    const black_dog = new ModelLoad("static/models/black_dog/scene.gltf", "Ferris Wheel");
+    const black_dog = new ModelLoad("static/models/black_dog/scene.gltf", "Black Dog");
     black_dog.add_to_scene(scene,models_to_explore,
         {'gui':false,
         'r':{'x':0,'y':3,'z':0}, //rotation

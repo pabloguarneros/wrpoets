@@ -87,12 +87,13 @@ class WelcomeDemo {
                 const model = this.models_to_explore[i];
                 if ( (model.x_range[0] < position.x) &&
                       (model.x_range[1] > position.x) &&
-                      (model.y_range[0] < position.y) &&
-                      (model.y_range[1] > position.y)
+                      (model.z_range[0] < position.z) &&
+                      (model.z_range[1] > position.z)
                   ){
                     if (!this.is_touching_model){
                       this.currentWindow = model.div_ID;
                       this.is_touching_model = true;
+                      console.log(position,model);
                       $(this.currentWindow).css("display","flex");
                     };
                     break;
