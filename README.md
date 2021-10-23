@@ -47,6 +47,7 @@ Blue Heeler - Australian Cattle Dog by DavidA3D is licensed under Creative C
 
 Low Poly Animals by EdwinRC is licensed under Creative Commons Attribution.
 
+Bread by yourejustjellyfish is licensed under Creative Commons Attribution
 
 
 ### Contact

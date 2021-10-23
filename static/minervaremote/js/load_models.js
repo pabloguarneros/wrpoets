@@ -34,8 +34,16 @@ function load_models(scene,models_to_explore){
         's':{'x':0.05,'y':0.05,'z':0.05}}
     ); 
 
+    const bread = new ModelLoad("static/models/bread/scene.gltf", "Bread", "#bread_div");
+    bread.add_to_scene(scene,models_to_explore,
+        {'gui':false,
+        'r':{'x':0,'y':0,'z':0}, //rotation
+        'p':{'x':22,'y':0,'z':-17}, // position
+        's':{'x':3,'y':3,'z':3}}
+    );
+
     const tree = new ModelLoad("static/models/cone_tree/scene.gltf", "Tree");
-    for (var i = 0; i < 130; i++){
+    for (var i = 0; i < 30; i++){
         tree.add_to_scene(scene,models_to_explore,
             {'gui':false,
             'r':{'x':0,'y':0,'z':0}, //rotation

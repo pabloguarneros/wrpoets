@@ -203,7 +203,7 @@ textarea{
 }
 
 #percentage{
-    color: rgba(255, 255, 255, .35); 
+    color: rgba(255, 255, 255, .75); 
     margin-bottom:auto;
     font-size:16px;
     margin-left:14px;

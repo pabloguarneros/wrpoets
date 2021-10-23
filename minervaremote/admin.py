@@ -1,4 +1,7 @@
 from django.contrib import admin
 from .models import Memory
 
-admin.site.register(Memory)
+class MemoryAdmin(admin.ModelAdmin):
+    list_display=('author','memory_category')
+
+admin.site.register(Memory, MemoryAdmin)

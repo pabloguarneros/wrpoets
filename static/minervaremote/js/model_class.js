@@ -41,7 +41,6 @@ class ModelLoad {
     get_reference(){
         const pos = this.model.position;
         const scale = this.model.scale;
-        console.log(this.model.divID,pos,scale);
         return(
             {"x_range":[pos.x - 8.5, pos.x + 8.5],
             "z_range":[pos.z - 8.5, pos.z + 8.5],
