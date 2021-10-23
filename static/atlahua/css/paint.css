@@ -1,0 +1,60 @@
+body{
+    background: #ffe259; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ffe259, #ffa751); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ffe259, #ffa751);
+}
+
+#video_container, #user_video{
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+#video_container{
+    opacity:0;
+    top:20px;
+    right:20px;
+    width:180px;
+    height:180px;
+    position:fixed;
+    border-radius:240px;
+    border:2px solid #ffa751;
+    overflow:hidden;
+}
+
+#video_container:hover{
+    width:187px;
+    height:187px;
+}
+
+#video_container:hover #user_video{
+    height:187px;
+    width:auto;
+}
+
+#user_video{
+    width:auto;
+    height:180px;
+}
+
+#three_canvas{
+    z-index:-1;
+    width:100vw;
+    height:100vh;
+}
+
+.reveal{
+    animation: fade_in 0.9s linear 0s forwards;
+}
+
+
+@keyframes fade_in{
+    0%{
+        opacity:0;
+    }
+    100%{
+        opacity:1;
+    }
+}

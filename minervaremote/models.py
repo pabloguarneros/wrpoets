@@ -7,9 +7,16 @@ def memory_image_directory_path(instance, filename):
 class Memory(models.Model):
 
     author = models.CharField(max_length=150)
-    location = models.CharField(max_length=150)
-    link = models.URLField(max_length=320)
+    location = models.CharField(max_length=150, blank=True, null=True)
+    link = models.URLField(max_length=320, blank=True, null=True)
     photo = models.ImageField(upload_to=memory_image_directory_path)
+
+    class MemoryCategory(models.IntegerChoices):
+        FARMING = 1
+        PET = 2
+
+    memory_category = models.IntegerField(choices=MemoryCategory.choices, default=1, null=True)
+
 
     def save(self, *args, **kawrgs):
         super().save(*args, **kawrgs)

@@ -36,17 +36,18 @@ class WelcomeDemo {
         this.is_touching_model = false;
         this.currentWindow = "";
 
-        create_lights(this._scene);
-
-        create_ground(this._scene);
-
         this._mixers = [];
         this._previousAnimation = null;
     
         this._protagonist = new BasicCharacterController({
                                 camera: this._camera, scene: this._scene})
         
+        create_lights(this._scene);
+
+        create_ground(this._scene);
+
         this._animate();
+
 
         load_models(this._scene, this.models_to_explore);
         

@@ -26,7 +26,7 @@ function load_models(scene,models_to_explore){
         's':{'x':10,'y':10,'z':10}}
     ); 
 
-    const black_dog = new ModelLoad("static/models/black_dog/scene.gltf", "Black Dog");
+    const black_dog = new ModelLoad("static/models/black_dog/scene.gltf", "Black Dog", "#pet_div");
     black_dog.add_to_scene(scene,models_to_explore,
         {'gui':false,
         'r':{'x':0,'y':3,'z':0}, //rotation

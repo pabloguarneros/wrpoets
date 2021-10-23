@@ -10,8 +10,8 @@
         <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/fflate@0.7.1/umd/index.min.js" crossorigin="anonymous"></script>
-        <link tyoe="text/css" rel="stylesheet" href="{% static "minervaremote/css/welcome.css"%}">
-        <link tyoe="text/css" rel="stylesheet" href="{% static "minervaremote/css/plant_page.css"%}">
+        <link type="text/css" rel="stylesheet" href="{% static "minervaremote/css/welcome.css"%}">
+        <link type="text/css" rel="stylesheet" href="{% static "minervaremote/css/plant_page.css"%}">
     </head>
 
     <body>
@@ -24,9 +24,18 @@
             "Because..." </br>
             "It's in the email: 'It's only available to us, the Remotes.'" </br>
             Gisele yawns, "So what's the 8th rotation city?" </br>
-            Nikita's eyes light up, "Elsewhere." </br>
+            Nikita's eyes light up, "Elsewhere."
         </p>
-        <button id="enter_elsewhere_btn"> enter </button>
+                <button id="enter_elsewhere_btn"> enter </button>
+
+        <div id="loading_div" class="fr ac">
+            <div id="loading_bar_container">
+            <div id="loading_bar"></div>
+                </div>
+            <div id="percentage">0%</div>
+           
+        </div>
+
     </div>
     <div id="3d_world">
     </div>
@@ -43,6 +52,19 @@
                                 {{memory.author }} </br> </br>
                                 &#128205 </br> 
                                 {{memory.location }}</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div id="pet_div" class="backpack_content fc">
+            <h5 class="tt_cent"> &#128021 Our Pets &#128032</h5>
+            <div id="pet_memories" class="fr">
+                {% for memory in pet_memories %}
+                <div class="memory_item fc ac">
+                    <img src="{{memory.photo.url}}" alt="Photo by {{memory.author}} taken in {{memory.location}}"></img>
+                    <div class="meta_data fc">
+                        <p class="gg_bottom"> {{memory.author }}'s Super Cute Pet</p>
                     </div>
                 </div>
                 {% endfor %}

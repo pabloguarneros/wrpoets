@@ -1,7 +1,8 @@
 name: Deployment Workflow
 on:
   push:
-    branches: [master]
+    branches:
+      - main
 
 jobs:
 
@@ -18,5 +19,14 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           cd pablo
-          git pull origin master
+          source venv/bin/activate
+          git fetch origin
+          git merge origin/main
           git status
+          python manage.py makemigrations
+          python manage.py migrate
+          python manage.py runserver
+          ^C
+          python manage.py compress
+          python manage.py collectstatic
+          sudo service apache2 restart

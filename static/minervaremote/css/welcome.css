@@ -37,7 +37,6 @@ body{
     font-size:20px;
     line-height: 40px;
     opacity:.8;
-    padding-bottom:90px;
     font-style:normal;
 }
 
@@ -178,4 +177,36 @@ textarea{
     margin:auto;
     width:35px;
     height:35px;
+}
+
+#load_div{
+    justify-content: space-around;
+    align-items: center;
+}
+
+#loading_bar{
+    border-radius:30px;
+    width:0%;
+    background-color: rgba(255, 255, 255, .35);  
+    height:10px;
+    transition:width 0.4s ease;
+}
+
+#loading_bar_container{
+    margin-top:auto;
+    margin-bottom:auto;
+    border-radius:30px;
+    background-color: rgba(255, 255, 255, .35); 
+    height:10px; 
+    width:50vw;
+    margin-top:30px;
+}
+
+#percentage{
+    color: rgba(255, 255, 255, .35); 
+    margin-bottom:auto;
+    font-size:16px;
+    margin-left:14px;
+    margin-top:26px;
+
 }

@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'api',
     'minervaremote',
     'taiko',
-    'cs113'
+    'cs113',
+    'atlahua'
 ]
 
 TEMPLATE_CONTEXT_PROCESSORS = (

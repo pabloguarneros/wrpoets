@@ -1,0 +1,37 @@
+{% load static %}
+{% load compress %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta name='viewport' content='initial-scale=1, viewport-fit=cover' />
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+        <link type="text/css" rel="stylesheet" href="{% static "atlahua/css/paint.css"%}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+        <!-- Require the peer dependencies of handpose. -->
+        <script src="https://unpkg.com/@tensorflow/tfjs-core@2.1.0/dist/tf-core.js"></script>
+        <script src="https://unpkg.com/@tensorflow/tfjs-converter@2.1.0/dist/tf-converter.js"></script>
+        <!-- You must explicitly require a TF.js backend if you're not using the tfs union bundle. -->
+        <script src="https://unpkg.com/@tensorflow/tfjs-backend-webgl@2.1.0/dist/tf-backend-webgl.js"></script>
+        <script src="https://unpkg.com/@tensorflow-models/handpose@0.0.6/dist/handpose.js"></script>
+    </head>
+
+    <body>
+
+    <div id="video_container">
+        <video id="user_video" autoplay />
+    </div>
+
+    <div id="three_canvas">
+    </div>
+
+    <script src="{% static "js/three/dat.gui.min.js"%}"></script>
+   {% compress js %}
+    <script type="module" src="{% static "atlahua/js/paint.js" %}"></script>
+    {% endcompress %}
+
+    </body>
+
+</html>

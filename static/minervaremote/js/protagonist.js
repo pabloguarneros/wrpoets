@@ -1,5 +1,6 @@
+import $ from 'jquery';
 import {FBXLoader} from "three/examples/js/loaders/FBXLoader.js";
-import {loaded_triggered} from "./access_btn.js";
+import {character_has_loaded} from "./access_btn.js";
 
 class BasicCharacterControllerProxy {
     constructor(animations) {
@@ -39,6 +40,9 @@ class BasicCharacterController{
 
         const basic_controller = this;
         const loader = new THREE.FBXLoader();
+        $("#loading_bar").css("width",`${10}%`);
+        $("#percentage").html(`10%`)
+
 
         loader.load( 'static/models/aj.fbx', function ( fbx ) {
             fbx.scale.setScalar(0.03);
@@ -48,15 +52,16 @@ class BasicCharacterController{
             });
 
             basic_controller._target = fbx;
-
             basic_controller._params.scene.add( basic_controller._target );
-
             basic_controller._mixer = new THREE.AnimationMixer( basic_controller._target );
-
             basic_controller._manager = new THREE.LoadingManager();
+            basic_controller._manager.onProgress = function( url, itemsLoaded, itemsTotal ){
+              $("#loading_bar").css("width",`${10+(itemsLoaded / itemsTotal * 90)}%`);
+              $("#percentage").html(`${10+(itemsLoaded / itemsTotal * 90)}%`)
+            }
             basic_controller._manager.onLoad = () => {
                 basic_controller._stateMachine.SetState('idle');
-                loaded_triggered();
+                character_has_loaded();
             };
             const _OnLoad = (animName, anim) => {
                 

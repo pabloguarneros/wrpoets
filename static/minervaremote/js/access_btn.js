@@ -1,5 +1,5 @@
 import $ from 'jquery';
-function loaded_triggered(){
+function character_has_loaded(){
     $("#enter_elsewhere_btn").addClass("reveal");
     $("#enter_elsewhere_btn").on('click',function(){
         $("#interaction_toggles").css("display","flex");
@@ -10,4 +10,4 @@ function loaded_triggered(){
         })
     });
 }
-export {loaded_triggered}
+export {character_has_loaded}
