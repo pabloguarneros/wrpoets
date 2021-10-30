@@ -1,13 +1,13 @@
 function create_lights(scene, gui=false){
 
-    scene.fog = new THREE.Fog( 0x9EE482, 10, 50 );
+    scene.fog = new THREE.Fog( 0x9EE482, 10, 140 );
 
     const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444 );
     hemiLight.position.set( 0, 20, 0 );
     scene.add( hemiLight );
 
 
-    let light = new THREE.DirectionalLight(0xFFFFFF, 1.0);
+    let light = new THREE.DirectionalLight(0xFFFFFF, .3);
     light.position.set(100, 20, 100);
     light.target.position.set(0, 0, 0);
     light.castShadow = true;

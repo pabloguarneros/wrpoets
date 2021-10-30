@@ -37,6 +37,9 @@ body{
 #user_video{
     width:auto;
     height:180px;
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+    -moz-transform:rotateY(180deg); /* Firefox */
 }
 
 #three_canvas{

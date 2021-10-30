@@ -25,8 +25,9 @@ class ViewControl{
         controls_folder.open()
     }
 
-    update(t){
-        this.controls.update(t);
+    update(t,z){
+        this.camera.position.z += z;
+        this.controls.update(t,0);
     }
 }
 

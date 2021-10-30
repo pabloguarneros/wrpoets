@@ -10,6 +10,7 @@ async function loadCamera(element, three_canvas){
                     video.srcObject = stream;
                     $(video).parent().addClass("reveal");
                     video.addEventListener('loadeddata', function(event){
+                        three_canvas.video = video;
                         loadGestures(video, three_canvas);
                     });
                 } else{

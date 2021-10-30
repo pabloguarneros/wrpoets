@@ -5,54 +5,58 @@ import { create_lights } from './create_lights.js';
 class ThreeCanvas {
 
     constructor(){
-        this._Initialize()
+        this.initialize()
     }
 
-    _Initialize(){
-        this._renderer = new THREE.WebGLRenderer( {
-            antialias: true, alpha:true } );
-        this._renderer.outputEncoding = THREE.sRGBEncoding;
-        this._renderer.shadowMap.enabled = true;
-        this._renderer.setPixelRatio( window.devicePixelRatio );
-        this._renderer.setSize( window.innerWidth, window.innerHeight );
+    initialize(){
 
-        $("#three_canvas").append( this._renderer.domElement );
+        this.resize_scale = (document.documentElement.clientWidth/document.documentElement.clientHeight)*50;
+        this.threejsDiagonal = Math.sqrt(115**2+( //y in three.js is 115 as a width
+          (document.documentElement.clientWidth/document.documentElement.clientHeight)*100)**2);
+
+        this.renderer = new THREE.WebGLRenderer( {
+            antialias: true, alpha:true } );
+        this.renderer.outputEncoding = THREE.sRGBEncoding;
+        this.renderer.shadowMap.enabled = true;
+        this.renderer.setPixelRatio( window.devicePixelRatio );
+        this.renderer.setSize( window.innerWidth, window.innerHeight );
+
+        $("#three_canvas").append( this.renderer.domElement );
         window.addEventListener('resize', () => {
-            this._onWindowResize();
+            this.onWindowResize();
           }, false);
         
-        this._scene = new THREE.Scene();
-        this._camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 100 );
+        this.scene = new THREE.Scene();
+        this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 100 );
+        this.video = null;
+        this.controls = new ViewControl( this.camera, this.renderer.domElement );
+        this.controls.set_settings();
+        this.currentCursor = [0,0];
 
-        this._controls = new ViewControl( this._camera, this._renderer.domElement );
-        this._controls.set_settings();
+        create_lights(this.scene);
 
-        create_lights(this._scene);
+        this.animationObjects = [];
 
-
-        const geometry = new THREE.SphereGeometry( 15, 32, 16 );
-        const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
-        const sphere = new THREE.Mesh( geometry, material );
-        sphere.position.set(0,0,-100);
-        this.sphere = sphere;
-        this._scene.add( this.sphere );
-
-        this._animate();
+        this.animate();
 
         }
 
-        _onWindowResize() {
-            this._camera.aspect = window.innerWidth / window.innerHeight;
-            this._camera.updateProjectionMatrix();
-            this._renderer.setSize( window.innerWidth, window.innerHeight );
+        onWindowResize() {
+            this.camera.aspect = window.innerWidth / window.innerHeight;
+            this.camera.updateProjectionMatrix();
+            this.renderer.setSize( window.innerWidth, window.innerHeight );
         }
 
-        _animate() {
+        animate() {
             requestAnimationFrame((t) => {
-              this._animate();
-              this._renderer.render(this._scene, this._camera);
-              this._controls.update(t);
-
+              this.animate();
+              this.renderer.render(this.scene, this.camera);
+              this.controls.update(t,0);
+              this.animationObjects.forEach(mesh => {
+                if (mesh.userData.clock && mesh.userData.mixer) {
+                  mesh.userData.mixer.update(mesh.userData.clock.getDelta());
+                }
+              });
             });
           }
 }

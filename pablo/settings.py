@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY')
 
-'''
+
 DEBUG = True
 ALLOWED_HOSTS = ["*"]
 COMPRESS_ENABLED = False
@@ -16,7 +16,7 @@ DEBUG = False
 ALLOWED_HOSTS = [config('IP_SERVER'),"www.wrpoets.com"]
 COMPRESS_ENABLED = True
 
-
+'''
 
 
 INSTALLED_APPS = [
