@@ -13,11 +13,9 @@ ALLOWED_HOSTS = ["*"]
 COMPRESS_ENABLED = False
 '''
 
-
 DEBUG = False
-ALLOWED_HOSTS = [config('IP_SERVER'),"www.wrpoets.com"]
+ALLOWED_HOSTS = [config('IP_SERVER'),"www.wrpoets.com","www.jakubwarmuz.com"]
 COMPRESS_ENABLED = True
-
 
 
 INSTALLED_APPS = [
@@ -41,7 +39,8 @@ INSTALLED_APPS = [
     'minervaremote',
     'taiko',
     'cs113',
-    'atlahua'
+    'atlahua',
+    'kuba'
 ]
 
 TEMPLATE_CONTEXT_PROCESSORS = (

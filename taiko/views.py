@@ -8,6 +8,9 @@ from .conversion_helpers.pre_processing_text import TaikoText
 def welcome(request):
     return render(request,'taiko/load_paper.html')
 
+def convolution(request):
+    return render(request,'taiko/convolute.html')
+
 class CreateSong(generics.RetrieveAPIView):
 
     def get(self, request, format=None):

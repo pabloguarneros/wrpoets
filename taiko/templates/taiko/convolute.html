@@ -1,0 +1,32 @@
+{% load static %}
+{% load compress %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta name='viewport' content='initial-scale=1, viewport-fit=cover' />
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu+Mono" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jimp/0.16.2-canary.1052.1235.0/jimp.min.js" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+        <link rel="stylesheet" href="{% static 'taiko/css/index.css' %}">
+
+    </head>
+
+    <body>
+
+    <div id="body_wrapper">
+        <canvas id="audio_visual"></div>
+        <div id="react_wrapper_1"></div>
+    </div>
+
+    {% compress js %}
+    <script type="module" src="{% static "taiko/js/convolute.js" %}"></script>
+    <script type="module" src="{% static "taiko/js/visualizeAudio.js" %}"></script>
+
+    {% endcompress %}
+
+    </body>
+
+</html>

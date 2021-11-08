@@ -1,5 +1,7 @@
 import $ from 'jquery';
+import { GLTFLoader } from 'three/examples/js/loaders/GLTFLoader.js';
 import {FBXLoader} from "three/examples/js/loaders/FBXLoader.js";
+
 import {character_has_loaded} from "./access_btn.js";
 
 class BasicCharacterControllerProxy {
@@ -38,48 +40,77 @@ class BasicCharacterController{
     _LoadModels(){
 
 
+      let character_texture = new THREE.TextureLoader().load('static/models/characters/ghost/textures/Material_baseColor.png');
+
+      character_texture.flipY = false; // we flip the texture so that its the right way up
+
+        const character_mtl = new THREE.MeshPhongMaterial({
+          map: character_texture,
+          color: 0xffffff,
+          skinning: true
+        });
+
         const basic_controller = this;
-        const loader = new THREE.FBXLoader();
-        $("#loading_bar").css("width",`${10}%`);
-        $("#percentage").html(`10%`)
+        const MODEL_PATH = 'static/models/characters/ghost/scene.gltf'; 
 
+        const loading_manager = new THREE.LoadingManager();
+        loading_manager.onProgress = function( url, itemsLoaded, itemsTotal ){
+          $("#loading_bar").css("width",`${10+(itemsLoaded / itemsTotal * 90)}%`);
+          $("#percentage").html(`${10+(itemsLoaded / itemsTotal * 90)}%`)
+        }
+        loading_manager.onLoad = () => {
+            basic_controller._stateMachine.SetState('Armature.001|Sad.Idle.001');
+            character_has_loaded();
+        };
 
-        loader.load( 'static/models/aj.fbx', function ( fbx ) {
-            fbx.scale.setScalar(0.03);
+        var loader = new THREE.GLTFLoader(loading_manager);
 
-            fbx.traverse(c => {
-                c.castShadow = true;
+        
+
+        loader.load(
+          MODEL_PATH,
+          function ( gltf ) {
+            let model = gltf.scene;
+            const fileAnimations = gltf.animations;
+
+            basic_controller._target = model;
+            basic_controller._params.scene.add( model );
+
+            model.traverse(o => {
+              if (o.isMesh) {
+                o.castShadow = true;
+                o.receiveShadow = true;
+                o.material = character_mtl;
+              }
             });
 
-            basic_controller._target = fbx;
-            basic_controller._params.scene.add( basic_controller._target );
-            basic_controller._mixer = new THREE.AnimationMixer( basic_controller._target );
-            basic_controller._manager = new THREE.LoadingManager();
-            basic_controller._manager.onProgress = function( url, itemsLoaded, itemsTotal ){
-              $("#loading_bar").css("width",`${10+(itemsLoaded / itemsTotal * 90)}%`);
-              $("#percentage").html(`${10+(itemsLoaded / itemsTotal * 90)}%`)
-            }
-            basic_controller._manager.onLoad = () => {
-                basic_controller._stateMachine.SetState('idle');
-                character_has_loaded();
-            };
-            const _OnLoad = (animName, anim) => {
-                
-                const clip = anim.animations[0];
-                const action = basic_controller._mixer.clipAction(clip);
+            
+            model.scale.set(5, 5, 5);
 
+
+
+            basic_controller._mixer = new THREE.AnimationMixer( model );
+           
+            const activateAnimation = (animName, clip) => {
+                const action = basic_controller._mixer.clipAction(clip);
                 basic_controller._animations[animName] = {
                     clip: clip,
                     action: action,
                 };
             };
-
-            const fxbLoader = new THREE.FBXLoader(basic_controller._manager);
-            fxbLoader.setPath("static/models/actions/");
-            fxbLoader.load("idle.fbx", (a) => { _OnLoad('idle', a); });
-            fxbLoader.load("walk.fbx", (a) => { _OnLoad('walk', a); });
             
-        })
+            for (var i = 0; i < fileAnimations.length; i ++){
+              activateAnimation(fileAnimations[i].name,fileAnimations[i])
+            }
+
+      
+            
+          },
+           undefined,
+           function(error){
+             console.error(error);
+           }
+          );
     }
 
     Update(timeInSeconds){
@@ -279,8 +310,8 @@ class CharacterFSM extends FiniteStateMachine {
     }
   
     _Init() {
-      this._AddState('idle', IdleState);
-      this._AddState('walk', WalkState);
+      this._AddState('Armature.001|Sad.Idle.001', IdleState);
+      this._AddState('Armature.001|Armature.002|mixamo.com|Layer0', WalkState);
     }
   };
   
@@ -301,11 +332,11 @@ class WalkState extends State {
     }
 
     get Name() {
-      return 'walk';
+      return 'Armature.001|Armature.002|mixamo.com|Layer0';
     }
 
     Enter(prevState) {
-      const curAction = this._parent._proxy._animations['walk'].action;
+      const curAction = this._parent._proxy._animations['Armature.001|Armature.002|mixamo.com|Layer0'].action;
       if (prevState) {
         const prevAction = this._parent._proxy._animations[prevState.Name].action;
         curAction.enabled = true;
@@ -326,7 +357,7 @@ class WalkState extends State {
       if (input._keys.forward || input._keys.backward) {
         return;
       }
-      this._parent.SetState('idle');
+      this._parent.SetState('Armature.001|Sad.Idle.001');
     }
   };
 
@@ -336,11 +367,11 @@ class WalkState extends State {
     }
   
     get Name() {
-      return 'idle';
+      return 'Armature.001|Sad.Idle.001';
     }
   
     Enter(prevState) {
-      const idleAction = this._parent._proxy._animations['idle'].action;
+      const idleAction = this._parent._proxy._animations['Armature.001|Sad.Idle.001'].action;
       if (prevState) {
         const prevAction = this._parent._proxy._animations[prevState.Name].action;
         idleAction.time = 0.0;
@@ -359,7 +390,7 @@ class WalkState extends State {
   
     Update(_, input) {
       if (input._keys.forward || input._keys.backward) {
-        this._parent.SetState('walk');
+        this._parent.SetState('Armature.001|Armature.002|mixamo.com|Layer0');
       }
     }
   };

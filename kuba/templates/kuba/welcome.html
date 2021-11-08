@@ -1,0 +1,283 @@
+{% load static %}
+{% load compress %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Jakub Warmuz</title>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta name='viewport' content='initial-scale=1, viewport-fit=cover' />
+        <link rel="shortcut icon" type="image/png" href="{% static 'kuba_logo.ico' %}"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fflate@0.7.1/umd/index.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js" crossorigin="anonymous"></script>
+        <link type="text/css" rel="stylesheet" href="{% static "minervaremote/css/threejs_default.css"%}">
+        <link type="text/css" rel="stylesheet" href="{% static "kuba/css/welcome.css"%}">    </head>
+    <body>
+
+    <div id="loading_page">
+        <div id="intro_text">
+            <h1> Jakub Warmuz </h1>
+            <p> Data Scientist | Software Engineer // Graduating 2022 </p>
+            <p id="loading_football"> &#9917 </p>
+
+        </div>
+        <button id="enter_3D_world"> Enter </button>
+
+        <div id="loading_div" class="fr ac">
+            <div id="loading_bar_container">
+                <div id="loading_bar"></div>
+                </div>
+            <div id="percentage">0%</div>
+        </div>
+
+    </div>
+    <div id="3d_world">
+    </div>
+    <div id="interaction_overlay">
+
+        <div id="instructions"><small>move with arrow keys ←↑→ </small></div>
+
+        <div id="accomplishments" class="category_container">
+            <div class="category_head">
+                <h3> Accomplishments  &#9917</h3>
+            </div>
+            <div class="category_body">
+                <div class="category_facts">
+                    <div class="category_fact">
+                        <p> Played professional football on junior level for 10 years, captained my team for 4, and trialed for Premier League - Watford FC
+                        </p>
+                    </div>
+                    <div class="category_fact">
+                        <p> Started a social initiative to provide opportunities to high school students from disadvantaged environments of my region, which
+                        resulted in 400+ conference attendees, $3000+ worth of scholarships, and a nomination to &#129351 2 national awards for social initiatives
+                        </p> 
+                    </div>
+                    <div class="category_fact">
+                        <p> Founded Leo Club Katowice, which is the biggest youth charity club in &#127477&#127473 Poland (over 200 active members)
+                        </p>
+                    </div>
+                    <div class="category_fact">
+                        <p> Finalist of the “Road to Harvard” competition organized by Harvard Club of Poland (one of 30/1000+ applicants)
+                        </p>
+                    </div>
+                    <div class="category_fact">
+                        <p> &#128214 Pending publication on Modeling User Engagement Profiles using Machine Learning in <a href="https://emcis.eu/" target="_blank" style="font-weight:bold;"> EMCIS 2021 Conference </a>.
+                        </p>
+                    </div>
+                    <div class="category_instruction">
+                        <p> move those arrow keys to keep exploring</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="interests" class="category_container">
+            <div class="category_head">
+                <h3> Skills + Interests  &#9917</h3>
+            </div>
+            <div class="category_body">
+                <div class="category_facts">
+                    <div class="category_fact">
+                        <p> Skills: Sklearn (Pro), Pandas (Pro), Keras (Pro), TensorFlow (Pro), TensorBoard (Mid), Airflow (Mid), Pytorch (Mid), SQL (Mid)
+                        </p>
+                    </div>
+                    <div class="category_fact">
+                        <p> Languages: Polish (Native), English (Fluent), Spanish (Mid) || Python (Fluent), Pyspark (Pro), Scala (Mid), R(Mid), Swift (Basic)
+                        </p>
+                    </div>
+                    <div class="category_fact">
+                        <p> Interests: &nbsp Ethics of AI &#129302, &nbsp European Football &#9917, &nbsp Mixed Martial Arts &#129355, &nbsp Archeology &#127963&#65039, &nbsp DJing &#127911, &nbsp Speedway &#127950&#65039
+                        </p>
+                    </div>
+                    <div class="category_instruction">
+                        <p> move those arrow keys to keep exploring</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="education" class="category_container">
+            <div class="category_head">
+                <h3> Education &#9917</h3>
+            </div>
+            <div class="category_body">
+                <div class="category_facts">
+                    <div class="category_fact_h">
+                        <p>Minerva University
+                        </p> 
+                    </div>
+                    <div class="category_fact_s">
+                        <p> Candidate for BS in Computer Science: Data Science + Software Engineering
+                        </p> 
+                        <p> GPA: 3.66, Expected: 2022
+                        </p>
+                    </div>
+                    <div class="category_fact subpoint">
+                        <p> Gained exposure to &#127758 international problems by immersing in cultures of 7 cities on 4 continents (San Francisco, Seoul, Hyderabad,
+                        Berlin, Buenos Aires, London, Taipei).
+                        </p>
+                    </div>
+                    <div class="category_fact subpoint">
+                        <p> Worked with a multinational team during my semester in Seoul on developing market entrance strategies for the world’s biggest 5G provider, SKTelecom, and its 1M+ active
+                        users. &#128241
+                        </p>
+                    </div>
+                    <div class="category_fact subpoint">
+                        <p> Relevant coursework: CS162: Software Engineering &#128104&#8205&#128187 , &nbsp CS156: Machine Learning &#129518, &nbsp CS166: Modeling and Simulation &#128200
+                        </p>
+                    </div>
+                    <div class="category_instruction">
+                        <p> move those arrow keys to keep exploring</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="experience" class="category_container">
+            <div class="category_head">
+                <h3> Experience &#9917</h3>
+            </div>
+            <div class="category_body">
+                <div class="category_facts">
+                    <div class="category_fact_h">
+                        <p> Roq.ad
+                        </p> 
+                    </div>
+                    <div class="category_fact_s">
+                        <p> Data Scientist
+                        </p> 
+                        <p> June 2021 - Present || Berlin, Germany
+                        </p>
+                    </div>
+                    <div class="category_fact subpoint">
+                        <p> Improved the performance of the supervised identity resolution algorithm (company’s main product) by 6.3% on the F1 score.
+                        </p>
+                    </div>
+                    <div class="category_fact subpoint">
+                        <p> Extended the functionality of DS pipeline to track key business metrics and provide actionable insights with the use of Scala.
+                        </p>
+                    </div>
+                    <div class="category_fact subpoint">
+                        <p> Set up and managed a Big Data Deep Learning infrastructure &#128451 which I use for research; working with Keras and TensorBoard.
+                        </p>
+                    </div>
+                    <div class="category_fact subpoint">
+                        <p> Researching SoTA clustering and community detection algorithms to improve the unsupervised learning part of the offerings.
+                        </p>
+                    </div>
+                    <div class="category_fact_h">
+                        <p> Deep.BI, Inc
+                        </p> 
+                    </div>
+                    <div class="category_fact_s">
+                        <p> Junior Data Scientist
+                        </p> 
+                        <p> Oct 2019 - May 2021 || San Francisco, CA
+                        </p>
+                    </div>
+                    <div class="category_fact subpoint">
+                        <p> Implemented a &#128292 Natural Language Processing solution using word2vec for Concept Search for a multinational client (Roche).
+                        </p>
+                    </div>
+                    <div class="category_fact subpoint">
+                        <p> Improved the performance of my team’s classification algorithm by 85% on P-R auc by using new sampling method based on EDA.
+                        </p>
+                    </div>
+                    <div class="category_fact subpoint">
+                        <p> Developed and deployed Machine Learning solutions (RF, GBT, NNs) for propensity to buy prediction, using Big Data stack
+                            (Spark, Hadoop), and as a result increased client’s conversion rate &#128185 by +100%.
+                        </p>
+                    </div>
+                    <div class="category_fact subpoint">
+                        <p> Suggested a new product, led the cross-functional team, and ultimately decreased the client’s churn rate by -20%.
+                        </p>
+                    </div>
+                    <div class="category_fact_h">
+                        <p> Minerva Schools at KGI
+                        </p> 
+                    </div>
+                    <div class="category_fact_s">
+                        <p> Admissions Processor and Summer Intern
+                        </p> 
+                        <p> Sept 2018 - May 2020 || San Francisco, CA
+                        </p>
+                    </div>
+                    <div class="category_fact subpoint">
+                        <p> Presented findings from Data Analysis and translated ML concepts (SVMs) to a non-technical audience using data visualizations &#128202.
+                        </p>
+                    </div>
+                    <div class="category_fact subpoint">
+                        <p> Utilized both quantitative and qualitative analysis to improve the mathematical skills testing section of the admissions process.
+                        </p>
+                    </div>
+                    <div class="category_instruction">
+                        <p> move those arrow keys to keep exploring</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="my_projects" class="category_container">
+            <div class="category_head">
+                <h3> My Projects  &#9917</h3>
+            </div>
+            <div class="category_body">
+                <div class="category_facts">
+                    <div class="category_fact">
+                        <p> Created an image recognition web app that categorizes 15 sneakers &#128095 models with > 0.9 accuracy
+                        </p> 
+                    </div>
+                    <div class="category_fact">
+                        <p> Used Pytorch to create a Neural Network (LSTM) and conduct sentiment analysis &#128483&#65039 on tweets, achieving 0.89 accuracy
+                         &nbsp &#128073 <a href="https://gist.github.com/jwarmuz99/11a673b7801a93c7d50f62db5a03eb96" target="_blank">Check me out </a>
+                        </p>
+                    </div>
+                    <div class="category_fact">
+                        <p> Trained an &#128444&#65039 image classification model in Fast.ai and integrated it with my iOS app using Swift and CoreML
+                         &nbsp &#128073 <a href="https://github.com/jwarmuz99/kicks-classifier-ios" target="_blank">Check me out</a>
+                        </p>
+                    </div>
+                    <div class="category_fact">
+                        <p> Implemented a personalized recommendation system &#128187 using BM25 algorithm and TensorFlow Recommenders
+                        &nbsp &#128073 <a href="https://gist.github.com/jwarmuz99/1aa2de679d115a7938e052e5a368dfc9" target="_blank">Check me out </a>
+                        </p>
+                    </div>
+                    <div class="category_instruction">
+                        <p> move those arrow keys to keep exploring</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="additional_buttons">
+            <div id="left_buttons">
+
+            </div>
+            <div id="right_buttons">
+                <div id="connect_linkedin" class="gg">
+                    <button class="gg_top" onclick="window.open('https://www.linkedin.com/in/kubawarmuz/')"></button>
+                    <object class="gg_bottom" type="image/svg+xml" data="{% static 'kuba/icons/resume_icons/linkedin.svg' %}">connect on LinkedIn</object>
+                </div>
+                <div id="connect_github" class="gg">
+                    <button class="gg_top" onclick="window.open('https://github.com/jwarmuz99')"></button>
+                    <object class="gg_bottom" type="image/svg+xml" data="{% static 'kuba/icons/resume_icons/github.svg' %}">connect on LinkedIn</object>
+                </div>
+            </div>
+        </div>
+       
+
+    </div>
+
+    <h1 id="portfolio_title">Jakub Warmuz</h1>
+        <script>
+        if ((/Mobi|Android/i.test(navigator.userAgent))) {
+            document.getElementById('enter_3D_world').remove();
+            document.getElementById('loading_div').innerHTML = "<p style='text-align:center;padding:16px;'> Mobile is coming, but you might want to try desktop first &#128521 </p>";
+        }
+        </script>
+        <script src="{% static "js/three/dat.gui.min.js"%}"></script>
+   {% compress js %}
+        <script type="module" src="{% static "kuba/js/create_landscape.js" %}"></script>
+    {% endcompress %}
+
+    </body>
+
+</html>

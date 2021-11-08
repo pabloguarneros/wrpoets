@@ -1,9 +1,9 @@
 
-function create_ground(scene){
+function create_ground(scene, colors){
 
     const groundGeometry = new THREE.PlaneGeometry( 20000, 20000);
     groundGeometry.rotateX( - Math.PI / 2 );
-    const groundMaterial = new THREE.MeshPhongMaterial( { color: 0x87DF9E } );
+    const groundMaterial = new THREE.MeshPhongMaterial( { color: colors.light } );
     const ground = new THREE.Mesh( groundGeometry, groundMaterial );
     ground.receiveShadow = true;
     scene.add( ground );

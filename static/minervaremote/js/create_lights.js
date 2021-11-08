@@ -1,6 +1,6 @@
-function create_lights(scene, gui=false){
+function create_lights(scene, colors, gui=false){
 
-    scene.fog = new THREE.Fog( 0x9EE482, 10, 50 );
+    scene.fog = new THREE.Fog( colors.dark, 10, 50 );
 
     const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444 );
     hemiLight.position.set( 0, 20, 0 );

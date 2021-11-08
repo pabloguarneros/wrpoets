@@ -1,12 +1,10 @@
 import $ from 'jquery';
 function character_has_loaded(){
-    $("#enter_elsewhere_btn").addClass("reveal");
-    $("#enter_elsewhere_btn").on('click',function(){
-        $("#interaction_toggles").css("display","flex");
-        $("#remote_intro").addClass("fade");
-        $("#remote_intro").on("animationend",function(){
-            $("#interaction_toggles").css("display","flex");
-            $("#remote_intro").css("display","none");
+    $("#enter_3D_world").addClass("reveal");
+    $("#enter_3D_world").on('click',function(){
+        $("#loading_page").addClass("fade");
+        $("#loading_page").on("animationend",function(){
+            $("#loading_page").css("display","none");
         })
     });
 }
