@@ -34,6 +34,7 @@ package-lock.json
 !static/patterns/pattern-ideas-resized.png
 !static/patterns/pattern-projects-resized.png
 !static/patterns/pattern-writing-resized.png
+!static/models/*.png
 
 # OS generated files #
 ######################
