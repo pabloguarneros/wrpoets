@@ -8,6 +8,9 @@ def get_mobile(request):
         return False
 
 def home(request):
+    host = request.META['HTTP_HOST']
+    if "jakubwarmuz" in host:
+        return render(request,'kuba/welcome.html')
     is_mobile = get_mobile(request)
     if request.user.is_authenticated:
         return redirect("profile", request.user.username)

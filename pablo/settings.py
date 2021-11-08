@@ -18,6 +18,7 @@ ALLOWED_HOSTS = [config('IP_SERVER'),"www.wrpoets.com","www.jakubwarmuz.com"]
 COMPRESS_ENABLED = True
 
 
+
 INSTALLED_APPS = [
     'social_django',
     'django.contrib.admin',
