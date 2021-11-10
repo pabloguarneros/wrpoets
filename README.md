@@ -49,6 +49,14 @@ Low Poly Animals by EdwinRC is licensed under Creative Commons Attribution.
 
 Bread by yourejustjellyfish is licensed under Creative Commons Attribution
 
+"Stickman" (https://skfb.ly/6UUQT) by KOMIRA.studio is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+"Football/soccer ball" (https://skfb.ly/67MXK) by Jiří Kuba is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+"Soccer Field" (https://skfb.ly/6VGJC) by Tiko is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+Easel from Poly by Google by IronEqual is licensed under Creative Commons Attribution
+
 
 ### Contact
 * Email: pablo@storyture.com

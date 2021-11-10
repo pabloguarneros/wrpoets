@@ -44,31 +44,16 @@
         <div id="garden_div" class="backpack_content fc">
             <h5 class="tt_cent"> &#129716 Our Garden &#129716</h5>
             <div id="planting_memories" class="fr">
-                {% for memory in plant_memories %}
-                <div class="memory_item fc ac">
-                    <img src="{{memory.photo.url}}" alt="Photo by {{memory.author}} taken in {{memory.location}}"></img>
-                    <div class="meta_data fc">
-                        <a class="gg_bottom" href="{{memory.link}}" target="_blank">
-                                &#128123 </br> 
-                                {{memory.author }} </br> </br>
-                                &#128205 </br> 
-                                {{memory.location }}</a>
-                    </div>
-                </div>
-                {% endfor %}
             </div>
         </div>
         <div id="pet_div" class="backpack_content fc">
             <h5 class="tt_cent"> &#128021 Our Pets &#128032</h5>
             <div id="pet_memories" class="fr">
-                {% for memory in pet_memories %}
-                <div class="memory_item fc ac">
-                    <img src="{{memory.photo.url}}" alt="Photo by {{memory.author}} taken in {{memory.location}}"></img>
-                    <div class="meta_data fc">
-                        <p class="gg_bottom"> {{memory.author }}'s Super Cute &#128062 &#128062</p>
-                    </div>
-                </div>
-                {% endfor %}
+            </div>
+        </div>
+        <div id="art_div" class="backpack_content fc">
+            <h5 class="tt_cent"> &#127912 Learning About Cool Artists &#127912 </h5>
+            <div id="art_memories" class="fr">
             </div>
         </div>
         <div id="bread_div" class="backpack_content fc">

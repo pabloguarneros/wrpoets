@@ -14,6 +14,7 @@ class Memory(models.Model):
     class MemoryCategory(models.IntegerChoices):
         FARMING = 1
         PET = 2
+        ART = 3
 
     memory_category = models.IntegerField(choices=MemoryCategory.choices, default=1, null=True)
 
