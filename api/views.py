@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from rest_framework import generics
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import SAFE_METHODS, IsAuthenticated, BasePermission
@@ -144,4 +145,3 @@ class Images(generics.ListCreateAPIView):
         else:
             tag = ImageTag.objects.get(pk=tag_pk)
             return tag.image_tag.all()
-

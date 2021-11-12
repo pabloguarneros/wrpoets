@@ -6,6 +6,12 @@ def memory_image_directory_path(instance, filename):
 
 class Memory(models.Model):
 
+    class Meta:
+        verbose_name_plural = "Categories"
+
+    def __str__(self):
+	    return f"{self.author} ft. {self.memory_category}"
+
     author = models.CharField(max_length=150)
     location = models.CharField(max_length=150, blank=True, null=True)
     link = models.URLField(max_length=320, blank=True, null=True)

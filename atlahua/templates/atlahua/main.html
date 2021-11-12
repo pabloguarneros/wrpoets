@@ -1,0 +1,30 @@
+{% load static %}
+{% load compress %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta name='viewport' content='initial-scale=1, viewport-fit=cover' />
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
+        <link type="text/css" rel="stylesheet" href="{% static "atlahua/css/main.css"%}">
+        <link type="text/css" rel="stylesheet" href="{% static "minervaremote/css/threejs_default.css"%}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+
+    <div id="skald_module">
+    </div>
+
+
+    <script src="{% static "js/three/dat.gui.min.js"%}"></script>
+    {% compress js %}
+        <script type="module" src="{% static "atlahua/js/main.js" %}"></script>
+    {% endcompress %}
+
+    </body>
+
+</html>
