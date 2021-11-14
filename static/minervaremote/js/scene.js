@@ -48,7 +48,7 @@ class Scene {
         
         create_lights(this.scene,this.colors);
 
-        create_ground(this.scene,this.colors);
+        create_ground(this.scene, this.colors);
 
         this._animate();
         

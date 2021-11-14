@@ -1,6 +1,11 @@
 from django.http import JsonResponse
+import random
+from rest_framework.permissions import SAFE_METHODS, IsAuthenticated, BasePermission
+from rest_framework import generics
 from transformers import AutoTokenizer, AutoModel, pipeline
 import tensorflow as tf
+from atlahua.models import Query, Completion, ChoiceSentence
+from .serializers import CompletionSerializer, QuerySerializer
 
 def generate_sentences(story_gen, query):
 
@@ -21,46 +26,48 @@ def ensure_low_word_count(query):
         words = words[:8]
     return " ".join(words)
 
-def generate_completion(query):
 
-    '''
-    Input: query
-    Output: completed query, three more choices, query_for_each_choice.
-    '''
+def generate_completion_object(query):
 
     story_gen = pipeline("text-generation", "pranavpsv/gpt2-genre-story-generator")
-
-    s_0_1, s_0_2 = generate_sentences(story_gen, ensure_low_word_count(query))
-
-    completion_library = {"completed_sentence":f"{s_0_1}","choices":[]}
+    s_0_1, s_0_2 = generate_sentences(story_gen, query)
+    
+    query_obj, _ = Query.objects.get_or_create(query=query)
+    completion = Completion.objects.create(sentence=s_0_1)
 
     for _ in range(3):
 
-        s_1_1, s_1_2 = generate_sentences(story_gen, ensure_low_word_count(query))
+        s_1_1, s_1_2 = generate_sentences(story_gen, ensure_low_word_count(s_0_2))
+        choice = ChoiceSentence.objects.create(sentence=s_1_1,hidden_query=ensure_low_word_count(s_1_2))
+        completion.choices.add(choice)
+        completion.save()
 
-        completion_library["choices"].append(
-                        {"choice": f"{s_1_1}",
-                        "hidden_query": f"{s_1_2}"})
+    query_obj.completions.add(completion)
+    query_obj.save()
+
+    return query_obj
+
+
+class GetNLPCompletion(generics.ListAPIView):
+
+    serializer_class = CompletionSerializer
+
+    class NodeUserWritePermission(BasePermission):
+        
+        def has_permission(self, request, view):
+            return True
     
-    return completion_library
+    permission_classes = [NodeUserWritePermission]
 
+    def get_queryset(self):
 
-def hugging_face_one(request):
+        query = ensure_low_word_count(self.kwargs['q'])
 
-    query = request.GET.get('q', None)
+        try:
+            query_obj = Query.objects.get(query=query)
+        except Query.DoesNotExist:
+            query_obj = generate_completion_object(query)
 
-    completion_library = generate_completion(query)
-    
-    return JsonResponse(completion_library, status=201)
+        completions = query_obj.completions.all()
 
-
-def hugging_face_preload(request):
-    query_string = request.GET.get('q', None)
-    choices = query_string.split("||")
-
-    completion_libraries = {}
-
-    for choice in choices:
-        completion_libraries[choice] = generate_completion(choice)
-    
-    return JsonResponse(completion_libraries, status=201)
+        return completions

@@ -9,6 +9,5 @@ urlpatterns = [
     path('nodes/<int:lesson_pk>/<int:pk>', views.NodeDetail.as_view(),name="node_details"),
     path('images/<int:node_pk>',views.NodeImage.as_view(),name="image_list"),
     path('images',views.Images.as_view(),name="image_list"),
-    path('huggingface/1', nlp_views.hugging_face_one,name="hugging_face_1"),
-    path('huggingface/preload', nlp_views.hugging_face_preload,name="hugging_face_preload")
+    path('huggingface/<q>', nlp_views.GetNLPCompletion.as_view(), name="hugging_face_completion"),
 ]

@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from atlahua.models import Query, Completion, ChoiceSentence
 from rooms.models import NodeImages, SectionNode, Lesson
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -23,3 +24,26 @@ class NodeSerializer(serializers.ModelSerializer):
                 'x_position','y_position','z_position',
                 'quat_x', 'quat_y', 'quat_z', 'quat_w',
                 'scale','images')
+
+class ChoiceSentenceSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ChoiceSentence
+        fields = ('sentence','hidden_query')
+
+class CompletionSerializer(serializers.ModelSerializer):
+
+    choices = ChoiceSentenceSerializer(many=True,read_only=True)
+
+    class Meta:
+        model = Completion
+        fields = ('sentence','choices')
+
+class QuerySerializer(serializers.ModelSerializer):
+
+    completions = CompletionSerializer(many=True,read_only=True)
+
+    class Meta:
+        model = Query
+        fields = ('completions',)
+

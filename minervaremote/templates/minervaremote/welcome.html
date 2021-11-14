@@ -18,16 +18,12 @@
     <body>
 
     <div id="loading_page">
-        <p>
-            Chretien squeezes Gisele's hand. "There's an 8th rotation city!" </br>
-            But Gisele eyes Telegram, "No one's saying anything," she says. </br>
-            Chretien pulls up his phone. "They don't know." </br>
-            "Because..." </br>
-            "It's in the email: 'It's only available to us, the Remotes.'" </br>
-            Gisele yawns, "So what's the 8th rotation city?" </br>
-            Chretien's eyes light up, "Elsewhere."
-        </p>
-                <button id="enter_3D_world"> enter </button>
+        <div id="intro_text">
+            <h1> Elsewhere </h1>
+            <p> collecting the adventures of minervans gone remote  </p>
+            <p id="loading_icon"> &#128661 </p>
+        </div>
+        <button id="enter_3D_world"> enter </button>
 
         <div id="loading_div" class="fr ac">
             <div id="loading_bar_container">
@@ -41,6 +37,8 @@
     <div id="3d_world">
     </div>
     <div id="interaction_overlay">
+        <div id="instructions"><small>move with arrow keys &nbsp ← ↑ → </small></div>
+
         <div id="garden_div" class="backpack_content fc">
             <h5 class="tt_cent"> &#129716 Our Garden &#129716</h5>
             <div id="planting_memories" class="fr">
@@ -60,9 +58,61 @@
             <a id="break_the_bread" href="https://www.gather.town/" target="_blank">&#127838 Break The Bread &#129295</a>
         </div>
 
+        <div id="page_instructions">
+            <div id="model_citations">
+                    <p class="section_head"> 3D Models </p>
+                    <p>
+                        Lowpoly Tree 3 by FLAREMEDIA is licensed under Creative Commons Attribution.
+                    </p>
+                    <p>
+                        <a href="https://skfb.ly/6VOyo" target="_blank">"Greenhouse"</a> by julialalart is licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank"> Creative Commons Attribution </a>
+                    </p>
+                    <p>
+                        <a href="https://skfb.ly/onrtD" target="_blank">"Ferris Wheel"</a> by neutralize is licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank"> Creative Commons Attribution </a>
+                    </p>
+                    <p>
+                        Blue Heeler - Australian Cattle Dog by DavidA3D is licensed under Creative Commons Attribution.
+                    </p>
+                    <p>
+                        Easel from Poly by Google by IronEqual is licensed under Creative Commons Attribution.
+                    </p>
+                    <p>
+                        <a href="https://skfb.ly/6UUQT" target="_blank">"Stickman"</a> by KOMIRA.studio is licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank"> Creative Commons Attribution </a>
+                    </p>
+            </div>
+         </div>
+
+        <div id="additional_buttons">
+            <div id="left_buttons">
+            </div>
+            <div id="right_buttons">
+                <div id="instructions_question" class="gg">
+                    <button id="see_site_info" class="gg_top"></button>
+                    <object class="gg_bottom" type="image/svg+xml" data="{% static 'icons/info.svg' %}">Information About The Site</object>
+                </div>
+            </div>
+        </div>
+
     </div>
 
+
     <h1 id="elsewhere_title">elsewhere</h1>
+
+    <script>
+        if ((/Mobi|Android/i.test(navigator.userAgent))) {
+            document.getElementById('enter_3D_world').remove();
+            document.getElementById('loading_div').innerHTML = "<p style='text-align:center;padding:16px;'> Mobile is coming, but you might want to try desktop first &#128521 </p>";
+        }
+        document.getElementById('see_site_info').addEventListener("click",function(){
+            document.getElementById('page_instructions').classList.add("reveal");
+            var delayInMilliseconds = 4500;
+            setTimeout(function() {
+                document.getElementById('page_instructions').classList.remove("reveal");
+            }, delayInMilliseconds);
+        })
+    </script>
+
+
         <script src="{% static "js/three/dat.gui.min.js"%}"></script>
    {% compress js %}
         <script type="module" src="{% static "minervaremote/js/create_landscape.js" %}"></script>

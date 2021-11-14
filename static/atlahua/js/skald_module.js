@@ -5,13 +5,10 @@ class SkaldModule extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        story: '',
+        story: '...',
         choices: [],
-        preloaded_queries: {}
       };
-      this.handleChange = this.handleChange.bind(this);
       this.getCompletionLibrary = this.getCompletionLibrary.bind(this);
-      this.loadDatabase = this.loadDatabase.bind(this);
       this.pushChoices = this.pushChoices.bind(this);
     }
 
@@ -31,42 +28,18 @@ class SkaldModule extends React.Component {
         }
         const json = await response.json();
         let choices = [];
+
         for (var v=0; v<json.length; v++){
             const headline = this.get_news(json[v]);
             choices.push({
-                "seen_text":headline,
+                "sentence":headline,
                 "hidden_query":headline
             })
         }
+
         this.setState({
             choices: choices
-        }, () => {
-            this.loadDatabase();;
-        })
-
-    }
-
-    loadDatabase(){
-        let preload_copy = this.state.preloaded_queries;
-        const this_obj = this;
-        const query_list = []
-        this.state.choices.forEach((choice)=>{
-            query_list.push(choice["hidden_query"])
-        })
-        const queries = query_list.join("||")
-
-        const api = `/nubes/huggingface/preload?q=${queries}`;
-        fetch(api)
-            .then(response => response.json())
-            .then(function(data){
-                Object.entries(data).forEach(([key, value]) => {
-                    console.log(data);
-                    preload_copy[key] = value;
-                });
-                this_obj.setState({
-                    preloaded_queries: preload_copy
-            })
-        })
+        });
     }
 
     pushChoices(data, query, innerHTML){
@@ -74,58 +47,66 @@ class SkaldModule extends React.Component {
         const this_obj = this;
         const choices = [];
     
-        for (var c = 0; c < data.choices.length; c++){
+        for (var c = 0; c < data["choices"].length; c++){
             choices.push({
-                "seen_text":data.choices[c].choice,
-                "hidden_query":data.choices[c].hidden_query
+                "sentence":data.choices[c]["sentence"],
+                "hidden_query":data.choices[c]["hidden_query"]
             })}
 
         const story = (query == innerHTML)
-            ? this_obj.state.story.concat(data.completed_sentence)
-            : this_obj.state.story.concat(innerHTML).concat(data.completed_sentence);
+            ? data["sentence"]
+            : this_obj.state.story.concat(innerHTML).concat(` ${data["sentence"]}`);
             
         this.setState({
             story: story,
             choices: choices
-        }, () => {
-            this.loadDatabase();;
-        })
+        });
+
     }
   
     getCompletionLibrary(event) {
 
+        // Fetch Completion Library for a Given Query
+
+        const this_obj = this;
         event.preventDefault();
+
         const query = event.target.value;
         const innerHTML = event.target.innerHTML;
+        
+        const api = `/nubes/huggingface/${query}`;
 
-        if (this.state.preloaded_queries[`${query}`]){
-            this.pushChoices(this.state.preloaded_queries[`${query}`],
-                        query, innerHTML);
-        } else{
-            const api = `/nubes/huggingface/1?q=${query}`;
-            fetch(api)
-                .then(response => response.json())
-                .then(function(data){
-                    this.pushChoices(data, query, innerHTML);
-                })
-        }
+        fetch(api) 
+            .then(response => response.json())
+            .then(function(data){
+                // after the data gets fetched, choose a random element from the data
+                this_obj.pushChoices(
+                    data[Math.floor(Math.random()*data.length)],
+                    query, innerHTML);
+            })
     }
 
-    handleChange(event) {
-        this.setState({value: event.target.value});
-      }
-    
-  
     render() {
       return (
-        <div className="fc ac card_title">
-            <h2> Let's Tell A Story </h2>
-            <p> {this.state.story} </p>
-            {this.state.choices.map( (choice, index) => (
-                <button value={choice["hidden_query"]} key={index} onClick={this.getCompletionLibrary}>
-                    {choice["seen_text"]}
-                </button>
-            ))}
+        <div id="skald_react_frame">
+            <div id="story_input">
+                <p id="choice_instructions"> You Choose.&nbsp;A.I. Completes </p>
+                <div id="user_choices">
+                {this.state.choices.map( (choice, index) => (
+                    <button className="choice_option" value={choice["hidden_query"]} key={index}
+                            onClick={this.getCompletionLibrary}>
+                        {choice["sentence"]}
+                    </button> ))}
+                </div>
+            </div>
+            <div id="story_meta_options">
+                <button id="cancel_story">CANCEL</button>
+                <button id="save_story">SAVE STORY</button>
+            </div>
+            <div id="story_output">
+                <p id="story_title"> my untitled story #1 </p>
+                <p id="story_body"> {this.state.story} </p>
+            </div>
         </div>
       );
     }

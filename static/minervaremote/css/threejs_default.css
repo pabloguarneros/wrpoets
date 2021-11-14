@@ -1,9 +1,10 @@
 body{
     height:100vh;
     width:100vw;
-    overflow:hidden;
-    padding:0px;
     margin:0px;
+    padding:0px;
+    overflow:hidden;
+    font-weight: normal;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -51,7 +52,7 @@ body{
 }
 
 #loading_page {
-    z-index:1;
+    z-index:10;
     display:flex;
     flex-direction: column;
     align-items: center;
@@ -148,4 +149,144 @@ textarea{
     left:0px;
     z-index:3;
     position:fixed;
+}
+
+#instructions{
+    position:fixed;
+    width:100%;
+    display:flex;
+    justify-content:space-around;
+    color:white;
+    top:21px;
+}
+
+#instructions small{
+    font-size:27px;
+    opacity:0.7;
+}
+
+@keyframes rotate_icon{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg)
+    }
+}
+
+#loading_icon{
+    animation: rotate_icon 0.5s linear 0s infinite running;
+}
+
+#intro_text{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom:62px;
+}
+
+#intro_text p{
+    text-align: center;
+    padding: 0px 10px;
+}
+
+#intro_text h1{
+    color:white;
+    opacity:0.88;
+}
+
+
+#additional_buttons{
+    z-index:0;
+    position:fixed;
+    display:flex;
+    justify-content: space-between;
+    bottom:0px;
+    width:100vw;
+}
+
+#additional_buttons button{
+    width:65px;
+    height:65px;
+    margin:2px 6px;
+    margin-bottom:0px;
+    border-radius:20px;
+    outline:none;
+
+    background:none;
+    border: 2px solid rgba(255, 255, 255, 0);
+    transition:border 0.1 ease;
+}
+
+#additional_buttons button:hover{
+    border: 3px solid rgba(255, 255, 255, .35);
+    cursor:pointer;
+}
+
+
+#additional_buttons object{
+    margin:0px;
+    margin:auto;
+    width:46px;
+    height:auto;
+    overflow:hidden;
+    filter:invert();
+}
+
+#additional_buttons .gg{
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+
+#left_buttons, #right_buttons{
+    display:flex;
+    flex-direction:column;
+    padding:0px 10px;
+    margin-bottom:19px;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+
+#left_buttons div, #right_buttons div{
+    margin:0px;
+}
+
+#page_instructions.reveal{
+    right:5vw;
+}
+
+#page_instructions{
+    position:fixed;
+    right:-20vw;
+    top:6vh;
+    width:20vw;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.2);
+    padding:20px;
+    border-radius:20px;
+    box-sizing: border-box;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: right 0.32s linear;
+}
+
+#page_instructions p{
+  font-size: 15px;  
+  text-align:right;
+}
+
+#page_instructions .section_head{
+    font-size: 18px;  
+    font-weight:bold;
+}
+
+#page_instructions a{
+    color:black;
+    text-decoration: none;
+    font-weight:bold;
+}
+
+#page_instructions a:hover{
+    text-decoration: underline;
 }

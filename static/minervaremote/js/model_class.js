@@ -31,7 +31,7 @@ class ModelLoad {
                 physics_objects.push(this_object.get_physics_reference(world));
             };
         }, undefined, function ( error ) {
-            console.error( error );
+            console.error ( error );
 
         } );
     }
@@ -66,8 +66,8 @@ class ModelLoad {
 
 
     gui_loader(){
-        const gui = new dat.GUI()
-        const modelFolder = gui.addFolder(this.name)
+        const gui = new dat.GUI();
+        const modelFolder = gui.addFolder(this.name);
         modelFolder.add(this.model.rotation, 'x', 0, Math.PI * 2)
         .listen().name("Rotate X").step( 0.1);
         modelFolder.add(this.model.rotation, 'y', 0, Math.PI * 2)

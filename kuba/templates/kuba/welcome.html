@@ -20,7 +20,7 @@
         <div id="intro_text">
             <h1> Jakub Warmuz </h1>
             <p> Data Scientist | Software Engineer // Graduating 2022 </p>
-            <p id="loading_football"> &#9917 </p>
+            <p id="loading_icon"> &#9917 </p>
 
         </div>
         <button id="enter_3D_world"> Enter </button>
@@ -246,10 +246,25 @@
                 </div>
             </div>
         </div>
+
+        <div id="page_instructions">
+            <div id="model_citations">
+                <p class="section_head"> 3D Models </p>
+                <p>
+                    <a href="https://skfb.ly/6UUQT" target="_blank">"Stickman"</a> by KOMIRA.studio is licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank"> Creative Commons Attribution </a>
+                </p>
+                <p>
+                    <a href="https://skfb.ly/6VGJC" target="_blank">"Soccer Field"</a> by Tiko is licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank"> Creative Commons Attribution </a>
+                </p>
+            </div>
+        </div>
         
         <div id="additional_buttons">
             <div id="left_buttons">
-
+                <div id="instructions_question" class="gg">
+                    <button id="see_site_info" class="gg_top"></button>
+                    <object class="gg_bottom" type="image/svg+xml" data="{% static 'icons/info.svg' %}">Information About The Site</object>
+                </div>
             </div>
             <div id="right_buttons">
                 <div id="connect_linkedin" class="gg">
@@ -272,6 +287,13 @@
             document.getElementById('enter_3D_world').remove();
             document.getElementById('loading_div').innerHTML = "<p style='text-align:center;padding:16px;'> Mobile is coming, but you might want to try desktop first &#128521 </p>";
         }
+        document.getElementById('see_site_info').addEventListener("click",function(){
+            document.getElementById('page_instructions').classList.add("reveal");
+            var delayInMilliseconds = 4500;
+            setTimeout(function() {
+                document.getElementById('page_instructions').classList.remove("reveal");
+            }, delayInMilliseconds);
+        })
         </script>
         <script src="{% static "js/three/dat.gui.min.js"%}"></script>
    {% compress js %}
