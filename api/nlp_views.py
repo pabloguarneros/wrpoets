@@ -3,7 +3,7 @@ import random
 from rest_framework.permissions import SAFE_METHODS, IsAuthenticated, BasePermission
 from rest_framework import generics
 #from transformers import AutoTokenizer, AutoModel, pipeline
-import tensorflow as tf
+#import tensorflow as tf
 from atlahua.models import Query, Completion, ChoiceSentence
 from .serializers import CompletionSerializer, QuerySerializer
 
