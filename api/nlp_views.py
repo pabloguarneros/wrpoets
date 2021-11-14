@@ -2,7 +2,7 @@ from django.http import JsonResponse
 import random
 from rest_framework.permissions import SAFE_METHODS, IsAuthenticated, BasePermission
 from rest_framework import generics
-from transformers import AutoTokenizer, AutoModel, pipeline
+#from transformers import AutoTokenizer, AutoModel, pipeline
 import tensorflow as tf
 from atlahua.models import Query, Completion, ChoiceSentence
 from .serializers import CompletionSerializer, QuerySerializer
@@ -29,7 +29,8 @@ def ensure_low_word_count(query):
 
 def generate_completion_object(query):
 
-    story_gen = pipeline("text-generation", "pranavpsv/gpt2-genre-story-generator")
+    #story_gen = pipeline("text-generation", "pranavpsv/gpt2-genre-story-generator")
+    story_gen = False
     s_0_1, s_0_2 = generate_sentences(story_gen, query)
     
     query_obj, _ = Query.objects.get_or_create(query=query)
