@@ -1,0 +1,11 @@
+Model Information:
+* title:	Corkscrew from Poly by Google
+* source:	https://sketchfab.com/3d-models/corkscrew-from-poly-by-google-07047b273add4f6fb2075fd176a50cd9
+* author:	IronEqual (https://sketchfab.com/ie-niels)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Corkscrew from Poly by Google" (https://sketchfab.com/3d-models/corkscrew-from-poly-by-google-07047b273add4f6fb2075fd176a50cd9) by IronEqual (https://sketchfab.com/ie-niels) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

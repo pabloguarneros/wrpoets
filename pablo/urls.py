@@ -4,10 +4,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from users.views import logout, userProfile, userPreviewProfile
 from core import views as core_views
+from atlahua.views import main
 from decouple import config
 
 urlpatterns = [
-    path('',core_views.home,name="home"),
+    path('', main, name="home"),
     path(config('ADMIN_URL'), admin.site.urls),
     path('people/',include(('users.urls','users'),namespace='people')),
     path('user/<str:username>', userProfile,name="profile"),

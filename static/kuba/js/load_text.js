@@ -1,11 +1,11 @@
-import { SceneText } from "./text_class.js";
+import { SceneText } from "../../atlahua/js/three/text_class.js";;
 
-function loadFont(scene, models_to_explore){
+function load_font(three){
     const fontLoader = new THREE.FontLoader()
         fontLoader.load(
             '/static/js/fonts/helvetiker_regular.typeface.json',
             function(helvetiker){
-                loadTexts(helvetiker, scene, models_to_explore);
+                loadTexts(helvetiker, three.scene, three.models_to_explore);
     })
 }
 
@@ -42,8 +42,6 @@ function loadTexts(font, scene, models_to_explore){
         'p':{'x':-22,'y':4.6,'z':16}
         });
 
-    
-
 }
 
-export {loadFont};
+export {load_font};

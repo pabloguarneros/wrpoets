@@ -1,4 +1,4 @@
-import { ModelLoad } from "../../minervaremote/js/model_class.js";
+import { ModelLoad } from "../../atlahua/js/three/model_class.js";
 
 function load_models(scene, world, models_to_explore, physics_objects){
 

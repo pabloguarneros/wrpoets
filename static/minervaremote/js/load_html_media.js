@@ -40,22 +40,21 @@ function load_art(object){
     </div>`);
 }
 
-
 async function fetch_html_media() {
-    const api = `/elsewhere/get_experiences?category=1`;
+    const api = `/nubes/minerva/get_remote_experiences?category=1`;
     fetch(api)
         .then(response => response.json())
         .then(function(data){
             for (var i = 0; i < data.length; i++){
                 switch (data[i].memory_category){
                     case 1:
-                        load_garden(data[i])
+                        if (data[i].link){ load_garden(data[i]) };
                         break
                     case 2:
-                        load_pets(data[i])
+                        load_pets(data[i]);
                         break
                     case 3:
-                        load_art(data[i])
+                        if (data[i].link) { load_art(data[i]) };
                 }
             }
         });

@@ -14,7 +14,7 @@ button{
     background: none;
 }
 
-#skald_react_frame{
+.skald_react_frame{
     display:grid;
     grid-template-rows: repeat(9,1fr);
     grid-template-columns: repeat(9,1fr);
@@ -22,9 +22,10 @@ button{
     width:100%;
     border: 0.5px solid rgba(255, 255, 255, 0.36);
     border-radius: 50px;
+    transition: all 1.3s;  
 }
 
-#story_input{
+.story_input{
     grid-area: 1/1/7/6;
     display: flex;
     flex-direction: column;
@@ -32,19 +33,19 @@ button{
     padding:10px 40px;
 }
 
-#story_input #choice_instructions{
+.story_input .choice_instructions{
     color:#291C26;
-    font-size:21px;
+    font-weight:200;
 }
 
-#story_input #user_choices{
+.story_input .user_choices{
     display:flex;
     flex-direction:column;
     align-items: center;
     width:100%;
 }
 
-#story_input #user_choices button{
+.story_input .user_choices button{
     margin:5px 0px;
     padding:14px 20px;
     width:80%;
@@ -53,15 +54,25 @@ button{
     outline:none;
     border:none;
     font-size:17px;
+    font-weight: 200;
 
 }
 
-#story_input #user_choices button:hover{
+.story_body{
+    padding:20px;
+    font-size: 18px;
+    word-spacing: 2.5px;
+    line-height: 26px;
+    color: black;
+    font-weight: 200;
+}
+
+.story_input .user_choices button:hover{
     background: rgba(255, 255, 255, 0.90);
     cursor: pointer;
 }
 
-#story_meta_options{
+.story_meta_options{
     grid-area: 8/1/10/6;
     display:flex;
     flex-direction:column;
@@ -69,7 +80,7 @@ button{
     justify-content: stretch;
 }
 
-#story_meta_options button{
+.story_meta_options button{
     margin:0px;
     padding:6px 24px;
     border: none;
@@ -77,23 +88,23 @@ button{
     height:100%;
 }
 
-#story_meta_options #cancel_story{
+.story_meta_options .cancel_story{
     background: rgba(255, 255, 255, 0.16);
     width:30%
 }
 
-#story_meta_options #save_story{
+.story_meta_options .save_story{
     width:50%;
     border-radius: 0px 0px 0px 50px;
     background: rgba(255, 255, 255, 0.36);
 }
 
-#story_meta_options #cancel_story:hover, #story_meta_options #save_story:hover{
+.story_meta_options .cancel_story:hover, .story_meta_options .save_story:hover{
     cursor:pointer;
     background: rgba(255, 255, 255, 0.90);
 }
 
-#story_output{
+.story_output{
     grid-area: 1/6/10/10;
     height:100%;
     width:100%;
@@ -102,22 +113,69 @@ button{
     align-items: center;
     background: rgba(255, 255, 255, 0.36);
     border-radius: 0px 50px 50px 6px;
+    transition: all 0.6s ease;
 }
 
-#story_output #story_title{
-    padding:5px 0px;
-    text-decoration:underline;
-    color:#481736;
+.story_output.story_finished{
+    grid-area: 1/1/10/10;
 }
 
-#story_output #story_body{
-    width:100%;
-    box-sizing: border-box;
-    height:90%;
-    padding:0px 26px;
-    overflow-y:scroll;
-    border-radius:20px;
-    color:#291C26;
+.story_end {
+    display:none;
+    margin-left:auto;
+    margin-right:auto;
+    text-align: center;
+    padding:10px 20px;
+    border-radius:23px;
+    border: 1px solid rgba(255, 255, 255, 0.36);
+}
+
+.story_end.story_finished{
+    display:flex;
+    animation: appear 1s linear forwards;
+}
+
+.story_output .story_title{
+    padding:30px 0px 0px 0px;
+    font-weight: bold;
+}
+
+/* Animation */
+
+/* Animation */
+
+.story_output p {
+  animation: animated-text 3s steps(29,end) 0.3s 1 normal both,
+             animated-cursor 600ms steps(29,end) infinite;
+}
+
+.story_output p:nth-child(2)
+{
+    overflow:hidden;    
+   animation: animated-text2 3s steps(29,end) 0.3s 1 normal both;
+    -webkit-animation-delay: 1s; 
+    animation-delay: 1s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+/* text animation */
+
+@keyframes animated-text{
+  from{width: 0;}
+  to{width: 472px;}
+}
+
+@keyframes animated-text2{
+  from{width: 0;}
+  to{width: 472px;}
+}
+
+/* cursor animations */
+
+@keyframes animated-cursor{
+  from{border-right-color: rgba(0,255,0,.75);}
+  to{border-right-color: transparent;}
 }
 
 @keyframes appear{
