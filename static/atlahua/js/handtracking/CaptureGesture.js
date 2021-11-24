@@ -2,7 +2,7 @@ import $ from "jquery";
 import { knownGestures } from "./Gestures.js";
 import { GestureEstimator } from "./GestureEstimator.js";
 import { expandBall, shrinkBall} from "./userActions.js";
-import { Stroke } from "../drawing_tools.js";
+import { Stroke } from "../paint/drawing_tools.js";
 
 async function loadGestures(video, three_canvas) {
 

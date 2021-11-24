@@ -1,4 +1,4 @@
-import {getCurvePoints} from "./helpers/calculateCurve.js";
+import {getCurvePoints} from "../helpers/calculateCurve.js";
 
 class Paint {
     constructor() {
