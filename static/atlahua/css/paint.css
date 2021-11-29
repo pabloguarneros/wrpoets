@@ -1,7 +1,7 @@
 body{
-    background: #ffe259; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #ffe259, #ffa751); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #ffe259, #ffa751);
+    background: #fafafa; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to center, #fafafa, #f2f2f2); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to center, #fafafa, #f2f2f2);
 }
 
 #video_container, #user_video{
@@ -20,7 +20,7 @@ body{
     height:180px;
     position:fixed;
     border-radius:240px;
-    border:2px solid #ffa751;
+    border:2px solid #171717;
     overflow:hidden;
 }
 

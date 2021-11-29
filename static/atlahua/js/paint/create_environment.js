@@ -1,11 +1,13 @@
 import $ from 'jquery';
 import { ViewControl } from './view_control.js';
 import { create_lights } from './create_lights.js';
+import { loadGestures } from "./paintGestures.js";
 
-class ThreeCanvas {
+class PaintCanvas {
 
     constructor(){
         this.initialize()
+        this.loadGestures = this.loadGestures.bind(this);
     }
 
     initialize(){
@@ -27,7 +29,7 @@ class ThreeCanvas {
           }, false);
         
         this.scene = new THREE.Scene();
-        this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 100 );
+        this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 60, 300 );
         this.video = null;
         this.controls = new ViewControl( this.camera, this.renderer.domElement );
         this.controls.set_settings();
@@ -41,6 +43,10 @@ class ThreeCanvas {
 
         }
 
+        loadGestures(){
+          loadGestures(this.video, this);
+        }
+
         onWindowResize() {
             this.camera.aspect = window.innerWidth / window.innerHeight;
             this.camera.updateProjectionMatrix();
@@ -52,13 +58,13 @@ class ThreeCanvas {
               this.animate();
               this.renderer.render(this.scene, this.camera);
               this.controls.update(t,0);
-              this.animationObjects.forEach(mesh => {
+              /*this.animationObjects.forEach(mesh => {
                 if (mesh.userData.clock && mesh.userData.mixer) {
                   mesh.userData.mixer.update(mesh.userData.clock.getDelta());
                 }
-              });
+              });*/
             });
           }
 }
 
-export {ThreeCanvas};
+export { PaintCanvas };

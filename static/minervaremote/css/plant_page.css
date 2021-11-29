@@ -53,7 +53,7 @@
     color:black;
 }
 
-#break_the_bread{
+#break_the_bread, #explore_day_in_life{
     background-color:rgba(255,255,255,0.4);
     padding:6px 20px;
     border-radius:24px;
@@ -63,8 +63,35 @@
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-#break_the_bread:hover{
+#break_the_bread:hover, #explore_day_in_life:hover{
     color:rgba(255,255,255,1);
     background-color:black;
     cursor:pointer;
+}
+
+#beginning_instructions_bg{
+    display:flex;
+    justify-content: space-around;
+    align-items:center;
+    width:100%;
+    height:100%;
+    position:fixed;
+}
+
+#beginning_instructions{
+    margin:auto;
+    width:80vh;
+    height:80vh;
+    background: rgba(255, 255, 255, 0.34);
+    backdrop-filter: blur(80px);
+    border-radius: 80px;
+    justify-content: space-evenly;
+
+}
+
+#beginning_instructions:first-child{
+    font-size:18px;
+    color:#55A630;
+    font-weight:bold;
+    text-align:center;
 }

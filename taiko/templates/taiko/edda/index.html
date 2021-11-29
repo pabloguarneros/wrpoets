@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta name='viewport' content='initial-scale=1, viewport-fit=cover' />
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+        <link rel="stylesheet" href="{% static 'taiko/css/mindmap/main.css' %}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+
+    {% block head %}
+    {% endblock %}
+
+    </head>
+
+    <body>
+
+    <div id="three_canvas">
+    </div>
+
+    {% block body %}
+    {% endblock %}
+
+    <script src="{% static "js/three/dat.gui.min.js"%}"></script>
+    {% block script %}
+    {% endblock %}
+
+    </body>
+
+</html>

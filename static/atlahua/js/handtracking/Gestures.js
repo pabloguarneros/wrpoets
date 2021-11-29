@@ -6,7 +6,7 @@ import {Finger, FingerCurl, FingerDirection} from "./FingerDescription.js";
 const moveGesture = new GestureDescription('move');
 moveGesture.addCurl(Finger.Index, FingerCurl.NoCurl, 1.0);
 for(let finger of [Finger.Thumb, Finger.Middle, Finger.Ring, Finger.Pinky]) {
-  moveGesture.addCurl(finger, FingerCurl.FullCurl, 1.0);
+  moveGesture.addCurl(finger, FingerCurl.FullCurl, 1);
 }
 
 const shrinkGesture = new GestureDescription('shrink');

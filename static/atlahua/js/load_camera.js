@@ -1,5 +1,4 @@
 import $ from "jquery";
-import { loadGestures } from "./handtracking/CaptureGesture.js";
 
 async function loadCamera(element, three_canvas){
     var video = document.querySelector(element);
@@ -11,7 +10,7 @@ async function loadCamera(element, three_canvas){
                     $(video).parent().addClass("reveal");
                     video.addEventListener('loadeddata', function(event){
                         three_canvas.video = video;
-                        loadGestures(video, three_canvas);
+                        three_canvas.loadGestures();
                     });
                 } else{
                     video.src = URL.createObjectURL(mediaSource);

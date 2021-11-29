@@ -5,3 +5,7 @@ def main(request):
 
 def paint(request):
     return render(request, "atlahua/paint.html")
+
+
+def ipad_paint(request):
+    return render(request, "atlahua/ipad_paint.html")

@@ -1,9 +1,9 @@
-function create_lights(scene, gui=false){
+function createLights(scene, gui=false){
 
     scene.fog = new THREE.Fog( 0xf2f2f2, 0, 300 );
 
     const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444 );
-    hemiLight.position.set( 0, 20, 0 );
+    hemiLight.position.set( 100, 22, 100 );
     scene.add( hemiLight );
 
 
@@ -36,4 +36,4 @@ function create_lights(scene, gui=false){
 
 }
 
-export {create_lights}
+export {createLights}

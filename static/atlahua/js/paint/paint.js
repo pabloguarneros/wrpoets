@@ -1,8 +1,8 @@
 import $ from "jquery"
 import { loadCamera } from "../load_camera.js"
-import { ThreeCanvas } from "./create_environment.js"
+import { PaintCanvas } from "./create_environment.js"
 
 $(document).ready(function(){
-    const three_canvas = new ThreeCanvas();
-    loadCamera("#user_video",three_canvas);
+    const paintCanvas = new PaintCanvas();
+    loadCamera("#user_video", paintCanvas);
 });

@@ -11,6 +11,9 @@ def welcome(request):
 def convolution(request):
     return render(request,'taiko/convolute.html')
 
+def edda(request):
+    return render(request,'taiko/edda/edit.html')
+
 class CreateSong(generics.RetrieveAPIView):
 
     def get(self, request, format=None):

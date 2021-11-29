@@ -1,0 +1,39 @@
+body{
+    height:100vh;
+    width: 100vw;
+    overflow:hidden;
+}
+
+#fake_console{
+    background:rgba(255,255,255,0.4);
+    border-radius:25px;
+    height: 40vh;
+    width: 35vw;
+    padding:25px;
+    position:fixed;
+    z-index:18;
+    box-sizing: content-box;
+    top:50px;
+    right:50px;
+    overflow:scroll;
+}
+
+#draw_line{
+    background:rgba(255,255,255,0.4);
+    border-radius:25px;
+    padding:10px 20px;
+    position:fixed;
+    z-index:18;
+    bottom:5vh;
+    left:45vw;
+}
+
+#user_instructions{
+    background:rgba(255,255,255,0.4);
+    border-radius:25px;
+    padding:10px 20px;
+    position:fixed;
+    z-index:20;
+    top:5vh;
+    left:45vw;
+}

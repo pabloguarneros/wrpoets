@@ -1,0 +1,20 @@
+{% extends 'taiko/edda/index.html' %}
+{% load compress %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'taiko/css/mindmap/main_story_node.css' %}">
+    <link rel="stylesheet" href="{% static 'taiko/css/mindmap/canvas.css' %}">
+{% endblock %}
+
+{% block body %}
+
+{% endblock %}
+
+{% block script %}
+    
+{% compress js %}
+    <script type="module" src="{% static "taiko/js/mindmap/canvasMain.js" %}"></script>
+{% endcompress %}
+
+{% endblock %}
