@@ -40,12 +40,12 @@
         <div id="instructions"><small>move with arrow keys &nbsp ← ↑ → </small></div>
         <div id="beginning_instructions_bg">
             <div id="beginning_instructions" class="fc">
-                <p>Instructions</p>
-                <p>1. Visit each location to explore what remote students are up to.</p>
-                <p>2. Once you are done at a location, move with your arrow keys
-                to another location. </p>
-                <p>3. Explore! You never know what you'll find!</p>
-                <p>4. Beside using your arrow keys to walk, you can also press the AWSD keys.</p>
+                <p id="instruction_head"> Instructions </p>
+                    <p>1. Visit each location to explore what remote students are up to.</p>
+                    <p>2. Once you are done at a location, move with your arrow keys
+                    to another location. </p>
+                    <p>3. Explore! You never know what you'll find!</p>
+                    <p>4. Beside using your arrow keys to walk, you can also press the AWSD keys.</p>
             </div>
         </div>
         <div id="garden_div" class="backpack_content fc">
@@ -117,12 +117,15 @@
             document.getElementById('loading_div').innerHTML = "<p style='text-align:center;padding:16px;'> Mobile is coming, but you might want to try desktop first &#128521 </p>";
         }
         document.getElementById('see_site_info').addEventListener("click",function(){
+            
             document.getElementById('page_instructions').classList.add("reveal");
             var delayInMilliseconds = 4500;
             setTimeout(function() {
                 document.getElementById('page_instructions').classList.remove("reveal");
             }, delayInMilliseconds);
-        })
+
+        });
+       
     </script>
 
 
