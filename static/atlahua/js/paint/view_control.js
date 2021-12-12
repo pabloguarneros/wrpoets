@@ -25,8 +25,15 @@ class ViewControl{
         controls_folder.open()
     }
 
-    update(t,z){
-        this.camera.position.z += z;
+    update(t, p, moveDirection="z"){
+        switch (moveDirection){
+            case "z":
+                this.camera.position.z += p;
+                break
+            case "xy":
+                this.camera.position.x += p.x;
+                this.camera.position.y += p.y;
+        }
         this.controls.update(t,0);
     }
 }

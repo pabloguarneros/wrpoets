@@ -1,0 +1,36 @@
+{% load static %}
+{% load compress %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Andre Vacha</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <link rel="shortcut icon" type="image/png" href="{% static 'kuba_logo.ico' %}"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fflate@0.7.1/umd/index.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js" crossorigin="anonymous"></script>
+        <link type="text/css" rel="stylesheet" href="{% static "people/css/default.css"%}">    </head>
+        <link type="text/css" rel="stylesheet" href="{% static "people/css/andre.css"%}">    </head>
+        <body>
+
+    
+    <div id="3d_world">
+    </div>
+    <div id="mobile_alert"></div>
+    
+    <script>
+        if ((/Mobi|Android/i.test(navigator.userAgent))) {
+            document.getElementById('3d_world').remove();
+            document.getElementById('mobile_alert').innerHTML = "<p style='text-align:center;padding:16px;'> Mobile is coming, but you might want to try desktop first &#128521 </p>";
+        }
+    </script>
+    <script src="{% static "js/three/dat.gui.min.js"%}"></script>
+   {% compress js %}
+        <script type="module" src="{% static "people/js/andreWorld.js" %}"></script>
+    {% endcompress %}
+
+    </body>
+
+</html>

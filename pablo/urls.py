@@ -21,9 +21,10 @@ urlpatterns = [
     path('test404',core_views.error_404),
     path('elsewhere',include(('minervaremote.urls','minervaremote'),namespace="minervaremote")),
     path('taiko/',include(('taiko.urls','taiko'),namespace="taiko")),
-    path('cs113/',include(('cs113.urls','cs113'),namespace="cs113")),
+    path('edu/',include(('cs113.urls','cs113'),namespace="cs113")),
     path('atlahua',include(('atlahua.urls','atlahua'),namespace="atlahua")),
-    path('kuba',include(('kuba.urls','kuba'),namespace="kuba"))
+    path('kuba',include(('kuba.urls','kuba'),namespace="kuba")),
+    path('ink/',include(('people.urls','people'),namespace="ink")),
 ] 
 
 if settings.DEBUG: 

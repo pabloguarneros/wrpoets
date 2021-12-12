@@ -1,0 +1,29 @@
+{% load static %}
+{% load compress %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        
+        <meta content="width=device-width, user-scalable=no" name="viewport" />
+        <link rel="stylesheet" href="{% static 'cs113/css/cs152.css' %}">
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+      
+    </head>
+
+    <body>
+
+        <div id="fakeBody">
+        </div>
+
+        <div id="optionChosen">
+        </div>
+
+        {% compress js %}
+        <script type="module" src="{% static "cs113/js/prologConnection.js" %}"></script>
+        {% endcompress %}
+
+    </body>
+
+</html>

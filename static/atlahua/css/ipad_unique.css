@@ -1,7 +1,21 @@
+*{
+    overflow:hidden;
+}
+
 body{
     height:100vh;
     width: 100vw;
     overflow:hidden;
+}
+
+
+*{
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
 }
 
 #fake_console{
@@ -28,12 +42,3 @@ body{
     left:45vw;
 }
 
-#user_instructions{
-    background:rgba(255,255,255,0.4);
-    border-radius:25px;
-    padding:10px 20px;
-    position:fixed;
-    z-index:20;
-    top:5vh;
-    left:45vw;
-}

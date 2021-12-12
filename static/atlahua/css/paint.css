@@ -1,5 +1,5 @@
 body{
-    background: #fafafa; /* fallback for old browsers */
+    background: #F0EFF4; /* fallback for old browsers */
     background: -webkit-linear-gradient(to center, #fafafa, #f2f2f2); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to center, #fafafa, #f2f2f2);
 }

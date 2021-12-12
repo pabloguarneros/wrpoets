@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 
-'''
+
 DEBUG = True
 ALLOWED_HOSTS = ["*"]
 COMPRESS_ENABLED = False
@@ -16,6 +16,7 @@ COMPRESS_ENABLED = False
 DEBUG = False
 ALLOWED_HOSTS = [config('IP_SERVER'),"www.wrpoets.com","www.jakubwarmuz.com"]
 COMPRESS_ENABLED = True
+'''
 
 
 INSTALLED_APPS = [
@@ -41,7 +42,9 @@ INSTALLED_APPS = [
     'taiko',
     'cs113',
     'atlahua',
-    'kuba'
+    'kuba',
+    'people',
+    'channels'
 ]
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -88,6 +91,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'pablo.wsgi.application'
+ASGI_APPLICATION = "pablo.asgi.application"
+
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
