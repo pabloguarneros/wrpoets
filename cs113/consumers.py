@@ -118,6 +118,38 @@ def initialiseProlog(w):
     resolve(club)
 
 class ChatConsumer(WebsocketConsumer):
+    
+    def __init__(self, *args, **kwargs):
+
+        self.readers = []
+
+        if self.groups is None:
+            self.groups = []
+
+    def connect(self):
+        self.accept()
+        self.await_message()
+        
+    def await_message(self):
+        for r in wait(self.readers):
+            try:
+                msg = r.recv()
+            except EOFError:
+                self.readers.remove(r)
+            else:
+                self.send(json.dumps(msg)) # send message dictionary
+
+    
+    def disconnect(self, close_code):
+        pass
+
+    def receive(self, text_data):
+        text_data_json = json.loads(text_data)
+        message = text_data_json['message']
+        self.r.send(message)
+        self.await_message()
+
+class ChatConsumerOld(WebsocketConsumer):
 
     def __init__(self, *args, **kwargs):
 
