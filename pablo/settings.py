@@ -20,6 +20,7 @@ COMPRESS_ENABLED = True
 
 
 INSTALLED_APPS = [
+    'channels',
     'social_django',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,8 +44,7 @@ INSTALLED_APPS = [
     'cs113',
     'atlahua',
     'kuba',
-    'people',
-    'channels'
+    'people'
 ]
 
 TEMPLATE_CONTEXT_PROCESSORS = (
