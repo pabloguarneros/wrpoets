@@ -148,7 +148,6 @@ class ChatConsumer(WebsocketConsumer):
     
     def disconnect(self, close_code):
         self.p.terminate()
-        pass
 
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
