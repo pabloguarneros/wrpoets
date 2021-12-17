@@ -21,7 +21,7 @@ class Prolog(psw.Prolog):
 def humanize_askable(A,V):
         str_A, str_V = str(A), str(V)
         if str_A == "instruct":
-            question = "Want to find a night club? Swipe left for yes. Swipe right for no."
+            question = "Want to find a night club? Swipe right for yes. Swipe left for no."
             options = ["yes", "no"]
         elif str_A == "covid" and str_V == "vaccinated":
             question = "Are you vaccinated?"
@@ -117,39 +117,8 @@ def initialiseProlog(w):
     club = [s for s in prolog.query("club(X).", maxresult=1)]
     resolve(club)
 
+
 class ChatConsumer(WebsocketConsumer):
-    
-    def __init__(self, *args, **kwargs):
-
-        self.readers = []
-
-        if self.groups is None:
-            self.groups = []
-
-    def connect(self):
-        self.accept()
-        self.await_message()
-        
-    def await_message(self):
-        for r in wait(self.readers):
-            try:
-                msg = r.recv()
-            except EOFError:
-                self.readers.remove(r)
-            else:
-                self.send(json.dumps(msg)) # send message dictionary
-
-    
-    def disconnect(self, close_code):
-        pass
-
-    def receive(self, text_data):
-        text_data_json = json.loads(text_data)
-        message = text_data_json['message']
-        self.r.send(message)
-        self.await_message()
-
-class ChatConsumerOld(WebsocketConsumer):
 
     def __init__(self, *args, **kwargs):
 

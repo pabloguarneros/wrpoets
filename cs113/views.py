@@ -6,6 +6,9 @@ def starter(request):
 def prologLBA(request):
     return render(request,"cs113/prologLBA.html")
 
+def prologFinal(request):
+    return render(request,"cs113/fini.html")
+
 def room(request, room_name):
     return render(request, 'cs113/room.html', {
         'room_name': room_name

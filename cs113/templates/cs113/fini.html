@@ -1,0 +1,51 @@
+{% load static %}
+{% load compress %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        
+        <meta content="width=device-width, user-scalable=no" name="viewport" />
+        <link rel="stylesheet" href="{% static 'cs113/css/fini.css' %}">
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+        <script type="text/javascript" src="{% static "prolog/tau-prolog.js" %}"></script>
+
+      
+    </head>
+
+    <body>
+
+        <div id="staticBody">
+            <div id="greenLayer">
+            </div>
+            <div id="whiteBorder">
+            </div>
+            <div id="navigatorTab">
+            </div>
+            <div id="navigatorBubbles">
+                <h1>CS152 FiniBot</h1>
+            </div>
+            <div id="messageBox">
+                <div id="chatLog"></div>
+                <div id="userInput">
+                    <form onSubmit={this.sendToProlog}>
+                        <label>
+                          <input id="userInputText" type="text" on/>
+                        </label>
+                        <input id="userInputSubmitButton" type="submit" value="send" />
+                      </form>
+                </div>
+            </div>
+
+        </div>
+
+        {% compress js %}
+        
+            <script type="module" src="{% static "cs113/js/finiPrologConnection.js" %}"></script>
+
+        {% endcompress %}
+
+    </body>
+
+</html>
